@@ -96,22 +96,25 @@ export class SpeechService {
               }
             };
 
-            recognizer.recognizeOnceAsync(
-              result => {
-                if (result.reason === speechsdk.ResultReason.RecognizedSpeech) {
-                  resolve(result.text);
-                } else if (!hasRecognizedSpeech) {
-                  reject(new Error(`No speech detected in the audio file. Recognition result: ${result.reason}`));
-                } else {
-                  resolve(transcription.trim());
-                }
-                recognizer.close();
-              },
-              error => {
-                recognizer.close();
-                reject(new Error(`Speech recognition error: ${error.message || 'Unknown error'}`));
+            // Use fast transcription and diarization
+            recognizer.startContinuousRecognitionAsync();
+            recognizer.recognized = (s, e) => {
+              if (e.result.reason === speechsdk.ResultReason.RecognizedSpeech) {
+                transcription += e.result.text + ' ';
+                onProgress?.(transcription.trim());
               }
-            );
+            };
+
+            recognizer.canceled = (s, e) => {
+              if (e.reason === speechsdk.CancellationReason.Error) {
+                reject(new Error(`Recognition canceled: ${e.errorDetails}`));
+              }
+            };
+
+            recognizer.sessionStopped = () => {
+              resolve(transcription.trim());
+              recognizer.stopContinuousRecognitionAsync();
+            };
           } catch (error) {
             reject(new Error(`Audio processing error: ${error instanceof Error ? error.message : 'Unknown error'}`));
           }

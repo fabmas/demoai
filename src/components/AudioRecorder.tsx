@@ -39,7 +39,7 @@ export function AudioRecorder({ onNewRecording, onUpdateStatus }: AudioRecorderP
         audioRef.current.currentTime = 0;
       }
 
-      const blob = await azureStorage.downloadBlob('1737755752632-buscetta1.mp3');
+      const blob = await azureStorage.downloadBlob('1737827364046-buscetta.wav');
       testBlobRef.current = blob;
       const audioUrl = URL.createObjectURL(blob);
       
@@ -72,7 +72,7 @@ export function AudioRecorder({ onNewRecording, onUpdateStatus }: AudioRecorderP
       setTranscriptionProgress('Starting transcription...');
 
       // Create a File object from the Blob
-      const file = new File([testBlobRef.current], '1737755752632-buscetta1.mp3', {
+      const file = new File([testBlobRef.current], 'buscetta.wav', {
         type: testBlobRef.current.type
       });
 
@@ -80,6 +80,15 @@ export function AudioRecorder({ onNewRecording, onUpdateStatus }: AudioRecorderP
         file,
         (progress) => setTranscriptionProgress(progress)
       );
+
+      // Save transcription to a text file
+      const transcriptionBlob = new Blob([transcription], { type: 'text/plain' });
+      const transcriptionFile = new File([transcriptionBlob], 'transcription.txt', { type: 'text/plain' });
+
+      // Upload the transcription file to Azure Storage
+      await azureStorage.uploadFile(transcriptionFile, (progress) => {
+        setUploadProgress(progress);
+      });
 
       setTranscriptionProgress(transcription);
     } catch (err) {
