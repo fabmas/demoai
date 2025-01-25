@@ -1,16 +1,105 @@
 import React, { useState, useRef } from 'react';
-import { Mic, Square, Upload, AlertCircle } from 'lucide-react';
+import { Mic, Square, Upload, AlertCircle, TestTube, Play, Pause, FileText } from 'lucide-react';
 import { AzureStorageService } from '../services/azureStorage';
+import { SpeechService } from '../services/speechService';
+import type { Recording } from '../types';
 
 const azureStorage = new AzureStorageService();
+const speechService = new SpeechService();
 
-export function AudioRecorder() {
+export interface AudioRecorderProps {
+  onNewRecording: (name: string, fileSize: number) => Recording;
+  onUpdateStatus: (id: string, status: Recording['status'], confidence?: number) => void;
+}
+
+export function AudioRecorder({ onNewRecording, onUpdateStatus }: AudioRecorderProps) {
   const [isRecording, setIsRecording] = useState(false);
   const [duration, setDuration] = useState(0);
   const [uploadProgress, setUploadProgress] = useState<number | null>(null);
+  const [transcriptionProgress, setTranscriptionProgress] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [testResult, setTestResult] = useState<string | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isTranscribing, setIsTranscribing] = useState(false);
   const mediaRecorder = useRef<MediaRecorder | null>(null);
   const timerRef = useRef<number>();
+  const currentRecordingRef = useRef<Recording | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const testBlobRef = useRef<Blob | null>(null);
+
+  const testSpeechService = async () => {
+    try {
+      setError(null);
+      setTestResult("Loading audio file from storage...");
+      setTranscriptionProgress(null);
+      
+      // Stop any currently playing audio
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      }
+
+      const blob = await azureStorage.downloadBlob('1737755752632-buscetta1.mp3');
+      testBlobRef.current = blob;
+      const audioUrl = URL.createObjectURL(blob);
+      
+      if (!audioRef.current) {
+        audioRef.current = new Audio(audioUrl);
+        audioRef.current.addEventListener('ended', () => {
+          setIsPlaying(false);
+        });
+      } else {
+        audioRef.current.src = audioUrl;
+      }
+
+      setTestResult("Audio file loaded. Click play/pause to control playback.");
+    } catch (err) {
+      console.error('Speech service test error:', err);
+      setError(err instanceof Error ? err.message : 'Speech service test failed');
+      setTestResult(null);
+    }
+  };
+
+  const startTranscription = async () => {
+    if (!testBlobRef.current) {
+      setError('Please load the test audio file first');
+      return;
+    }
+
+    try {
+      setError(null);
+      setIsTranscribing(true);
+      setTranscriptionProgress('Starting transcription...');
+
+      // Create a File object from the Blob
+      const file = new File([testBlobRef.current], '1737755752632-buscetta1.mp3', {
+        type: testBlobRef.current.type
+      });
+
+      const transcription = await speechService.transcribeFromFile(
+        file,
+        (progress) => setTranscriptionProgress(progress)
+      );
+
+      setTranscriptionProgress(transcription);
+    } catch (err) {
+      console.error('Transcription error:', err);
+      setError(err instanceof Error ? err.message : 'Transcription failed');
+    } finally {
+      setIsTranscribing(false);
+    }
+  };
+
+  const togglePlayback = () => {
+    if (!audioRef.current) return;
+
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
 
   const startRecording = async () => {
     try {
@@ -23,14 +112,15 @@ export function AudioRecorder() {
       };
 
       mediaRecorder.current.onstop = async () => {
-        const audioBlob = new Blob(chunks, { type: 'audio/webm' });
-        const file = new File([audioBlob], `recording-${Date.now()}.webm`, { type: 'audio/webm' });
+        const audioBlob = new Blob(chunks, { type: 'audio/wav' });
+        const file = new File([audioBlob], `recording-${Date.now()}.wav`, { type: 'audio/wav' });
         await handleFileUpload(file);
       };
 
       mediaRecorder.current.start();
       setIsRecording(true);
       setError(null);
+      setTranscriptionProgress(null);
       
       timerRef.current = window.setInterval(() => {
         setDuration(prev => prev + 1);
@@ -55,32 +145,37 @@ export function AudioRecorder() {
     try {
       setError(null);
       setUploadProgress(0);
+      setTranscriptionProgress(null);
 
-      // Validate file type
-      const validTypes = ['audio/wav', 'audio/mp3', 'audio/mpeg', 'audio/webm', 'audio/m4a'];
-      if (!validTypes.includes(file.type)) {
-        throw new Error('Invalid file type. Please upload an audio file (WAV, MP3, M4A, or WebM).');
-      }
+      // Create new recording entry
+      currentRecordingRef.current = onNewRecording(file.name, file.size);
 
-      // Validate file size (max 100MB)
-      const maxSize = 100 * 1024 * 1024; // 100MB in bytes
-      if (file.size > maxSize) {
-        throw new Error('File size too large. Maximum size is 100MB.');
-      }
-
+      // Upload file to Azure Storage
       const blobUrl = await azureStorage.uploadFile(file, (progress) => {
         setUploadProgress(progress);
       });
 
-      console.log('File uploaded successfully:', blobUrl);
-      // Here you would typically notify the parent component about the successful upload
-      // and provide the blob URL for further processing
+      // Start transcription
+      setTranscriptionProgress('Starting transcription...');
+      const transcription = await speechService.transcribeFromFile(file, (progress) => {
+        setTranscriptionProgress(progress);
+      });
+
+      // Update recording status
+      if (currentRecordingRef.current) {
+        onUpdateStatus(currentRecordingRef.current.id, 'completed', 0.95);
+      }
 
       setUploadProgress(null);
+      setTranscriptionProgress(transcription);
     } catch (err) {
-      console.error('Upload error:', err);
-      setError(err instanceof Error ? err.message : 'An error occurred during upload.');
+      console.error('Processing error:', err);
+      if (currentRecordingRef.current) {
+        onUpdateStatus(currentRecordingRef.current.id, 'failed');
+      }
+      setError(err instanceof Error ? err.message : 'An error occurred during processing.');
       setUploadProgress(null);
+      setTranscriptionProgress(null);
     }
   };
 
@@ -137,14 +232,64 @@ export function AudioRecorder() {
               }}
             />
           </label>
+
+          <button
+            onClick={testSpeechService}
+            className="flex items-center gap-2 px-4 py-2 text-white bg-purple-500 rounded-lg hover:bg-purple-600"
+          >
+            <TestTube size={20} />
+            Load Test Audio
+          </button>
+
+          {testResult && (
+            <>
+              <button
+                onClick={togglePlayback}
+                className="flex items-center gap-2 px-4 py-2 text-white bg-indigo-500 rounded-lg hover:bg-indigo-600"
+              >
+                {isPlaying ? <Pause size={20} /> : <Play size={20} />}
+                {isPlaying ? 'Pause' : 'Play'}
+              </button>
+
+              <button
+                onClick={startTranscription}
+                disabled={isTranscribing}
+                className={`flex items-center gap-2 px-4 py-2 text-white rounded-lg ${
+                  isTranscribing 
+                    ? 'bg-gray-400 cursor-not-allowed' 
+                    : 'bg-teal-500 hover:bg-teal-600'
+                }`}
+              >
+                <FileText size={20} />
+                {isTranscribing ? 'Transcribing...' : 'Transcribe'}
+              </button>
+            </>
+          )}
         </div>
 
         {uploadProgress !== null && (
-          <div className="w-full bg-gray-200 rounded-full h-2.5">
-            <div
-              className="bg-blue-600 h-2.5 rounded-full transition-all duration-300"
-              style={{ width: `${uploadProgress}%` }}
-            ></div>
+          <div className="space-y-2">
+            <div className="text-sm text-gray-600">Uploading: {uploadProgress}%</div>
+            <div className="w-full bg-gray-200 rounded-full h-2.5">
+              <div
+                className="bg-blue-600 h-2.5 rounded-full transition-all duration-300"
+                style={{ width: `${uploadProgress}%` }}
+              ></div>
+            </div>
+          </div>
+        )}
+
+        {testResult && (
+          <div className="mt-4 p-4 bg-green-50 rounded-lg">
+            <h3 className="text-lg font-semibold mb-2">Test Result</h3>
+            <p className="text-green-700">{testResult}</p>
+          </div>
+        )}
+
+        {transcriptionProgress && (
+          <div className="mt-4 p-4 bg-gray-50 rounded-lg">
+            <h3 className="text-lg font-semibold mb-2">Transcription</h3>
+            <p className="text-gray-700 whitespace-pre-wrap">{transcriptionProgress}</p>
           </div>
         )}
 

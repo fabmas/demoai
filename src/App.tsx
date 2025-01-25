@@ -4,7 +4,7 @@ import { TranscriptionsList } from './components/TranscriptionsList';
 import type { Recording } from './types';
 
 function App() {
-  const [recordings] = useState<Recording[]>([
+  const [recordings, setRecordings] = useState<Recording[]>([
     {
       id: '1',
       name: 'Meeting Recording 1',
@@ -25,8 +25,29 @@ function App() {
     }
   ]);
 
+  const handleNewRecording = (name: string, fileSize: number) => {
+    const newRecording: Recording = {
+      id: crypto.randomUUID(),
+      name,
+      status: 'processing',
+      reviewStatus: 'draft',
+      date: new Date().toISOString().split('T')[0],
+      fileSize
+    };
+    setRecordings(prev => [newRecording, ...prev]);
+    return newRecording;
+  };
+
+  const updateRecordingStatus = (id: string, status: Recording['status'], confidence?: number) => {
+    setRecordings(prev => prev.map(recording => 
+      recording.id === id 
+        ? { ...recording, status, confidence }
+        : recording
+    ));
+  };
+
   const handleDelete = (id: string) => {
-    console.log('Delete recording:', id);
+    setRecordings(prev => prev.filter(recording => recording.id !== id));
   };
 
   const handleEdit = (id: string) => {
@@ -43,7 +64,10 @@ function App() {
 
       <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div className="space-y-6">
-          <AudioRecorder />
+          <AudioRecorder 
+            onNewRecording={handleNewRecording}
+            onUpdateStatus={updateRecordingStatus}
+          />
           <TranscriptionsList 
             recordings={recordings}
             onDelete={handleDelete}
