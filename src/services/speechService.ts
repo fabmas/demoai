@@ -1,38 +1,48 @@
 import * as speechsdk from 'microsoft-cognitiveservices-speech-sdk';
 
+interface TranscriptionPhrase {
+  channel: number;
+  speaker: number; // ID del relatore
+  offsetMilliseconds: number; // Offset in millisecondi
+  durationMilliseconds: number; // Durata in millisecondi
+  text: string; // Testo della frase
+}
+
 export class SpeechService {
+  private subscriptionKey: string;
+  private region: string;
   private speechConfig: speechsdk.SpeechConfig;
 
   constructor() {
-    const subscriptionKey = import.meta.env.VITE_AZURE_SPEECH_KEY;
-    const region = import.meta.env.VITE_AZURE_SPEECH_REGION;
+    this.subscriptionKey = import.meta.env.VITE_AZURE_SPEECH_KEY;
+    this.region = import.meta.env.VITE_AZURE_SPEECH_REGION;
 
-    if (!subscriptionKey || !region) {
+    if (!this.subscriptionKey || !this.region) {
       throw new Error('Azure Speech configuration is missing');
     }
 
-    this.speechConfig = speechsdk.SpeechConfig.fromSubscription(subscriptionKey, region);
-    this.speechConfig.speechRecognitionLanguage = 'it-IT';
+    this.speechConfig = speechsdk.SpeechConfig.fromSubscription(this.subscriptionKey, this.region);
+    this.speechConfig.speechRecognitionLanguage = 'it-IT'; // Imposta la lingua di riconoscimento
   }
 
   async testSpeechService(): Promise<string> {
     return new Promise((resolve, reject) => {
       const synthesizer = new speechsdk.SpeechSynthesizer(this.speechConfig);
-      const testPhrase = "This is a test of Azure Speech Service.";
+      const testPhrase = "Questo è un test del servizio di sintesi vocale di Azure.";
       
       synthesizer.speakTextAsync(
         testPhrase,
         result => {
           if (result.reason === speechsdk.ResultReason.SynthesizingAudioCompleted) {
-            resolve("Speech service test successful: Audio synthesis completed");
+            resolve("Test del servizio di sintesi vocale riuscito: Sintesi audio completata");
           } else {
-            reject(new Error(`Speech synthesis failed: ${result.reason}`));
+            reject(new Error(`Sintesi vocale fallita: ${result.reason}`));
           }
           synthesizer.close();
         },
         error => {
           synthesizer.close();
-          reject(new Error(`Speech service error: ${error}`));
+          reject(new Error(`Errore nel servizio di sintesi vocale: ${error}`));
         });
     });
   }
@@ -43,91 +53,51 @@ export class SpeechService {
       throw new Error(`Unsupported audio format: ${file.type}. Supported formats are: WAV, MP3, M4A, and WebM`);
     }
 
-    const maxSize = 100 * 1024 * 1024; // 100MB
+    const maxSize = 200 * 1024 * 1024; // 200MB
     if (file.size > maxSize) {
-      throw new Error(`File size (${(file.size / 1024 / 1024).toFixed(2)}MB) exceeds maximum allowed size of 100MB`);
+      throw new Error(`File size (${(file.size / 1024 / 1024).toFixed(2)}MB) exceeds maximum allowed size of 200MB`);
     }
   }
 
-  async transcribeFromFile(file: File, onProgress?: (text: string) => void): Promise<string> {
-    return new Promise((resolve, reject) => {
-      try {
-        this.validateAudioFile(file);
-        const reader = new FileReader();
-      
-        reader.onload = async () => {
-          try {
-            const audioData = reader.result as ArrayBuffer;
-            const pushStream = speechsdk.AudioInputStream.createPushStream();
-            
-            // Push the audio data to the stream in chunks
-            const chunkSize = 32 * 1024; // 32KB chunks
-            const view = new Int8Array(audioData);
-            for (let i = 0; i < view.length; i += chunkSize) {
-              const chunk = view.slice(i, i + chunkSize);
-              pushStream.write(chunk.buffer);
-            }
-            pushStream.close();
-            
-            const audioConfig = speechsdk.AudioConfig.fromStreamInput(pushStream);
-            const recognizer = new speechsdk.SpeechRecognizer(this.speechConfig, audioConfig);
-            
-            let transcription = '';
-            let hasRecognizedSpeech = false;
+  async transcribeFromFile(file: File): Promise<string> {
+    this.validateAudioFile(file);
 
-            recognizer.recognized = (_, event) => {
-              if (event.result.reason === speechsdk.ResultReason.RecognizedSpeech) {
-                hasRecognizedSpeech = true;
-                const text = event.result.text;
-                transcription += text + ' ';
-                onProgress?.(transcription.trim());
-              }
-            };
-
-            recognizer.recognizing = (_, event) => {
-              if (event.result.reason === speechsdk.ResultReason.RecognizingSpeech) {
-                onProgress?.(`${transcription} ${event.result.text}`);
-              }
-            };
-
-            recognizer.canceled = (_, event) => {
-              if (event.reason === speechsdk.CancellationReason.Error) {
-                reject(new Error(`Recognition canceled: ${event.errorDetails}`));
-              }
-            };
-
-            // Use fast transcription and diarization
-            recognizer.startContinuousRecognitionAsync();
-            recognizer.recognized = (s, e) => {
-              if (e.result.reason === speechsdk.ResultReason.RecognizedSpeech) {
-                transcription += e.result.text + ' ';
-                onProgress?.(transcription.trim());
-              }
-            };
-
-            recognizer.canceled = (s, e) => {
-              if (e.reason === speechsdk.CancellationReason.Error) {
-                reject(new Error(`Recognition canceled: ${e.errorDetails}`));
-              }
-            };
-
-            recognizer.sessionStopped = () => {
-              resolve(transcription.trim());
-              recognizer.stopContinuousRecognitionAsync();
-            };
-          } catch (error) {
-            reject(new Error(`Audio processing error: ${error instanceof Error ? error.message : 'Unknown error'}`));
-          }
-        };
-
-        reader.onerror = () => {
-          reject(new Error(`Failed to read audio file: ${reader.error?.message || 'Unknown error'}`));
-        };
-
-        reader.readAsArrayBuffer(file);
-      } catch (error) {
-        reject(error);
+    const formData = new FormData();
+    formData.append('audio', file);
+    
+    // Definizione della diarizzazione e della lingua
+    const definition = {
+      locales: ['it-IT'], // Imposta la lingua
+      diarization: {
+        enabled: true,
+        maxSpeakers: 2
       }
+    };
+
+    formData.append('definition', JSON.stringify(definition));
+
+    const response = await fetch(`https://${this.region}.api.cognitive.microsoft.com/speechtotext/transcriptions:transcribe?api-version=2024-11-15`, {
+      method: 'POST',
+      headers: {
+        'Ocp-Apim-Subscription-Key': this.subscriptionKey,
+      },
+      body: formData,
     });
+
+    if (!response.ok) {
+      throw new Error(`Transcription failed: ${response.statusText}`);
+    }
+
+    const result = await response.json();
+    const phrases: TranscriptionPhrase[] = result.phrases; // Usa l'array 'phrases' dalla risposta
+
+    // Creazione della trascrizione con speaker e timeframe
+    const transcriptionWithDetails = phrases.map((phrase: TranscriptionPhrase) => {
+      const startTime = (phrase.offsetMilliseconds / 1000).toFixed(2); // Converti in secondi
+      const endTime = ((phrase.offsetMilliseconds + phrase.durationMilliseconds) / 1000).toFixed(2); // Converti in secondi
+      return `Speaker ${phrase.speaker}: "${phrase.text}" [${startTime}s - ${endTime}s]`;
+    }).join('\n');
+
+    return transcriptionWithDetails;
   }
 }
