@@ -90,10 +90,19 @@ export class SpeechService {
     const result = await response.json();
     const phrases: TranscriptionPhrase[] = result.phrases;
 
+    // Helper function to convert milliseconds to HH.MM.SS format
+    function formatTime(milliseconds: number): string {
+      const totalSeconds = Math.floor(milliseconds / 1000);
+      const hours = Math.floor(totalSeconds / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+      return `${String(hours).padStart(2, '0')}.${String(minutes).padStart(2, '0')}.${String(seconds).padStart(2, '0')}`;
+    }
+
     const transcriptionWithDetails = phrases.map((phrase: TranscriptionPhrase) => {
-        const startTime = (phrase.offsetMilliseconds / 1000).toFixed(2);
-        const endTime = ((phrase.offsetMilliseconds + phrase.durationMilliseconds) / 1000).toFixed(2);
-        return `Speaker ${phrase.speaker}: "${phrase.text}" [${startTime}s - ${endTime}s]`;
+      const startTime = formatTime(phrase.offsetMilliseconds);
+      const endTime = formatTime(phrase.offsetMilliseconds + phrase.durationMilliseconds);
+      return `Speaker ${phrase.speaker} [${startTime} - ${endTime}]: "${phrase.text}"`;
     }).join('\n');
 
     // Se onProgress è fornito, chiama la funzione con la trascrizione

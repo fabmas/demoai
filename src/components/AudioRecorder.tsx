@@ -69,7 +69,7 @@ export function AudioRecorder({ onNewRecording, onUpdateStatus }: AudioRecorderP
     try {
       setError(null);
       setIsTranscribing(true);
-      setTranscriptionProgress('Starting transcription...');
+      setTranscriptionProgress('Generating transcription...');
 
       // Create a File object from the Blob
       const file = new File([testBlobRef.current], 'buscetta.', {
@@ -303,7 +303,7 @@ export function AudioRecorder({ onNewRecording, onUpdateStatus }: AudioRecorderP
         )}
 
         {transcriptionProgress && (
-          <div className="mt-4 p-4 bg-gray-50 rounded-lg">
+          <div className="mt-4 p-4 bg-gray-50 rounded-lg overflow-y-auto" style={{ maxHeight: '200px' }}>            
             <h3 className="text-lg font-semibold mb-2">Transcription</h3>
             <p className="text-gray-700 whitespace-pre-wrap">{transcriptionProgress}</p>
           </div>
