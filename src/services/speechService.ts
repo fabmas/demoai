@@ -59,44 +59,47 @@ export class SpeechService {
     }
   }
 
-  async transcribeFromFile(file: File): Promise<string> {
+  async transcribeFromFile(file: File, onProgress?: (text: string) => void): Promise<string> {
     this.validateAudioFile(file);
 
     const formData = new FormData();
     formData.append('audio', file);
-    
-    // Definizione della diarizzazione e della lingua
+
     const definition = {
-      locales: ['it-IT'], // Imposta la lingua
-      diarization: {
-        enabled: true,
-        maxSpeakers: 2
-      }
+        locales: ['it-IT'],
+        diarization: {
+            enabled: true,
+            maxSpeakers: 2
+        }
     };
 
     formData.append('definition', JSON.stringify(definition));
 
     const response = await fetch(`https://${this.region}.api.cognitive.microsoft.com/speechtotext/transcriptions:transcribe?api-version=2024-11-15`, {
-      method: 'POST',
-      headers: {
-        'Ocp-Apim-Subscription-Key': this.subscriptionKey,
-      },
-      body: formData,
+        method: 'POST',
+        headers: {
+            'Ocp-Apim-Subscription-Key': this.subscriptionKey,
+        },
+        body: formData,
     });
 
     if (!response.ok) {
-      throw new Error(`Transcription failed: ${response.statusText}`);
+        throw new Error(`Transcription failed: ${response.statusText}`);
     }
 
     const result = await response.json();
-    const phrases: TranscriptionPhrase[] = result.phrases; // Usa l'array 'phrases' dalla risposta
+    const phrases: TranscriptionPhrase[] = result.phrases;
 
-    // Creazione della trascrizione con speaker e timeframe
     const transcriptionWithDetails = phrases.map((phrase: TranscriptionPhrase) => {
-      const startTime = (phrase.offsetMilliseconds / 1000).toFixed(2); // Converti in secondi
-      const endTime = ((phrase.offsetMilliseconds + phrase.durationMilliseconds) / 1000).toFixed(2); // Converti in secondi
-      return `Speaker ${phrase.speaker}: "${phrase.text}" [${startTime}s - ${endTime}s]`;
+        const startTime = (phrase.offsetMilliseconds / 1000).toFixed(2);
+        const endTime = ((phrase.offsetMilliseconds + phrase.durationMilliseconds) / 1000).toFixed(2);
+        return `Speaker ${phrase.speaker}: "${phrase.text}" [${startTime}s - ${endTime}s]`;
     }).join('\n');
+
+    // Se onProgress è fornito, chiama la funzione con la trascrizione
+    if (onProgress) {
+        onProgress(transcriptionWithDetails);
+    }
 
     return transcriptionWithDetails;
   }

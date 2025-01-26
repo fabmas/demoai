@@ -72,7 +72,7 @@ export function AudioRecorder({ onNewRecording, onUpdateStatus }: AudioRecorderP
       setTranscriptionProgress('Starting transcription...');
 
       // Create a File object from the Blob
-      const file = new File([testBlobRef.current], 'buscetta.wav', {
+      const file = new File([testBlobRef.current], 'buscetta.', {
         type: testBlobRef.current.type
       });
 
