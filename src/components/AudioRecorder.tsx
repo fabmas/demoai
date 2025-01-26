@@ -39,7 +39,7 @@ export function AudioRecorder({ onNewRecording, onUpdateStatus }: AudioRecorderP
         audioRef.current.currentTime = 0;
       }
 
-      const blob = await azureStorage.downloadBlob('1737827364046-buscetta.wav');
+      const blob = await azureStorage.downloadBlob('buscetta.wav');
       testBlobRef.current = blob;
       const audioUrl = URL.createObjectURL(blob);
       
