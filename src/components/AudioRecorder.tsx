@@ -170,6 +170,13 @@ export function AudioRecorder({ onNewRecording, onUpdateStatus }: AudioRecorderP
         setTranscriptionProgress(progress);
       });
 
+      // Immediately save the transcription to Azure Storage
+      const transcriptionBlob = new Blob([transcription], { type: 'text/plain' });
+      const transcriptionFile = new File([transcriptionBlob], 'transcription.txt', { type: 'text/plain' });
+      await azureStorage.uploadFile(transcriptionFile, (progress) => {
+        setUploadProgress(progress);
+      });
+
       // Update recording status
       if (currentRecordingRef.current) {
         onUpdateStatus(currentRecordingRef.current.id, 'completed', 0.95);
