@@ -1,4 +1,5 @@
 import * as speechsdk from 'microsoft-cognitiveservices-speech-sdk';
+import { AzureStorageService } from './azureStorage'; // Importing AzureStorageService
 
 interface TranscriptionPhrase {
   channel: number;
@@ -104,6 +105,16 @@ export class SpeechService {
       const endTime = formatTime(phrase.offsetMilliseconds + phrase.durationMilliseconds);
       return `Speaker ${phrase.speaker} [${startTime} - ${endTime}]: "${phrase.text}"`;
     }).join('\n');
+
+    const transcriptionData = {
+      phrases: phrases,
+      transcriptionText: transcriptionWithDetails,
+    };
+    const jsonBlob = new Blob([JSON.stringify(transcriptionData)], { type: 'application/json' });
+    const azureStorageService = new AzureStorageService();
+    await azureStorageService.uploadFile(jsonBlob, (progress) => {
+      console.log(`Upload progress: ${progress}%`);
+    });
 
     // Se onProgress è fornito, chiama la funzione con la trascrizione
     if (onProgress) {
