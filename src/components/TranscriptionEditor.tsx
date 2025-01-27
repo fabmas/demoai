@@ -132,30 +132,32 @@ export function TranscriptionEditor({
             </div>
           </div>
 
-          {/* Transcription */}
-          <div className="space-y-4">
-            {transcription.split('\n').map((line, index) => {
-              const match = line.match(/^Speaker (\d+) \[([\d.:]+) - ([\d.:]+)\]: "(.*)"$/);
-              if (!match) return null;
+          {/* Transcription - Now with fixed height and scrollbar */}
+          <div className="h-[400px] overflow-y-auto border rounded-lg bg-white">
+            <div className="space-y-4 p-4">
+              {transcription.split('\n').map((line, index) => {
+                const match = line.match(/^Speaker (\d+) \[([\d.:]+) - ([\d.:]+)\]: "(.*)"$/);
+                if (!match) return null;
 
-              const [, speakerId, startTime, endTime, text] = match;
-              const speaker = speakers[parseInt(speakerId) - 1];
+                const [, speakerId, startTime, endTime, text] = match;
+                const speaker = speakers[parseInt(speakerId) - 1];
 
-              return (
-                <div key={index} className="flex gap-4 items-start p-2 hover:bg-gray-50 rounded">
-                  <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-semibold">
-                    {speaker?.initial || `S${speakerId}`}
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="font-medium">{speaker?.name || `Speaker ${speakerId}`}</span>
-                      <span className="text-sm text-gray-500">({startTime})</span>
+                return (
+                  <div key={index} className="flex gap-4 items-start p-2 hover:bg-gray-50 rounded">
+                    <div className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-semibold">
+                      {speaker?.initial || `S${speakerId}`}
                     </div>
-                    <p className="text-gray-700">{text}</p>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="font-medium">{speaker?.name || `Speaker ${speakerId}`}</span>
+                        <span className="text-sm text-gray-500">({startTime})</span>
+                      </div>
+                      <p className="text-gray-700">{text}</p>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
 
