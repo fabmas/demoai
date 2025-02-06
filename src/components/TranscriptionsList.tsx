@@ -53,8 +53,10 @@ export function TranscriptionsList({ recordings, onDelete, onEdit }: Transcripti
                   <button
                     onClick={() => onEdit(recording.id)}
                     className="text-indigo-600 hover:text-indigo-900"
+                    disabled={recording.status !== 'completed'}
+                    title={recording.status !== 'completed' ? 'Transcription must be completed to edit' : 'Edit transcription'}
                   >
-                    <Edit2 size={18} />
+                    <Edit2 size={18} className={recording.status !== 'completed' ? 'opacity-50' : ''} />
                   </button>
                   <button
                     onClick={() => onDelete(recording.id)}

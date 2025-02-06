@@ -1,57 +1,125 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AudioRecorder } from './components/AudioRecorder';
 import { TranscriptionsList } from './components/TranscriptionsList';
+import { TranscriptionEditor } from './components/TranscriptionEditor';
+import { StorageService, TranscriptionData } from './services/storageService';
+import { AzureStorageService } from './services/azureStorage';
 import type { Recording } from './types';
 
-function App() {
-  const [recordings, setRecordings] = useState<Recording[]>([
-    {
-      id: '1',
-      name: 'Meeting Recording 1',
-      status: 'completed',
-      reviewStatus: 'reviewed',
-      date: '2024-02-20',
-      duration: 1800,
-      fileSize: 15000000,
-      language: 'en',
-      confidence: 0.95
-    },
-    {
-      id: '2',
-      name: 'Interview Session',
-      status: 'processing',
-      reviewStatus: 'draft',
-      date: '2024-02-21'
+const storageService = new StorageService();
+const azureStorage = new AzureStorageService();
+
+export default function App() {
+  const [recordings, setRecordings] = useState<Recording[]>([]);
+  const [selectedTranscription, setSelectedTranscription] = useState<TranscriptionData | null>(null);
+  const [transcriptionJson, setTranscriptionJson] = useState<any>(null);
+
+  useEffect(() => {
+    loadTranscriptions();
+  }, []);
+
+  const loadTranscriptions = async () => {
+    try {
+      const data = await storageService.loadTranscriptions();
+      const recordingsList = Object.values(data).map(item => ({
+        id: item.id,
+        name: item.name,
+        status: item.status,
+        reviewStatus: item.reviewStatus,
+        date: item.date,
+        duration: item.duration,
+        fileSize: item.fileSize,
+        language: item.language,
+        confidence: item.confidence
+      }));
+      setRecordings(recordingsList);
+    } catch (error) {
+      console.error('Error loading transcriptions:', error);
     }
-  ]);
+  };
 
   const handleNewRecording = (name: string, fileSize: number) => {
-    const newRecording: Recording = {
+    const newRecording: TranscriptionData = {
       id: crypto.randomUUID(),
       name,
       status: 'processing',
       reviewStatus: 'draft',
       date: new Date().toISOString().split('T')[0],
-      fileSize
+      fileSize,
+      URL_TranscriptionAudio: '',
+      URL_TranscriptionTXT: '',
+      URL_TranscriptionJSON: '',
+      Speakers: [],
+      custom_prompts: []
     };
-    setRecordings(prev => [newRecording, ...prev]);
+
+    setRecordings(prev => [
+      {
+        id: newRecording.id,
+        name: newRecording.name,
+        status: newRecording.status,
+        reviewStatus: newRecording.reviewStatus,
+        date: newRecording.date,
+        fileSize: newRecording.fileSize
+      },
+      ...prev
+    ]);
+
     return newRecording;
   };
 
-  const updateRecordingStatus = (id: string, status: Recording['status'], confidence?: number) => {
-    setRecordings(prev => prev.map(recording => 
-      recording.id === id 
-        ? { ...recording, status, confidence }
-        : recording
+  const updateRecordingStatus = async (id: string, status: Recording['status'], confidence?: number) => {
+    setRecordings(prev => prev.map(r => 
+      r.id === id 
+        ? { ...r, status, confidence }
+        : r
     ));
+
+    // Only reload transcriptions when status is completed to show the final record
+    if (status === 'completed') {
+      await loadTranscriptions();
+    }
   };
 
-  const handleDelete = (id: string) => {
-    setRecordings(prev => prev.filter(recording => recording.id !== id));
+  const handleDelete = async (id: string) => {
+    try {
+      await storageService.deleteTranscription(id);
+      setRecordings(prev => prev.filter(r => r.id !== id));
+      if (selectedTranscription?.id === id) {
+        setSelectedTranscription(null);
+        setTranscriptionJson(null);
+      }
+    } catch (error) {
+      console.error('Error deleting recording:', error);
+    }
   };
 
-  const handleEdit = (id: string) => {
-    console.log('Edit recording:', id);
+  const handleEdit = async (id: string) => {
+    try {
+      const data = await storageService.loadTranscriptions();
+      const recording = Object.values(data).find(r => r.id === id);
+      
+      if (recording && recording.URL_TranscriptionJSON) {
+        setSelectedTranscription(recording);
+        
+        // Extract the blob name from the URL
+        const blobName = recording.URL_TranscriptionJSON.split('/').pop();
+        if (blobName) {
+          const jsonBlob = await azureStorage.downloadBlob(blobName);
+          const jsonData = JSON.parse(await jsonBlob.text());
+          setTranscriptionJson(jsonData);
+        }
+      }
+    } catch (error) {
+      console.error('Error loading transcription:', error);
+      alert('Failed to load transcription. Please try again.');
+    }
+  };
+
+  const handleEditorClose = () => {
+    setSelectedTranscription(null);
+    setTranscriptionJson(null);
+    loadTranscriptions(); // Refresh the list to show any updates
   };
 
   return (
@@ -73,10 +141,21 @@ function App() {
             onDelete={handleDelete}
             onEdit={handleEdit}
           />
+          {selectedTranscription && transcriptionJson && (
+            <TranscriptionEditor
+              transcription={transcriptionJson.transcriptionText}
+              onClose={handleEditorClose}
+              fileName={selectedTranscription.name}
+              fileSize={selectedTranscription.fileSize || 0}
+              duration={selectedTranscription.duration || 0}
+              language={selectedTranscription.language || 'Italian'}
+              confidence={selectedTranscription.confidence || 0}
+              lastUpdate={selectedTranscription.date}
+              jsonUrl={selectedTranscription.URL_TranscriptionJSON}
+            />
+          )}
         </div>
       </main>
     </div>
   );
 }
-
-export default App;

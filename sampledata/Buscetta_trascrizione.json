@@ -1,0 +1,5190 @@
+{
+    "phrases": [
+        {
+            "speaker": 1,
+            "offsetMilliseconds": 1320,
+            "durationMilliseconds": 11160,
+            "text": "Tommaso Buscetta, lei è il più importante pentito di cosa nostra, perché ha deciso di tornare in Italia per testimoniare contro Andreotti?",
+            "words": [
+                {
+                    "text": "Tommaso",
+                    "offsetMilliseconds": 1320,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "Buscetta,",
+                    "offsetMilliseconds": 1800,
+                    "durationMilliseconds": 720
+                },
+                {
+                    "text": "lei",
+                    "offsetMilliseconds": 2520,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "è",
+                    "offsetMilliseconds": 3600,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "il",
+                    "offsetMilliseconds": 4120,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "più",
+                    "offsetMilliseconds": 4240,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "importante",
+                    "offsetMilliseconds": 4520,
+                    "durationMilliseconds": 840
+                },
+                {
+                    "text": "pentito",
+                    "offsetMilliseconds": 5360,
+                    "durationMilliseconds": 560
+                },
+                {
+                    "text": "di",
+                    "offsetMilliseconds": 5920,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "cosa",
+                    "offsetMilliseconds": 6040,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "nostra,",
+                    "offsetMilliseconds": 6320,
+                    "durationMilliseconds": 560
+                },
+                {
+                    "text": "perché",
+                    "offsetMilliseconds": 8040,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "ha",
+                    "offsetMilliseconds": 8480,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "deciso",
+                    "offsetMilliseconds": 8600,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "di",
+                    "offsetMilliseconds": 9040,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "tornare",
+                    "offsetMilliseconds": 9160,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "in",
+                    "offsetMilliseconds": 9640,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "Italia",
+                    "offsetMilliseconds": 9720,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "per",
+                    "offsetMilliseconds": 10200,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "testimoniare",
+                    "offsetMilliseconds": 10400,
+                    "durationMilliseconds": 720
+                },
+                {
+                    "text": "contro",
+                    "offsetMilliseconds": 11120,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "Andreotti?",
+                    "offsetMilliseconds": 11720,
+                    "durationMilliseconds": 760
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.97755176
+        },
+        {
+            "speaker": 2,
+            "offsetMilliseconds": 14880,
+            "durationMilliseconds": 13400,
+            "text": "Perché sono stati uccisi Falcone e Borsellino? Quando Falcone saltò in aria a capaci, io ho perso il mio faro. Mi interrogò per tre mesi ogni giorno.",
+            "words": [
+                {
+                    "text": "Perché",
+                    "offsetMilliseconds": 14880,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "sono",
+                    "offsetMilliseconds": 15240,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "stati",
+                    "offsetMilliseconds": 15480,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "uccisi",
+                    "offsetMilliseconds": 15760,
+                    "durationMilliseconds": 680
+                },
+                {
+                    "text": "Falcone",
+                    "offsetMilliseconds": 16720,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "e",
+                    "offsetMilliseconds": 17360,
+                    "durationMilliseconds": 40
+                },
+                {
+                    "text": "Borsellino?",
+                    "offsetMilliseconds": 17400,
+                    "durationMilliseconds": 640
+                },
+                {
+                    "text": "Quando",
+                    "offsetMilliseconds": 19480,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "Falcone",
+                    "offsetMilliseconds": 19760,
+                    "durationMilliseconds": 680
+                },
+                {
+                    "text": "saltò",
+                    "offsetMilliseconds": 20720,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "in",
+                    "offsetMilliseconds": 21120,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "aria",
+                    "offsetMilliseconds": 21240,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "a",
+                    "offsetMilliseconds": 21560,
+                    "durationMilliseconds": 40
+                },
+                {
+                    "text": "capaci,",
+                    "offsetMilliseconds": 21600,
+                    "durationMilliseconds": 560
+                },
+                {
+                    "text": "io",
+                    "offsetMilliseconds": 22800,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "ho",
+                    "offsetMilliseconds": 22960,
+                    "durationMilliseconds": 40
+                },
+                {
+                    "text": "perso",
+                    "offsetMilliseconds": 23000,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "il",
+                    "offsetMilliseconds": 23240,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "mio",
+                    "offsetMilliseconds": 23320,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "faro.",
+                    "offsetMilliseconds": 23520,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "Mi",
+                    "offsetMilliseconds": 25760,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "interrogò",
+                    "offsetMilliseconds": 25840,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "per",
+                    "offsetMilliseconds": 26440,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "tre",
+                    "offsetMilliseconds": 26600,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "mesi",
+                    "offsetMilliseconds": 26760,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "ogni",
+                    "offsetMilliseconds": 27480,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "giorno.",
+                    "offsetMilliseconds": 27760,
+                    "durationMilliseconds": 520
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.97755176
+        },
+        {
+            "speaker": 2,
+            "offsetMilliseconds": 29880,
+            "durationMilliseconds": 13560,
+            "text": "Noi ci capivamo con uno sguardo e io godevo a sentirlo parlare. Per me era come un orgasmo sentire le sue analisi, ma è una cretinata. Falcone era il solo che mi capiva.",
+            "words": [
+                {
+                    "text": "Noi",
+                    "offsetMilliseconds": 29880,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "ci",
+                    "offsetMilliseconds": 30000,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "capivamo",
+                    "offsetMilliseconds": 30080,
+                    "durationMilliseconds": 640
+                },
+                {
+                    "text": "con",
+                    "offsetMilliseconds": 31200,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "uno",
+                    "offsetMilliseconds": 31360,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "sguardo",
+                    "offsetMilliseconds": 31560,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "e",
+                    "offsetMilliseconds": 32760,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "io",
+                    "offsetMilliseconds": 32840,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "godevo",
+                    "offsetMilliseconds": 33000,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "a",
+                    "offsetMilliseconds": 34280,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "sentirlo",
+                    "offsetMilliseconds": 34360,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "parlare.",
+                    "offsetMilliseconds": 34840,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "Per",
+                    "offsetMilliseconds": 35920,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "me",
+                    "offsetMilliseconds": 36040,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "era",
+                    "offsetMilliseconds": 36120,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "come",
+                    "offsetMilliseconds": 36280,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "un",
+                    "offsetMilliseconds": 36480,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "orgasmo",
+                    "offsetMilliseconds": 36560,
+                    "durationMilliseconds": 560
+                },
+                {
+                    "text": "sentire",
+                    "offsetMilliseconds": 37120,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "le",
+                    "offsetMilliseconds": 37400,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "sue",
+                    "offsetMilliseconds": 37480,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "analisi,",
+                    "offsetMilliseconds": 37600,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "ma",
+                    "offsetMilliseconds": 37880,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "è",
+                    "offsetMilliseconds": 37960,
+                    "durationMilliseconds": 560
+                },
+                {
+                    "text": "una",
+                    "offsetMilliseconds": 38520,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "cretinata.",
+                    "offsetMilliseconds": 38680,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "Falcone",
+                    "offsetMilliseconds": 41040,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "era",
+                    "offsetMilliseconds": 41480,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "il",
+                    "offsetMilliseconds": 41600,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "solo",
+                    "offsetMilliseconds": 41680,
+                    "durationMilliseconds": 680
+                },
+                {
+                    "text": "che",
+                    "offsetMilliseconds": 42800,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "mi",
+                    "offsetMilliseconds": 42920,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "capiva.",
+                    "offsetMilliseconds": 43040,
+                    "durationMilliseconds": 400
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.9578372
+        },
+        {
+            "speaker": 1,
+            "offsetMilliseconds": 44560,
+            "durationMilliseconds": 2280,
+            "text": "Vi siete capiti fin dal primo incontro.",
+            "words": [
+                {
+                    "text": "Vi",
+                    "offsetMilliseconds": 44560,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "siete",
+                    "offsetMilliseconds": 44680,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "capiti",
+                    "offsetMilliseconds": 45000,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "fin",
+                    "offsetMilliseconds": 45440,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "dal",
+                    "offsetMilliseconds": 45760,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "primo",
+                    "offsetMilliseconds": 45960,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "incontro.",
+                    "offsetMilliseconds": 46240,
+                    "durationMilliseconds": 600
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.9578372
+        },
+        {
+            "speaker": 2,
+            "offsetMilliseconds": 48120,
+            "durationMilliseconds": 10000,
+            "text": "Io l E'ho incontrato per la prima volta a Brasilia, Lui aveva preparato una lista di domande, ma la regola era che me la poteva rivolgere il giudice brasiliano.",
+            "words": [
+                {
+                    "text": "Io",
+                    "offsetMilliseconds": 48120,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "l",
+                    "offsetMilliseconds": 48320,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "E'ho",
+                    "offsetMilliseconds": 48480,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "incontrato",
+                    "offsetMilliseconds": 48560,
+                    "durationMilliseconds": 920
+                },
+                {
+                    "text": "per",
+                    "offsetMilliseconds": 49480,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "la",
+                    "offsetMilliseconds": 49640,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "prima",
+                    "offsetMilliseconds": 49720,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "volta",
+                    "offsetMilliseconds": 50040,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "a",
+                    "offsetMilliseconds": 50400,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "Brasilia,",
+                    "offsetMilliseconds": 50480,
+                    "durationMilliseconds": 680
+                },
+                {
+                    "text": "Lui",
+                    "offsetMilliseconds": 51760,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "aveva",
+                    "offsetMilliseconds": 52000,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "preparato",
+                    "offsetMilliseconds": 52360,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "una",
+                    "offsetMilliseconds": 52800,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "lista",
+                    "offsetMilliseconds": 53000,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "di",
+                    "offsetMilliseconds": 53520,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "domande,",
+                    "offsetMilliseconds": 53640,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "ma",
+                    "offsetMilliseconds": 54160,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "la",
+                    "offsetMilliseconds": 54360,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "regola",
+                    "offsetMilliseconds": 54520,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "era",
+                    "offsetMilliseconds": 55200,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "che",
+                    "offsetMilliseconds": 55480,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "me",
+                    "offsetMilliseconds": 55600,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "la",
+                    "offsetMilliseconds": 55680,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "poteva",
+                    "offsetMilliseconds": 55840,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "rivolgere",
+                    "offsetMilliseconds": 56200,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "il",
+                    "offsetMilliseconds": 57040,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "giudice",
+                    "offsetMilliseconds": 57200,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "brasiliano.",
+                    "offsetMilliseconds": 57520,
+                    "durationMilliseconds": 600
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.9578372
+        },
+        {
+            "speaker": 2,
+            "offsetMilliseconds": 59440,
+            "durationMilliseconds": 10920,
+            "text": "Ma ad una certa domanda io mi rivolsi al giudice Falcone e gli dissi, dottor Falcone, per rispondere a questa domanda occorrerebbe tutta la notte.",
+            "words": [
+                {
+                    "text": "Ma",
+                    "offsetMilliseconds": 59440,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "ad",
+                    "offsetMilliseconds": 59560,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "una",
+                    "offsetMilliseconds": 59640,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "certa",
+                    "offsetMilliseconds": 59800,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "domanda",
+                    "offsetMilliseconds": 60120,
+                    "durationMilliseconds": 560
+                },
+                {
+                    "text": "io",
+                    "offsetMilliseconds": 61480,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "mi",
+                    "offsetMilliseconds": 62040,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "rivolsi",
+                    "offsetMilliseconds": 62120,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "al",
+                    "offsetMilliseconds": 62640,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "giudice",
+                    "offsetMilliseconds": 62720,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "Falcone",
+                    "offsetMilliseconds": 63040,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "e",
+                    "offsetMilliseconds": 63520,
+                    "durationMilliseconds": 40
+                },
+                {
+                    "text": "gli",
+                    "offsetMilliseconds": 63560,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "dissi,",
+                    "offsetMilliseconds": 63680,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "dottor",
+                    "offsetMilliseconds": 65560,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "Falcone,",
+                    "offsetMilliseconds": 65800,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "per",
+                    "offsetMilliseconds": 66760,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "rispondere",
+                    "offsetMilliseconds": 66880,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "a",
+                    "offsetMilliseconds": 67320,
+                    "durationMilliseconds": 40
+                },
+                {
+                    "text": "questa",
+                    "offsetMilliseconds": 67360,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "domanda",
+                    "offsetMilliseconds": 67640,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "occorrerebbe",
+                    "offsetMilliseconds": 68680,
+                    "durationMilliseconds": 800
+                },
+                {
+                    "text": "tutta",
+                    "offsetMilliseconds": 69680,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "la",
+                    "offsetMilliseconds": 69920,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "notte.",
+                    "offsetMilliseconds": 70040,
+                    "durationMilliseconds": 320
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.98133934
+        },
+        {
+            "speaker": 1,
+            "offsetMilliseconds": 70680,
+            "durationMilliseconds": 600,
+            "text": "Falcone.",
+            "words": [
+                {
+                    "text": "Falcone.",
+                    "offsetMilliseconds": 70680,
+                    "durationMilliseconds": 600
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.98133934
+        },
+        {
+            "speaker": 2,
+            "offsetMilliseconds": 72200,
+            "durationMilliseconds": 12520,
+            "text": "Lui fino a quel momento era rimasto serio, e a quel punto si mise quasi a ridere, si voltò verso il suo assistente e disse, credo proprio che quest'uomo collaborerà con noi.",
+            "words": [
+                {
+                    "text": "Lui",
+                    "offsetMilliseconds": 72200,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "fino",
+                    "offsetMilliseconds": 72640,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "a",
+                    "offsetMilliseconds": 72840,
+                    "durationMilliseconds": 40
+                },
+                {
+                    "text": "quel",
+                    "offsetMilliseconds": 72880,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "momento",
+                    "offsetMilliseconds": 73080,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "era",
+                    "offsetMilliseconds": 73600,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "rimasto",
+                    "offsetMilliseconds": 73720,
+                    "durationMilliseconds": 720
+                },
+                {
+                    "text": "serio,",
+                    "offsetMilliseconds": 74680,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "e",
+                    "offsetMilliseconds": 76200,
+                    "durationMilliseconds": 100
+                },
+                {
+                    "text": "a",
+                    "offsetMilliseconds": 76300,
+                    "durationMilliseconds": 100
+                },
+                {
+                    "text": "quel",
+                    "offsetMilliseconds": 76400,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "punto",
+                    "offsetMilliseconds": 76560,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "si",
+                    "offsetMilliseconds": 76880,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "mise",
+                    "offsetMilliseconds": 77000,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "quasi",
+                    "offsetMilliseconds": 77200,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "a",
+                    "offsetMilliseconds": 77440,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "ridere,",
+                    "offsetMilliseconds": 77520,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "si",
+                    "offsetMilliseconds": 78960,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "voltò",
+                    "offsetMilliseconds": 79160,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "verso",
+                    "offsetMilliseconds": 79520,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "il",
+                    "offsetMilliseconds": 79760,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "suo",
+                    "offsetMilliseconds": 79840,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "assistente",
+                    "offsetMilliseconds": 79960,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "e",
+                    "offsetMilliseconds": 80480,
+                    "durationMilliseconds": 40
+                },
+                {
+                    "text": "disse,",
+                    "offsetMilliseconds": 80520,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "credo",
+                    "offsetMilliseconds": 82080,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "proprio",
+                    "offsetMilliseconds": 82360,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "che",
+                    "offsetMilliseconds": 82720,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "quest'uomo",
+                    "offsetMilliseconds": 82880,
+                    "durationMilliseconds": 720
+                },
+                {
+                    "text": "collaborerà",
+                    "offsetMilliseconds": 83640,
+                    "durationMilliseconds": 640
+                },
+                {
+                    "text": "con",
+                    "offsetMilliseconds": 84280,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "noi.",
+                    "offsetMilliseconds": 84440,
+                    "durationMilliseconds": 280
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.98133934
+        },
+        {
+            "speaker": 1,
+            "offsetMilliseconds": 86480,
+            "durationMilliseconds": 2600,
+            "text": "Senta, ma la storia delle sigarette la.",
+            "words": [
+                {
+                    "text": "Senta,",
+                    "offsetMilliseconds": 86480,
+                    "durationMilliseconds": 680
+                },
+                {
+                    "text": "ma",
+                    "offsetMilliseconds": 87360,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "la",
+                    "offsetMilliseconds": 87800,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "storia",
+                    "offsetMilliseconds": 87960,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "delle",
+                    "offsetMilliseconds": 88200,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "sigarette",
+                    "offsetMilliseconds": 88400,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "la.",
+                    "offsetMilliseconds": 89000,
+                    "durationMilliseconds": 80
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.95375305
+        },
+        {
+            "speaker": 2,
+            "offsetMilliseconds": 91080,
+            "durationMilliseconds": 20400,
+            "text": "Storia delle sigarette io una volta era rimasto senza sigarette e il dottor Falcone mi offrì il suo pacchetto consumato a metà. Io lo ringraziai e gli dissi, l'ho accettato perché era un pacchetto aperto, ma una stecca o qualche pacchetto intero?",
+            "words": [
+                {
+                    "text": "Storia",
+                    "offsetMilliseconds": 91080,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "delle",
+                    "offsetMilliseconds": 91360,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "sigarette",
+                    "offsetMilliseconds": 91560,
+                    "durationMilliseconds": 560
+                },
+                {
+                    "text": "io",
+                    "offsetMilliseconds": 92640,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "una",
+                    "offsetMilliseconds": 93040,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "volta",
+                    "offsetMilliseconds": 93280,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "era",
+                    "offsetMilliseconds": 93560,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "rimasto",
+                    "offsetMilliseconds": 93680,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "senza",
+                    "offsetMilliseconds": 94200,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "sigarette",
+                    "offsetMilliseconds": 94480,
+                    "durationMilliseconds": 680
+                },
+                {
+                    "text": "e",
+                    "offsetMilliseconds": 95240,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "il",
+                    "offsetMilliseconds": 95320,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "dottor",
+                    "offsetMilliseconds": 95400,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "Falcone",
+                    "offsetMilliseconds": 95640,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "mi",
+                    "offsetMilliseconds": 96040,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "offrì",
+                    "offsetMilliseconds": 96120,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "il",
+                    "offsetMilliseconds": 97120,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "suo",
+                    "offsetMilliseconds": 97240,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "pacchetto",
+                    "offsetMilliseconds": 97440,
+                    "durationMilliseconds": 560
+                },
+                {
+                    "text": "consumato",
+                    "offsetMilliseconds": 98240,
+                    "durationMilliseconds": 560
+                },
+                {
+                    "text": "a",
+                    "offsetMilliseconds": 98800,
+                    "durationMilliseconds": 40
+                },
+                {
+                    "text": "metà.",
+                    "offsetMilliseconds": 98840,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "Io",
+                    "offsetMilliseconds": 99760,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "lo",
+                    "offsetMilliseconds": 101080,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "ringraziai",
+                    "offsetMilliseconds": 101160,
+                    "durationMilliseconds": 720
+                },
+                {
+                    "text": "e",
+                    "offsetMilliseconds": 103040,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "gli",
+                    "offsetMilliseconds": 103160,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "dissi,",
+                    "offsetMilliseconds": 103280,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "l'ho",
+                    "offsetMilliseconds": 104600,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "accettato",
+                    "offsetMilliseconds": 104720,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "perché",
+                    "offsetMilliseconds": 105320,
+                    "durationMilliseconds": 560
+                },
+                {
+                    "text": "era",
+                    "offsetMilliseconds": 105880,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "un",
+                    "offsetMilliseconds": 106040,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "pacchetto",
+                    "offsetMilliseconds": 106160,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "aperto,",
+                    "offsetMilliseconds": 106560,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "ma",
+                    "offsetMilliseconds": 107000,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "una",
+                    "offsetMilliseconds": 108560,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "stecca",
+                    "offsetMilliseconds": 108760,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "o",
+                    "offsetMilliseconds": 109360,
+                    "durationMilliseconds": 40
+                },
+                {
+                    "text": "qualche",
+                    "offsetMilliseconds": 109400,
+                    "durationMilliseconds": 560
+                },
+                {
+                    "text": "pacchetto",
+                    "offsetMilliseconds": 110480,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "intero?",
+                    "offsetMilliseconds": 110920,
+                    "durationMilliseconds": 560
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.95375305
+        },
+        {
+            "speaker": 2,
+            "offsetMilliseconds": 111960,
+            "durationMilliseconds": 4360,
+            "text": "Io non l'avrei accettati perché avrebbe voluto dire che lei intendeva umiliarmi.",
+            "words": [
+                {
+                    "text": "Io",
+                    "offsetMilliseconds": 111960,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "non",
+                    "offsetMilliseconds": 112160,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "l'avrei",
+                    "offsetMilliseconds": 112280,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "accettati",
+                    "offsetMilliseconds": 112560,
+                    "durationMilliseconds": 560
+                },
+                {
+                    "text": "perché",
+                    "offsetMilliseconds": 113120,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "avrebbe",
+                    "offsetMilliseconds": 113720,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "voluto",
+                    "offsetMilliseconds": 114240,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "dire",
+                    "offsetMilliseconds": 114640,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "che",
+                    "offsetMilliseconds": 115000,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "lei",
+                    "offsetMilliseconds": 115120,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "intendeva",
+                    "offsetMilliseconds": 115320,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "umiliarmi.",
+                    "offsetMilliseconds": 115760,
+                    "durationMilliseconds": 560
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.9425614
+        },
+        {
+            "speaker": 1,
+            "offsetMilliseconds": 117640,
+            "durationMilliseconds": 2440,
+            "text": "Quando ha conosciuto Gaetano Badalamenti?",
+            "words": [
+                {
+                    "text": "Quando",
+                    "offsetMilliseconds": 117640,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "ha",
+                    "offsetMilliseconds": 117880,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "conosciuto",
+                    "offsetMilliseconds": 117960,
+                    "durationMilliseconds": 640
+                },
+                {
+                    "text": "Gaetano",
+                    "offsetMilliseconds": 118600,
+                    "durationMilliseconds": 640
+                },
+                {
+                    "text": "Badalamenti?",
+                    "offsetMilliseconds": 119240,
+                    "durationMilliseconds": 840
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.9425614
+        },
+        {
+            "speaker": 2,
+            "offsetMilliseconds": 121080,
+            "durationMilliseconds": 14400,
+            "text": "Siamo cresciuti insieme, l'ho visto giovane, l'ho visto sposato io l la conosciuto padre, L'ho conosciuto soldato come me, l'ho conosciuto capo della Commissione e l'ho conosciuto espulso dalla cosa nostra.",
+            "words": [
+                {
+                    "text": "Siamo",
+                    "offsetMilliseconds": 121080,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "cresciuti",
+                    "offsetMilliseconds": 121440,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "insieme,",
+                    "offsetMilliseconds": 121960,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "l'ho",
+                    "offsetMilliseconds": 123240,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "visto",
+                    "offsetMilliseconds": 123360,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "giovane,",
+                    "offsetMilliseconds": 123720,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "l'ho",
+                    "offsetMilliseconds": 124200,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "visto",
+                    "offsetMilliseconds": 124320,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "sposato",
+                    "offsetMilliseconds": 124840,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "io",
+                    "offsetMilliseconds": 125440,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "l",
+                    "offsetMilliseconds": 125920,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "la",
+                    "offsetMilliseconds": 126080,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "conosciuto",
+                    "offsetMilliseconds": 126160,
+                    "durationMilliseconds": 640
+                },
+                {
+                    "text": "padre,",
+                    "offsetMilliseconds": 126800,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "L'ho",
+                    "offsetMilliseconds": 127880,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "conosciuto",
+                    "offsetMilliseconds": 128040,
+                    "durationMilliseconds": 560
+                },
+                {
+                    "text": "soldato",
+                    "offsetMilliseconds": 128600,
+                    "durationMilliseconds": 720
+                },
+                {
+                    "text": "come",
+                    "offsetMilliseconds": 129320,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "me,",
+                    "offsetMilliseconds": 129600,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "l'ho",
+                    "offsetMilliseconds": 130360,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "conosciuto",
+                    "offsetMilliseconds": 130560,
+                    "durationMilliseconds": 720
+                },
+                {
+                    "text": "capo",
+                    "offsetMilliseconds": 131560,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "della",
+                    "offsetMilliseconds": 131840,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "Commissione",
+                    "offsetMilliseconds": 132080,
+                    "durationMilliseconds": 840
+                },
+                {
+                    "text": "e",
+                    "offsetMilliseconds": 133240,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "l'ho",
+                    "offsetMilliseconds": 133360,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "conosciuto",
+                    "offsetMilliseconds": 133520,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "espulso",
+                    "offsetMilliseconds": 134040,
+                    "durationMilliseconds": 560
+                },
+                {
+                    "text": "dalla",
+                    "offsetMilliseconds": 134600,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "cosa",
+                    "offsetMilliseconds": 134840,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "nostra.",
+                    "offsetMilliseconds": 135080,
+                    "durationMilliseconds": 400
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.9425614
+        },
+        {
+            "speaker": 1,
+            "offsetMilliseconds": 136080,
+            "durationMilliseconds": 4120,
+            "text": "È Stefano Bontate, che è stato l'ultimo capo della mafia.",
+            "words": [
+                {
+                    "text": "È",
+                    "offsetMilliseconds": 136080,
+                    "durationMilliseconds": 560
+                },
+                {
+                    "text": "Stefano",
+                    "offsetMilliseconds": 136640,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "Bontate,",
+                    "offsetMilliseconds": 136920,
+                    "durationMilliseconds": 560
+                },
+                {
+                    "text": "che",
+                    "offsetMilliseconds": 137480,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "è",
+                    "offsetMilliseconds": 137560,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "stato",
+                    "offsetMilliseconds": 138080,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "l'ultimo",
+                    "offsetMilliseconds": 138400,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "capo",
+                    "offsetMilliseconds": 138920,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "della",
+                    "offsetMilliseconds": 139440,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "mafia.",
+                    "offsetMilliseconds": 139640,
+                    "durationMilliseconds": 560
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.9425614
+        },
+        {
+            "speaker": 1,
+            "offsetMilliseconds": 140560,
+            "durationMilliseconds": 5960,
+            "text": "Prima dell'avvento dei corleonesi, quando l'ha conosciuto, lo chiamavano il principe di Villa grazia.",
+            "words": [
+                {
+                    "text": "Prima",
+                    "offsetMilliseconds": 140560,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "dell'avvento",
+                    "offsetMilliseconds": 140880,
+                    "durationMilliseconds": 680
+                },
+                {
+                    "text": "dei",
+                    "offsetMilliseconds": 141560,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "corleonesi,",
+                    "offsetMilliseconds": 141680,
+                    "durationMilliseconds": 880
+                },
+                {
+                    "text": "quando",
+                    "offsetMilliseconds": 142680,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "l'ha",
+                    "offsetMilliseconds": 142960,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "conosciuto,",
+                    "offsetMilliseconds": 143120,
+                    "durationMilliseconds": 720
+                },
+                {
+                    "text": "lo",
+                    "offsetMilliseconds": 144000,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "chiamavano",
+                    "offsetMilliseconds": 144120,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "il",
+                    "offsetMilliseconds": 144640,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "principe",
+                    "offsetMilliseconds": 144720,
+                    "durationMilliseconds": 760
+                },
+                {
+                    "text": "di",
+                    "offsetMilliseconds": 145640,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "Villa",
+                    "offsetMilliseconds": 145720,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "grazia.",
+                    "offsetMilliseconds": 145960,
+                    "durationMilliseconds": 560
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.9465182
+        },
+        {
+            "speaker": 2,
+            "offsetMilliseconds": 147280,
+            "durationMilliseconds": 14160,
+            "text": "Io ho conosciuto Stefano Bontate, ero amico del padre quando lui aveva poco meno di 10 anni e gli sono rimasto amico fino alla morte. Fu Totò Riina a farlo ammazzare.",
+            "words": [
+                {
+                    "text": "Io",
+                    "offsetMilliseconds": 147280,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "ho",
+                    "offsetMilliseconds": 147520,
+                    "durationMilliseconds": 40
+                },
+                {
+                    "text": "conosciuto",
+                    "offsetMilliseconds": 147560,
+                    "durationMilliseconds": 760
+                },
+                {
+                    "text": "Stefano",
+                    "offsetMilliseconds": 148320,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "Bontate,",
+                    "offsetMilliseconds": 148760,
+                    "durationMilliseconds": 840
+                },
+                {
+                    "text": "ero",
+                    "offsetMilliseconds": 150760,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "amico",
+                    "offsetMilliseconds": 150960,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "del",
+                    "offsetMilliseconds": 151280,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "padre",
+                    "offsetMilliseconds": 151440,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "quando",
+                    "offsetMilliseconds": 152400,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "lui",
+                    "offsetMilliseconds": 152640,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "aveva",
+                    "offsetMilliseconds": 152840,
+                    "durationMilliseconds": 920
+                },
+                {
+                    "text": "poco",
+                    "offsetMilliseconds": 154080,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "meno",
+                    "offsetMilliseconds": 154360,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "di",
+                    "offsetMilliseconds": 154640,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "10",
+                    "offsetMilliseconds": 154760,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "anni",
+                    "offsetMilliseconds": 155120,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "e",
+                    "offsetMilliseconds": 156160,
+                    "durationMilliseconds": 40
+                },
+                {
+                    "text": "gli",
+                    "offsetMilliseconds": 156200,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "sono",
+                    "offsetMilliseconds": 156360,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "rimasto",
+                    "offsetMilliseconds": 156600,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "amico",
+                    "offsetMilliseconds": 157040,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "fino",
+                    "offsetMilliseconds": 157640,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "alla",
+                    "offsetMilliseconds": 157840,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "morte.",
+                    "offsetMilliseconds": 158000,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "Fu",
+                    "offsetMilliseconds": 159600,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "Totò",
+                    "offsetMilliseconds": 159760,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "Riina",
+                    "offsetMilliseconds": 160080,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "a",
+                    "offsetMilliseconds": 160480,
+                    "durationMilliseconds": 40
+                },
+                {
+                    "text": "farlo",
+                    "offsetMilliseconds": 160520,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "ammazzare.",
+                    "offsetMilliseconds": 160800,
+                    "durationMilliseconds": 640
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.9465182
+        },
+        {
+            "speaker": 1,
+            "offsetMilliseconds": 162280,
+            "durationMilliseconds": 1920,
+            "text": "E Ignazio Antonino salvo?",
+            "words": [
+                {
+                    "text": "E",
+                    "offsetMilliseconds": 162280,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "Ignazio",
+                    "offsetMilliseconds": 162560,
+                    "durationMilliseconds": 640
+                },
+                {
+                    "text": "Antonino",
+                    "offsetMilliseconds": 163200,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "salvo?",
+                    "offsetMilliseconds": 163720,
+                    "durationMilliseconds": 480
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.9465182
+        },
+        {
+            "speaker": 2,
+            "offsetMilliseconds": 164840,
+            "durationMilliseconds": 5320,
+            "text": "Negli anni 80 io fui ospite nella Villa del genero di Nino salvo.",
+            "words": [
+                {
+                    "text": "Negli",
+                    "offsetMilliseconds": 164840,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "anni",
+                    "offsetMilliseconds": 165200,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "80",
+                    "offsetMilliseconds": 165360,
+                    "durationMilliseconds": 640
+                },
+                {
+                    "text": "io",
+                    "offsetMilliseconds": 166000,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "fui",
+                    "offsetMilliseconds": 166200,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "ospite",
+                    "offsetMilliseconds": 166600,
+                    "durationMilliseconds": 800
+                },
+                {
+                    "text": "nella",
+                    "offsetMilliseconds": 167680,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "Villa",
+                    "offsetMilliseconds": 168000,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "del",
+                    "offsetMilliseconds": 168400,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "genero",
+                    "offsetMilliseconds": 168560,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "di",
+                    "offsetMilliseconds": 169040,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "Nino",
+                    "offsetMilliseconds": 169200,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "salvo.",
+                    "offsetMilliseconds": 169680,
+                    "durationMilliseconds": 480
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.9465182
+        },
+        {
+            "speaker": 2,
+            "offsetMilliseconds": 171440,
+            "durationMilliseconds": 14560,
+            "text": "I cugini salvo erano quelli che controllavano le esattorie riscuotevano le tasse di tutti i siciliani. Erano uomini d'onore della provincia di Trapani e grandi elettori di salvo Lima e di Giulio Andreotti.",
+            "words": [
+                {
+                    "text": "I",
+                    "offsetMilliseconds": 171440,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "cugini",
+                    "offsetMilliseconds": 171520,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "salvo",
+                    "offsetMilliseconds": 171960,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "erano",
+                    "offsetMilliseconds": 172320,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "quelli",
+                    "offsetMilliseconds": 173080,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "che",
+                    "offsetMilliseconds": 173320,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "controllavano",
+                    "offsetMilliseconds": 173480,
+                    "durationMilliseconds": 680
+                },
+                {
+                    "text": "le",
+                    "offsetMilliseconds": 174160,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "esattorie",
+                    "offsetMilliseconds": 174240,
+                    "durationMilliseconds": 720
+                },
+                {
+                    "text": "riscuotevano",
+                    "offsetMilliseconds": 175600,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "le",
+                    "offsetMilliseconds": 176200,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "tasse",
+                    "offsetMilliseconds": 176320,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "di",
+                    "offsetMilliseconds": 176680,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "tutti",
+                    "offsetMilliseconds": 176840,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "i",
+                    "offsetMilliseconds": 177080,
+                    "durationMilliseconds": 40
+                },
+                {
+                    "text": "siciliani.",
+                    "offsetMilliseconds": 177120,
+                    "durationMilliseconds": 640
+                },
+                {
+                    "text": "Erano",
+                    "offsetMilliseconds": 178440,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "uomini",
+                    "offsetMilliseconds": 179040,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "d'onore",
+                    "offsetMilliseconds": 179520,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "della",
+                    "offsetMilliseconds": 180200,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "provincia",
+                    "offsetMilliseconds": 180680,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "di",
+                    "offsetMilliseconds": 181160,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "Trapani",
+                    "offsetMilliseconds": 181280,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "e",
+                    "offsetMilliseconds": 182280,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "grandi",
+                    "offsetMilliseconds": 182440,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "elettori",
+                    "offsetMilliseconds": 182760,
+                    "durationMilliseconds": 640
+                },
+                {
+                    "text": "di",
+                    "offsetMilliseconds": 183880,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "salvo",
+                    "offsetMilliseconds": 183960,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "Lima",
+                    "offsetMilliseconds": 184320,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "e",
+                    "offsetMilliseconds": 185040,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "di",
+                    "offsetMilliseconds": 185120,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "Giulio",
+                    "offsetMilliseconds": 185240,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "Andreotti.",
+                    "offsetMilliseconds": 185440,
+                    "durationMilliseconds": 560
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.93159026
+        },
+        {
+            "speaker": 1,
+            "offsetMilliseconds": 186680,
+            "durationMilliseconds": 3280,
+            "text": "E loro le parlarono mai di esponenti politici?",
+            "words": [
+                {
+                    "text": "E",
+                    "offsetMilliseconds": 186680,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "loro",
+                    "offsetMilliseconds": 186760,
+                    "durationMilliseconds": 680
+                },
+                {
+                    "text": "le",
+                    "offsetMilliseconds": 187440,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "parlarono",
+                    "offsetMilliseconds": 187600,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "mai",
+                    "offsetMilliseconds": 188080,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "di",
+                    "offsetMilliseconds": 188400,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "esponenti",
+                    "offsetMilliseconds": 188560,
+                    "durationMilliseconds": 680
+                },
+                {
+                    "text": "politici?",
+                    "offsetMilliseconds": 189240,
+                    "durationMilliseconds": 720
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.93159026
+        },
+        {
+            "speaker": 2,
+            "offsetMilliseconds": 190520,
+            "durationMilliseconds": 7360,
+            "text": "Sì, mi parlarono di Giulio Andreotti, il senatore Giulio Andreotti e mi dissero che Andreotti.",
+            "words": [
+                {
+                    "text": "Sì,",
+                    "offsetMilliseconds": 190520,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "mi",
+                    "offsetMilliseconds": 191680,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "parlarono",
+                    "offsetMilliseconds": 191800,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "di",
+                    "offsetMilliseconds": 192400,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "Giulio",
+                    "offsetMilliseconds": 192480,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "Andreotti,",
+                    "offsetMilliseconds": 192800,
+                    "durationMilliseconds": 560
+                },
+                {
+                    "text": "il",
+                    "offsetMilliseconds": 194000,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "senatore",
+                    "offsetMilliseconds": 194080,
+                    "durationMilliseconds": 680
+                },
+                {
+                    "text": "Giulio",
+                    "offsetMilliseconds": 195200,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "Andreotti",
+                    "offsetMilliseconds": 195440,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "e",
+                    "offsetMilliseconds": 196360,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "mi",
+                    "offsetMilliseconds": 196480,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "dissero",
+                    "offsetMilliseconds": 196600,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "che",
+                    "offsetMilliseconds": 197040,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "Andreotti.",
+                    "offsetMilliseconds": 197200,
+                    "durationMilliseconds": 680
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.93159026
+        },
+        {
+            "speaker": 2,
+            "offsetMilliseconds": 198200,
+            "durationMilliseconds": 5000,
+            "text": "Era il referente nazionale a Roma per sistemare gli affari di cosa nostra.",
+            "words": [
+                {
+                    "text": "Era",
+                    "offsetMilliseconds": 198200,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "il",
+                    "offsetMilliseconds": 198720,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "referente",
+                    "offsetMilliseconds": 198880,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "nazionale",
+                    "offsetMilliseconds": 199480,
+                    "durationMilliseconds": 680
+                },
+                {
+                    "text": "a",
+                    "offsetMilliseconds": 200160,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "Roma",
+                    "offsetMilliseconds": 200360,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "per",
+                    "offsetMilliseconds": 201280,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "sistemare",
+                    "offsetMilliseconds": 201440,
+                    "durationMilliseconds": 560
+                },
+                {
+                    "text": "gli",
+                    "offsetMilliseconds": 202000,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "affari",
+                    "offsetMilliseconds": 202160,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "di",
+                    "offsetMilliseconds": 202520,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "cosa",
+                    "offsetMilliseconds": 202640,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "nostra.",
+                    "offsetMilliseconds": 202880,
+                    "durationMilliseconds": 320
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.9736781
+        },
+        {
+            "speaker": 1,
+            "offsetMilliseconds": 203360,
+            "durationMilliseconds": 2800,
+            "text": "Ma le dissero qualcosa di concreto, di specifico?",
+            "words": [
+                {
+                    "text": "Ma",
+                    "offsetMilliseconds": 203360,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "le",
+                    "offsetMilliseconds": 203480,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "dissero",
+                    "offsetMilliseconds": 203600,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "qualcosa",
+                    "offsetMilliseconds": 204040,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "di",
+                    "offsetMilliseconds": 204520,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "concreto,",
+                    "offsetMilliseconds": 204640,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "di",
+                    "offsetMilliseconds": 205240,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "specifico?",
+                    "offsetMilliseconds": 205360,
+                    "durationMilliseconds": 800
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.9736781
+        },
+        {
+            "speaker": 2,
+            "offsetMilliseconds": 208160,
+            "durationMilliseconds": 14720,
+            "text": "Nella cosa nostra non esiste molta curiosità. Questo è il comportamento di un uomo d'onore. Non chiedere se una cosa gli viene detta, la prende, se non gli viene detta è una cosa che non si chiede.",
+            "words": [
+                {
+                    "text": "Nella",
+                    "offsetMilliseconds": 208160,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "cosa",
+                    "offsetMilliseconds": 208440,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "nostra",
+                    "offsetMilliseconds": 208760,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "non",
+                    "offsetMilliseconds": 209840,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "esiste",
+                    "offsetMilliseconds": 210000,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "molta",
+                    "offsetMilliseconds": 210400,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "curiosità.",
+                    "offsetMilliseconds": 210720,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "Questo",
+                    "offsetMilliseconds": 211240,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "è",
+                    "offsetMilliseconds": 212600,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "il",
+                    "offsetMilliseconds": 213200,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "comportamento",
+                    "offsetMilliseconds": 213280,
+                    "durationMilliseconds": 720
+                },
+                {
+                    "text": "di",
+                    "offsetMilliseconds": 214000,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "un",
+                    "offsetMilliseconds": 214080,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "uomo",
+                    "offsetMilliseconds": 214160,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "d'onore.",
+                    "offsetMilliseconds": 214440,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "Non",
+                    "offsetMilliseconds": 215440,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "chiedere",
+                    "offsetMilliseconds": 215800,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "se",
+                    "offsetMilliseconds": 217000,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "una",
+                    "offsetMilliseconds": 217160,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "cosa",
+                    "offsetMilliseconds": 217320,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "gli",
+                    "offsetMilliseconds": 217640,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "viene",
+                    "offsetMilliseconds": 217760,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "detta,",
+                    "offsetMilliseconds": 218000,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "la",
+                    "offsetMilliseconds": 218880,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "prende,",
+                    "offsetMilliseconds": 219040,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "se",
+                    "offsetMilliseconds": 219880,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "non",
+                    "offsetMilliseconds": 220080,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "gli",
+                    "offsetMilliseconds": 220200,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "viene",
+                    "offsetMilliseconds": 220320,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "detta",
+                    "offsetMilliseconds": 220520,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "è",
+                    "offsetMilliseconds": 221080,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "una",
+                    "offsetMilliseconds": 221600,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "cosa",
+                    "offsetMilliseconds": 221800,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "che",
+                    "offsetMilliseconds": 222080,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "non",
+                    "offsetMilliseconds": 222200,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "si",
+                    "offsetMilliseconds": 222360,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "chiede.",
+                    "offsetMilliseconds": 222520,
+                    "durationMilliseconds": 360
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.9736781
+        },
+        {
+            "speaker": 1,
+            "offsetMilliseconds": 223640,
+            "durationMilliseconds": 4720,
+            "text": "E cosa le dissero invece badalamenti e bontate del giornalista Pecorelli?",
+            "words": [
+                {
+                    "text": "E",
+                    "offsetMilliseconds": 223640,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "cosa",
+                    "offsetMilliseconds": 223800,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "le",
+                    "offsetMilliseconds": 224400,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "dissero",
+                    "offsetMilliseconds": 224520,
+                    "durationMilliseconds": 560
+                },
+                {
+                    "text": "invece",
+                    "offsetMilliseconds": 225080,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "badalamenti",
+                    "offsetMilliseconds": 225440,
+                    "durationMilliseconds": 720
+                },
+                {
+                    "text": "e",
+                    "offsetMilliseconds": 226160,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "bontate",
+                    "offsetMilliseconds": 226240,
+                    "durationMilliseconds": 680
+                },
+                {
+                    "text": "del",
+                    "offsetMilliseconds": 226920,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "giornalista",
+                    "offsetMilliseconds": 227120,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "Pecorelli?",
+                    "offsetMilliseconds": 227720,
+                    "durationMilliseconds": 640
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.93865126
+        },
+        {
+            "speaker": 2,
+            "offsetMilliseconds": 230560,
+            "durationMilliseconds": 11520,
+            "text": "Prima bontate, poi badalamente, mi dissero che l'omicidio di pecorelli era stato fatto per richiesta dei cugini, salvo nell'interesse del senatore Andreotti.",
+            "words": [
+                {
+                    "text": "Prima",
+                    "offsetMilliseconds": 230560,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "bontate,",
+                    "offsetMilliseconds": 230840,
+                    "durationMilliseconds": 760
+                },
+                {
+                    "text": "poi",
+                    "offsetMilliseconds": 231720,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "badalamente,",
+                    "offsetMilliseconds": 231840,
+                    "durationMilliseconds": 920
+                },
+                {
+                    "text": "mi",
+                    "offsetMilliseconds": 233040,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "dissero",
+                    "offsetMilliseconds": 233160,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "che",
+                    "offsetMilliseconds": 233760,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "l'omicidio",
+                    "offsetMilliseconds": 234280,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "di",
+                    "offsetMilliseconds": 234800,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "pecorelli",
+                    "offsetMilliseconds": 234960,
+                    "durationMilliseconds": 760
+                },
+                {
+                    "text": "era",
+                    "offsetMilliseconds": 236160,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "stato",
+                    "offsetMilliseconds": 236400,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "fatto",
+                    "offsetMilliseconds": 236760,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "per",
+                    "offsetMilliseconds": 237440,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "richiesta",
+                    "offsetMilliseconds": 237680,
+                    "durationMilliseconds": 680
+                },
+                {
+                    "text": "dei",
+                    "offsetMilliseconds": 238360,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "cugini,",
+                    "offsetMilliseconds": 238560,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "salvo",
+                    "offsetMilliseconds": 239000,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "nell'interesse",
+                    "offsetMilliseconds": 239880,
+                    "durationMilliseconds": 920
+                },
+                {
+                    "text": "del",
+                    "offsetMilliseconds": 241120,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "senatore",
+                    "offsetMilliseconds": 241240,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "Andreotti.",
+                    "offsetMilliseconds": 241640,
+                    "durationMilliseconds": 440
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.93865126
+        },
+        {
+            "speaker": 1,
+            "offsetMilliseconds": 242920,
+            "durationMilliseconds": 4880,
+            "text": "Ma cosa intende dire quando dice nell'interesse del senatore Andreotti?",
+            "words": [
+                {
+                    "text": "Ma",
+                    "offsetMilliseconds": 242920,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "cosa",
+                    "offsetMilliseconds": 243040,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "intende",
+                    "offsetMilliseconds": 243520,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "dire",
+                    "offsetMilliseconds": 243960,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "quando",
+                    "offsetMilliseconds": 244200,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "dice",
+                    "offsetMilliseconds": 244520,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "nell'interesse",
+                    "offsetMilliseconds": 245280,
+                    "durationMilliseconds": 1160
+                },
+                {
+                    "text": "del",
+                    "offsetMilliseconds": 246440,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "senatore",
+                    "offsetMilliseconds": 246560,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "Andreotti?",
+                    "offsetMilliseconds": 247160,
+                    "durationMilliseconds": 640
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.93865126
+        },
+        {
+            "speaker": 2,
+            "offsetMilliseconds": 248760,
+            "durationMilliseconds": 4000,
+            "text": "E le molte volte si può dire ad una persona.",
+            "words": [
+                {
+                    "text": "E",
+                    "offsetMilliseconds": 248760,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "le",
+                    "offsetMilliseconds": 248840,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "molte",
+                    "offsetMilliseconds": 248960,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "volte",
+                    "offsetMilliseconds": 249280,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "si",
+                    "offsetMilliseconds": 250840,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "può",
+                    "offsetMilliseconds": 251080,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "dire",
+                    "offsetMilliseconds": 251280,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "ad",
+                    "offsetMilliseconds": 251800,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "una",
+                    "offsetMilliseconds": 251960,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "persona.",
+                    "offsetMilliseconds": 252200,
+                    "durationMilliseconds": 560
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.93865126
+        },
+        {
+            "speaker": 2,
+            "offsetMilliseconds": 253160,
+            "durationMilliseconds": 18240,
+            "text": "Anche indirettamente avrei bisogno di questo favore, dicendo semplicemente questo mi sta dando fastidio e può avvenire di essere interpretati in una maniera come è stato interpretato nei riguardi di Pecorelli.",
+            "words": [
+                {
+                    "text": "Anche",
+                    "offsetMilliseconds": 253160,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "indirettamente",
+                    "offsetMilliseconds": 253440,
+                    "durationMilliseconds": 880
+                },
+                {
+                    "text": "avrei",
+                    "offsetMilliseconds": 255000,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "bisogno",
+                    "offsetMilliseconds": 255280,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "di",
+                    "offsetMilliseconds": 255680,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "questo",
+                    "offsetMilliseconds": 255760,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "favore,",
+                    "offsetMilliseconds": 256040,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "dicendo",
+                    "offsetMilliseconds": 257360,
+                    "durationMilliseconds": 560
+                },
+                {
+                    "text": "semplicemente",
+                    "offsetMilliseconds": 258120,
+                    "durationMilliseconds": 1000
+                },
+                {
+                    "text": "questo",
+                    "offsetMilliseconds": 260200,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "mi",
+                    "offsetMilliseconds": 260480,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "sta",
+                    "offsetMilliseconds": 260600,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "dando",
+                    "offsetMilliseconds": 260720,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "fastidio",
+                    "offsetMilliseconds": 261000,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "e",
+                    "offsetMilliseconds": 262800,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "può",
+                    "offsetMilliseconds": 263280,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "avvenire",
+                    "offsetMilliseconds": 263440,
+                    "durationMilliseconds": 680
+                },
+                {
+                    "text": "di",
+                    "offsetMilliseconds": 264400,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "essere",
+                    "offsetMilliseconds": 264520,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "interpretati",
+                    "offsetMilliseconds": 264840,
+                    "durationMilliseconds": 1120
+                },
+                {
+                    "text": "in",
+                    "offsetMilliseconds": 266400,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "una",
+                    "offsetMilliseconds": 266600,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "maniera",
+                    "offsetMilliseconds": 267080,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "come",
+                    "offsetMilliseconds": 267560,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "è",
+                    "offsetMilliseconds": 268600,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "stato",
+                    "offsetMilliseconds": 269120,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "interpretato",
+                    "offsetMilliseconds": 269400,
+                    "durationMilliseconds": 640
+                },
+                {
+                    "text": "nei",
+                    "offsetMilliseconds": 270040,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "riguardi",
+                    "offsetMilliseconds": 270160,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "di",
+                    "offsetMilliseconds": 270680,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "Pecorelli.",
+                    "offsetMilliseconds": 270920,
+                    "durationMilliseconds": 480
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.96232486
+        },
+        {
+            "speaker": 1,
+            "offsetMilliseconds": 271760,
+            "durationMilliseconds": 1040,
+            "text": "Facendolo fuori.",
+            "words": [
+                {
+                    "text": "Facendolo",
+                    "offsetMilliseconds": 271760,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "fuori.",
+                    "offsetMilliseconds": 272360,
+                    "durationMilliseconds": 440
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.96232486
+        },
+        {
+            "speaker": 2,
+            "offsetMilliseconds": 273040,
+            "durationMilliseconds": 760,
+            "text": "Precisamente.",
+            "words": [
+                {
+                    "text": "Precisamente.",
+                    "offsetMilliseconds": 273040,
+                    "durationMilliseconds": 760
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.96232486
+        },
+        {
+            "speaker": 1,
+            "offsetMilliseconds": 274320,
+            "durationMilliseconds": 8000,
+            "text": "Ma il senatore Andreotti ha detto a Bontate OA Badalamenti, questa persona mi dà un po' fastidio, le risulta questo?",
+            "words": [
+                {
+                    "text": "Ma",
+                    "offsetMilliseconds": 274320,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "il",
+                    "offsetMilliseconds": 274520,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "senatore",
+                    "offsetMilliseconds": 274600,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "Andreotti",
+                    "offsetMilliseconds": 275120,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "ha",
+                    "offsetMilliseconds": 275600,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "detto",
+                    "offsetMilliseconds": 275720,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "a",
+                    "offsetMilliseconds": 276200,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "Bontate",
+                    "offsetMilliseconds": 276280,
+                    "durationMilliseconds": 720
+                },
+                {
+                    "text": "OA",
+                    "offsetMilliseconds": 277000,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "Badalamenti,",
+                    "offsetMilliseconds": 277120,
+                    "durationMilliseconds": 1040
+                },
+                {
+                    "text": "questa",
+                    "offsetMilliseconds": 278520,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "persona",
+                    "offsetMilliseconds": 278880,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "mi",
+                    "offsetMilliseconds": 279280,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "dà",
+                    "offsetMilliseconds": 279440,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "un",
+                    "offsetMilliseconds": 280160,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "po'",
+                    "offsetMilliseconds": 280320,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "fastidio,",
+                    "offsetMilliseconds": 280480,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "le",
+                    "offsetMilliseconds": 281080,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "risulta",
+                    "offsetMilliseconds": 281200,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "questo?",
+                    "offsetMilliseconds": 281720,
+                    "durationMilliseconds": 600
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.96232486
+        },
+        {
+            "speaker": 2,
+            "offsetMilliseconds": 282680,
+            "durationMilliseconds": 320,
+            "text": "No.",
+            "words": [
+                {
+                    "text": "No.",
+                    "offsetMilliseconds": 282680,
+                    "durationMilliseconds": 320
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.9923168
+        },
+        {
+            "speaker": 1,
+            "offsetMilliseconds": 284320,
+            "durationMilliseconds": 5360,
+            "text": "Andreotti aveva dato l'ordine o comunque aveva chiesto di uccidere pecorelli.",
+            "words": [
+                {
+                    "text": "Andreotti",
+                    "offsetMilliseconds": 284320,
+                    "durationMilliseconds": 800
+                },
+                {
+                    "text": "aveva",
+                    "offsetMilliseconds": 285120,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "dato",
+                    "offsetMilliseconds": 285400,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "l'ordine",
+                    "offsetMilliseconds": 285760,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "o",
+                    "offsetMilliseconds": 286360,
+                    "durationMilliseconds": 40
+                },
+                {
+                    "text": "comunque",
+                    "offsetMilliseconds": 286400,
+                    "durationMilliseconds": 1000
+                },
+                {
+                    "text": "aveva",
+                    "offsetMilliseconds": 287600,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "chiesto",
+                    "offsetMilliseconds": 287960,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "di",
+                    "offsetMilliseconds": 288360,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "uccidere",
+                    "offsetMilliseconds": 288440,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "pecorelli.",
+                    "offsetMilliseconds": 288960,
+                    "durationMilliseconds": 720
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.9923168
+        },
+        {
+            "speaker": 2,
+            "offsetMilliseconds": 289880,
+            "durationMilliseconds": 320,
+            "text": "No.",
+            "words": [
+                {
+                    "text": "No.",
+                    "offsetMilliseconds": 289880,
+                    "durationMilliseconds": 320
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.9923168
+        },
+        {
+            "speaker": 1,
+            "offsetMilliseconds": 291080,
+            "durationMilliseconds": 2000,
+            "text": "Quindi è una sua congettura.",
+            "words": [
+                {
+                    "text": "Quindi",
+                    "offsetMilliseconds": 291080,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "è",
+                    "offsetMilliseconds": 291480,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "una",
+                    "offsetMilliseconds": 292000,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "sua",
+                    "offsetMilliseconds": 292240,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "congettura.",
+                    "offsetMilliseconds": 292360,
+                    "durationMilliseconds": 720
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.9923168
+        },
+        {
+            "speaker": 2,
+            "offsetMilliseconds": 294360,
+            "durationMilliseconds": 5600,
+            "text": "Congettura? No, diciamo, praticità della vita, uno non può.",
+            "words": [
+                {
+                    "text": "Congettura?",
+                    "offsetMilliseconds": 294360,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "No,",
+                    "offsetMilliseconds": 294960,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "diciamo,",
+                    "offsetMilliseconds": 296320,
+                    "durationMilliseconds": 560
+                },
+                {
+                    "text": "praticità",
+                    "offsetMilliseconds": 296920,
+                    "durationMilliseconds": 680
+                },
+                {
+                    "text": "della",
+                    "offsetMilliseconds": 297600,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "vita,",
+                    "offsetMilliseconds": 297880,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "uno",
+                    "offsetMilliseconds": 299440,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "non",
+                    "offsetMilliseconds": 299640,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "può.",
+                    "offsetMilliseconds": 299840,
+                    "durationMilliseconds": 120
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.9923168
+        },
+        {
+            "speaker": 2,
+            "offsetMilliseconds": 300040,
+            "durationMilliseconds": 10440,
+            "text": "O andare a Roma a fare un omicidio senza avvisare la parte, cioè la persona che si era lamentata nei riguardi dei salvo per l'operazione che avrebbe voluto fare pecorelli?",
+            "words": [
+                {
+                    "text": "O",
+                    "offsetMilliseconds": 300040,
+                    "durationMilliseconds": 40
+                },
+                {
+                    "text": "andare",
+                    "offsetMilliseconds": 300080,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "a",
+                    "offsetMilliseconds": 300520,
+                    "durationMilliseconds": 40
+                },
+                {
+                    "text": "Roma",
+                    "offsetMilliseconds": 300560,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "a",
+                    "offsetMilliseconds": 300880,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "fare",
+                    "offsetMilliseconds": 300960,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "un",
+                    "offsetMilliseconds": 301200,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "omicidio",
+                    "offsetMilliseconds": 301280,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "senza",
+                    "offsetMilliseconds": 301880,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "avvisare",
+                    "offsetMilliseconds": 302200,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "la",
+                    "offsetMilliseconds": 302600,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "parte,",
+                    "offsetMilliseconds": 302760,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "cioè",
+                    "offsetMilliseconds": 303600,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "la",
+                    "offsetMilliseconds": 303760,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "persona",
+                    "offsetMilliseconds": 303880,
+                    "durationMilliseconds": 720
+                },
+                {
+                    "text": "che",
+                    "offsetMilliseconds": 305280,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "si",
+                    "offsetMilliseconds": 305400,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "era",
+                    "offsetMilliseconds": 305520,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "lamentata",
+                    "offsetMilliseconds": 305680,
+                    "durationMilliseconds": 720
+                },
+                {
+                    "text": "nei",
+                    "offsetMilliseconds": 306400,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "riguardi",
+                    "offsetMilliseconds": 306480,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "dei",
+                    "offsetMilliseconds": 306920,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "salvo",
+                    "offsetMilliseconds": 307080,
+                    "durationMilliseconds": 560
+                },
+                {
+                    "text": "per",
+                    "offsetMilliseconds": 307960,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "l'operazione",
+                    "offsetMilliseconds": 308120,
+                    "durationMilliseconds": 680
+                },
+                {
+                    "text": "che",
+                    "offsetMilliseconds": 308800,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "avrebbe",
+                    "offsetMilliseconds": 308920,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "voluto",
+                    "offsetMilliseconds": 309280,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "fare",
+                    "offsetMilliseconds": 309640,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "pecorelli?",
+                    "offsetMilliseconds": 309920,
+                    "durationMilliseconds": 560
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.97493106
+        },
+        {
+            "speaker": 1,
+            "offsetMilliseconds": 311760,
+            "durationMilliseconds": 6560,
+            "text": "Ma badalamenti come mai le disse questa cosa? Dove vi trovavate, che cosa stavate facendo?",
+            "words": [
+                {
+                    "text": "Ma",
+                    "offsetMilliseconds": 311760,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "badalamenti",
+                    "offsetMilliseconds": 312040,
+                    "durationMilliseconds": 640
+                },
+                {
+                    "text": "come",
+                    "offsetMilliseconds": 312680,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "mai",
+                    "offsetMilliseconds": 312920,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "le",
+                    "offsetMilliseconds": 313200,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "disse",
+                    "offsetMilliseconds": 313400,
+                    "durationMilliseconds": 680
+                },
+                {
+                    "text": "questa",
+                    "offsetMilliseconds": 314080,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "cosa?",
+                    "offsetMilliseconds": 314440,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "Dove",
+                    "offsetMilliseconds": 314960,
+                    "durationMilliseconds": 640
+                },
+                {
+                    "text": "vi",
+                    "offsetMilliseconds": 315880,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "trovavate,",
+                    "offsetMilliseconds": 316040,
+                    "durationMilliseconds": 720
+                },
+                {
+                    "text": "che",
+                    "offsetMilliseconds": 316760,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "cosa",
+                    "offsetMilliseconds": 316920,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "stavate",
+                    "offsetMilliseconds": 317200,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "facendo?",
+                    "offsetMilliseconds": 317640,
+                    "durationMilliseconds": 680
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.97493106
+        },
+        {
+            "speaker": 2,
+            "offsetMilliseconds": 320200,
+            "durationMilliseconds": 2040,
+            "text": "Con lui nacque un certo equivoco.",
+            "words": [
+                {
+                    "text": "Con",
+                    "offsetMilliseconds": 320200,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "lui",
+                    "offsetMilliseconds": 320400,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "nacque",
+                    "offsetMilliseconds": 320760,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "un",
+                    "offsetMilliseconds": 321240,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "certo",
+                    "offsetMilliseconds": 321400,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "equivoco.",
+                    "offsetMilliseconds": 321720,
+                    "durationMilliseconds": 520
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.97493106
+        },
+        {
+            "speaker": 1,
+            "offsetMilliseconds": 322840,
+            "durationMilliseconds": 680,
+            "text": "Equivoco.",
+            "words": [
+                {
+                    "text": "Equivoco.",
+                    "offsetMilliseconds": 322840,
+                    "durationMilliseconds": 680
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.97493106
+        },
+        {
+            "speaker": 2,
+            "offsetMilliseconds": 324640,
+            "durationMilliseconds": 3080,
+            "text": "Lei deve sapere che badalamenti si spiega malissimo.",
+            "words": [
+                {
+                    "text": "Lei",
+                    "offsetMilliseconds": 324640,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "deve",
+                    "offsetMilliseconds": 324760,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "sapere",
+                    "offsetMilliseconds": 324960,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "che",
+                    "offsetMilliseconds": 325680,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "badalamenti",
+                    "offsetMilliseconds": 325840,
+                    "durationMilliseconds": 800
+                },
+                {
+                    "text": "si",
+                    "offsetMilliseconds": 326680,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "spiega",
+                    "offsetMilliseconds": 326880,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "malissimo.",
+                    "offsetMilliseconds": 327120,
+                    "durationMilliseconds": 600
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.97493106
+        },
+        {
+            "speaker": 2,
+            "offsetMilliseconds": 329600,
+            "durationMilliseconds": 16160,
+            "text": "Il Badalamenti lascia la gente in sospeso su quello che dirà dopo fissa strettamente negli occhi e rimane con le labbra serrate. E uno aspetta, capire questo linguaggio del badalamenti è cosa interessantissima.",
+            "words": [
+                {
+                    "text": "Il",
+                    "offsetMilliseconds": 329600,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "Badalamenti",
+                    "offsetMilliseconds": 329680,
+                    "durationMilliseconds": 720
+                },
+                {
+                    "text": "lascia",
+                    "offsetMilliseconds": 330640,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "la",
+                    "offsetMilliseconds": 331040,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "gente",
+                    "offsetMilliseconds": 331240,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "in",
+                    "offsetMilliseconds": 331640,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "sospeso",
+                    "offsetMilliseconds": 331720,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "su",
+                    "offsetMilliseconds": 332320,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "quello",
+                    "offsetMilliseconds": 332480,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "che",
+                    "offsetMilliseconds": 332720,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "dirà",
+                    "offsetMilliseconds": 332840,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "dopo",
+                    "offsetMilliseconds": 333120,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "fissa",
+                    "offsetMilliseconds": 334160,
+                    "durationMilliseconds": 640
+                },
+                {
+                    "text": "strettamente",
+                    "offsetMilliseconds": 334840,
+                    "durationMilliseconds": 800
+                },
+                {
+                    "text": "negli",
+                    "offsetMilliseconds": 335640,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "occhi",
+                    "offsetMilliseconds": 335880,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "e",
+                    "offsetMilliseconds": 336280,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "rimane",
+                    "offsetMilliseconds": 337160,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "con",
+                    "offsetMilliseconds": 337600,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "le",
+                    "offsetMilliseconds": 337720,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "labbra",
+                    "offsetMilliseconds": 337800,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "serrate.",
+                    "offsetMilliseconds": 338160,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "E",
+                    "offsetMilliseconds": 338640,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "uno",
+                    "offsetMilliseconds": 338840,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "aspetta,",
+                    "offsetMilliseconds": 339480,
+                    "durationMilliseconds": 680
+                },
+                {
+                    "text": "capire",
+                    "offsetMilliseconds": 341680,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "questo",
+                    "offsetMilliseconds": 341960,
+                    "durationMilliseconds": 640
+                },
+                {
+                    "text": "linguaggio",
+                    "offsetMilliseconds": 342680,
+                    "durationMilliseconds": 640
+                },
+                {
+                    "text": "del",
+                    "offsetMilliseconds": 343320,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "badalamenti",
+                    "offsetMilliseconds": 343440,
+                    "durationMilliseconds": 560
+                },
+                {
+                    "text": "è",
+                    "offsetMilliseconds": 344000,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "cosa",
+                    "offsetMilliseconds": 344520,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "interessantissima.",
+                    "offsetMilliseconds": 344680,
+                    "durationMilliseconds": 1080
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.9687748
+        },
+        {
+            "speaker": 1,
+            "offsetMilliseconds": 346520,
+            "durationMilliseconds": 1880,
+            "text": "OK, ma dove sta questo equivoco?",
+            "words": [
+                {
+                    "text": "OK,",
+                    "offsetMilliseconds": 346520,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "ma",
+                    "offsetMilliseconds": 346840,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "dove",
+                    "offsetMilliseconds": 347000,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "sta",
+                    "offsetMilliseconds": 347240,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "questo",
+                    "offsetMilliseconds": 347480,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "equivoco?",
+                    "offsetMilliseconds": 347760,
+                    "durationMilliseconds": 640
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.9687748
+        },
+        {
+            "speaker": 2,
+            "offsetMilliseconds": 349120,
+            "durationMilliseconds": 9960,
+            "text": "Poco tempo prima fu ucciso un ragazzino che amoreggiava con la figlia del mafioso, Salvatore Inzerillo, e il ragazzino si chiama.",
+            "words": [
+                {
+                    "text": "Poco",
+                    "offsetMilliseconds": 349120,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "tempo",
+                    "offsetMilliseconds": 349320,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "prima",
+                    "offsetMilliseconds": 349640,
+                    "durationMilliseconds": 680
+                },
+                {
+                    "text": "fu",
+                    "offsetMilliseconds": 350680,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "ucciso",
+                    "offsetMilliseconds": 350800,
+                    "durationMilliseconds": 680
+                },
+                {
+                    "text": "un",
+                    "offsetMilliseconds": 351480,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "ragazzino",
+                    "offsetMilliseconds": 351560,
+                    "durationMilliseconds": 920
+                },
+                {
+                    "text": "che",
+                    "offsetMilliseconds": 352600,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "amoreggiava",
+                    "offsetMilliseconds": 352680,
+                    "durationMilliseconds": 920
+                },
+                {
+                    "text": "con",
+                    "offsetMilliseconds": 353720,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "la",
+                    "offsetMilliseconds": 353920,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "figlia",
+                    "offsetMilliseconds": 354080,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "del",
+                    "offsetMilliseconds": 354440,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "mafioso,",
+                    "offsetMilliseconds": 354920,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "Salvatore",
+                    "offsetMilliseconds": 355400,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "Inzerillo,",
+                    "offsetMilliseconds": 355920,
+                    "durationMilliseconds": 640
+                },
+                {
+                    "text": "e",
+                    "offsetMilliseconds": 357320,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "il",
+                    "offsetMilliseconds": 357480,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "ragazzino",
+                    "offsetMilliseconds": 357680,
+                    "durationMilliseconds": 760
+                },
+                {
+                    "text": "si",
+                    "offsetMilliseconds": 358440,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "chiama.",
+                    "offsetMilliseconds": 358680,
+                    "durationMilliseconds": 400
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.9687748
+        },
+        {
+            "speaker": 2,
+            "offsetMilliseconds": 359280,
+            "durationMilliseconds": 24200,
+            "text": "Pecorella, per cui quando badalamenti mi dice mi parla di di Pecorelli, io faccio mente locale al ragazzino strangolato da cosa nostra e gli dico, ma che c'entri tu con la faccenda del ragazzino? A che lui si mette a ridere e mi fa, ma che dici pecorelli, il giornalista, quello che stava facendo articoli contro Andreotti.",
+            "words": [
+                {
+                    "text": "Pecorella,",
+                    "offsetMilliseconds": 359280,
+                    "durationMilliseconds": 960
+                },
+                {
+                    "text": "per",
+                    "offsetMilliseconds": 361160,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "cui",
+                    "offsetMilliseconds": 361360,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "quando",
+                    "offsetMilliseconds": 361840,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "badalamenti",
+                    "offsetMilliseconds": 362160,
+                    "durationMilliseconds": 760
+                },
+                {
+                    "text": "mi",
+                    "offsetMilliseconds": 362920,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "dice",
+                    "offsetMilliseconds": 363000,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "mi",
+                    "offsetMilliseconds": 363600,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "parla",
+                    "offsetMilliseconds": 363720,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "di",
+                    "offsetMilliseconds": 363960,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "di",
+                    "offsetMilliseconds": 364120,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "Pecorelli,",
+                    "offsetMilliseconds": 364360,
+                    "durationMilliseconds": 800
+                },
+                {
+                    "text": "io",
+                    "offsetMilliseconds": 365280,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "faccio",
+                    "offsetMilliseconds": 365840,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "mente",
+                    "offsetMilliseconds": 366240,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "locale",
+                    "offsetMilliseconds": 366520,
+                    "durationMilliseconds": 680
+                },
+                {
+                    "text": "al",
+                    "offsetMilliseconds": 367400,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "ragazzino",
+                    "offsetMilliseconds": 367520,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "strangolato",
+                    "offsetMilliseconds": 368120,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "da",
+                    "offsetMilliseconds": 368640,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "cosa",
+                    "offsetMilliseconds": 368760,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "nostra",
+                    "offsetMilliseconds": 369000,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "e",
+                    "offsetMilliseconds": 369920,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "gli",
+                    "offsetMilliseconds": 370000,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "dico,",
+                    "offsetMilliseconds": 370080,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "ma",
+                    "offsetMilliseconds": 370560,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "che",
+                    "offsetMilliseconds": 370680,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "c'entri",
+                    "offsetMilliseconds": 370800,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "tu",
+                    "offsetMilliseconds": 371200,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "con",
+                    "offsetMilliseconds": 372400,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "la",
+                    "offsetMilliseconds": 372520,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "faccenda",
+                    "offsetMilliseconds": 372640,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "del",
+                    "offsetMilliseconds": 373040,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "ragazzino?",
+                    "offsetMilliseconds": 373160,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "A",
+                    "offsetMilliseconds": 374440,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "che",
+                    "offsetMilliseconds": 374520,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "lui",
+                    "offsetMilliseconds": 374680,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "si",
+                    "offsetMilliseconds": 374800,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "mette",
+                    "offsetMilliseconds": 374880,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "a",
+                    "offsetMilliseconds": 375120,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "ridere",
+                    "offsetMilliseconds": 375200,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "e",
+                    "offsetMilliseconds": 376120,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "mi",
+                    "offsetMilliseconds": 376200,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "fa,",
+                    "offsetMilliseconds": 376320,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "ma",
+                    "offsetMilliseconds": 376880,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "che",
+                    "offsetMilliseconds": 377040,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "dici",
+                    "offsetMilliseconds": 377120,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "pecorelli,",
+                    "offsetMilliseconds": 378000,
+                    "durationMilliseconds": 880
+                },
+                {
+                    "text": "il",
+                    "offsetMilliseconds": 379200,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "giornalista,",
+                    "offsetMilliseconds": 379320,
+                    "durationMilliseconds": 840
+                },
+                {
+                    "text": "quello",
+                    "offsetMilliseconds": 380480,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "che",
+                    "offsetMilliseconds": 380720,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "stava",
+                    "offsetMilliseconds": 380800,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "facendo",
+                    "offsetMilliseconds": 381120,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "articoli",
+                    "offsetMilliseconds": 381880,
+                    "durationMilliseconds": 560
+                },
+                {
+                    "text": "contro",
+                    "offsetMilliseconds": 382440,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "Andreotti.",
+                    "offsetMilliseconds": 382760,
+                    "durationMilliseconds": 720
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.9551819
+        },
+        {
+            "speaker": 2,
+            "offsetMilliseconds": 383720,
+            "durationMilliseconds": 10520,
+            "text": "E che voleva portare fuori dei documenti pericolosi che nessuno sapeva e che pertanto era stato necessario ucciderlo nell'interesse di Andreotti.",
+            "words": [
+                {
+                    "text": "E",
+                    "offsetMilliseconds": 383720,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "che",
+                    "offsetMilliseconds": 383880,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "voleva",
+                    "offsetMilliseconds": 384080,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "portare",
+                    "offsetMilliseconds": 385160,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "fuori",
+                    "offsetMilliseconds": 385680,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "dei",
+                    "offsetMilliseconds": 386120,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "documenti",
+                    "offsetMilliseconds": 386280,
+                    "durationMilliseconds": 920
+                },
+                {
+                    "text": "pericolosi",
+                    "offsetMilliseconds": 387440,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "che",
+                    "offsetMilliseconds": 388040,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "nessuno",
+                    "offsetMilliseconds": 388120,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "sapeva",
+                    "offsetMilliseconds": 388560,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "e",
+                    "offsetMilliseconds": 389040,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "che",
+                    "offsetMilliseconds": 389200,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "pertanto",
+                    "offsetMilliseconds": 389440,
+                    "durationMilliseconds": 760
+                },
+                {
+                    "text": "era",
+                    "offsetMilliseconds": 390320,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "stato",
+                    "offsetMilliseconds": 390600,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "necessario",
+                    "offsetMilliseconds": 391120,
+                    "durationMilliseconds": 720
+                },
+                {
+                    "text": "ucciderlo",
+                    "offsetMilliseconds": 391840,
+                    "durationMilliseconds": 640
+                },
+                {
+                    "text": "nell'interesse",
+                    "offsetMilliseconds": 392840,
+                    "durationMilliseconds": 760
+                },
+                {
+                    "text": "di",
+                    "offsetMilliseconds": 393600,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "Andreotti.",
+                    "offsetMilliseconds": 393720,
+                    "durationMilliseconds": 520
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.9503428
+        },
+        {
+            "speaker": 1,
+            "offsetMilliseconds": 394440,
+            "durationMilliseconds": 560,
+            "text": "E quindi?",
+            "words": [
+                {
+                    "text": "E",
+                    "offsetMilliseconds": 394440,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "quindi?",
+                    "offsetMilliseconds": 394560,
+                    "durationMilliseconds": 440
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.9503428
+        },
+        {
+            "speaker": 2,
+            "offsetMilliseconds": 395960,
+            "durationMilliseconds": 7920,
+            "text": "Quindi mi disse, lo abbiamo fatto per fare un favore al senatore Andreotti tramite la richiesta dei cugini salvo.",
+            "words": [
+                {
+                    "text": "Quindi",
+                    "offsetMilliseconds": 395960,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "mi",
+                    "offsetMilliseconds": 396200,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "disse,",
+                    "offsetMilliseconds": 396280,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "lo",
+                    "offsetMilliseconds": 396720,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "abbiamo",
+                    "offsetMilliseconds": 396880,
+                    "durationMilliseconds": 440
+                },
+                {
+                    "text": "fatto",
+                    "offsetMilliseconds": 397320,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "per",
+                    "offsetMilliseconds": 399120,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "fare",
+                    "offsetMilliseconds": 399240,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "un",
+                    "offsetMilliseconds": 399440,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "favore",
+                    "offsetMilliseconds": 399560,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "al",
+                    "offsetMilliseconds": 399920,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "senatore",
+                    "offsetMilliseconds": 400000,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "Andreotti",
+                    "offsetMilliseconds": 400400,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "tramite",
+                    "offsetMilliseconds": 401200,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "la",
+                    "offsetMilliseconds": 401840,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "richiesta",
+                    "offsetMilliseconds": 402040,
+                    "durationMilliseconds": 640
+                },
+                {
+                    "text": "dei",
+                    "offsetMilliseconds": 403080,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "cugini",
+                    "offsetMilliseconds": 403160,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "salvo.",
+                    "offsetMilliseconds": 403560,
+                    "durationMilliseconds": 320
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.9503428
+        },
+        {
+            "speaker": 1,
+            "offsetMilliseconds": 404120,
+            "durationMilliseconds": 1280,
+            "text": "Ma abbiamo chi?",
+            "words": [
+                {
+                    "text": "Ma",
+                    "offsetMilliseconds": 404120,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "abbiamo",
+                    "offsetMilliseconds": 404320,
+                    "durationMilliseconds": 760
+                },
+                {
+                    "text": "chi?",
+                    "offsetMilliseconds": 405080,
+                    "durationMilliseconds": 320
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.9503428
+        },
+        {
+            "speaker": 2,
+            "offsetMilliseconds": 405920,
+            "durationMilliseconds": 7520,
+            "text": "Io e Stefano Bontade non la cosa nostra totale o la Commissione, io e Stefano Bontade.",
+            "words": [
+                {
+                    "text": "Io",
+                    "offsetMilliseconds": 405920,
+                    "durationMilliseconds": 720
+                },
+                {
+                    "text": "e",
+                    "offsetMilliseconds": 406640,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "Stefano",
+                    "offsetMilliseconds": 406800,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "Bontade",
+                    "offsetMilliseconds": 407280,
+                    "durationMilliseconds": 640
+                },
+                {
+                    "text": "non",
+                    "offsetMilliseconds": 408200,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "la",
+                    "offsetMilliseconds": 408600,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "cosa",
+                    "offsetMilliseconds": 408800,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "nostra",
+                    "offsetMilliseconds": 409120,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "totale",
+                    "offsetMilliseconds": 409760,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "o",
+                    "offsetMilliseconds": 410280,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "la",
+                    "offsetMilliseconds": 410400,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "Commissione,",
+                    "offsetMilliseconds": 410600,
+                    "durationMilliseconds": 880
+                },
+                {
+                    "text": "io",
+                    "offsetMilliseconds": 411760,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "e",
+                    "offsetMilliseconds": 412320,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "Stefano",
+                    "offsetMilliseconds": 412440,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "Bontade.",
+                    "offsetMilliseconds": 412840,
+                    "durationMilliseconds": 600
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.9503428
+        },
+        {
+            "speaker": 2,
+            "offsetMilliseconds": 413920,
+            "durationMilliseconds": 8640,
+            "text": "E io qua posso pure riferire la parola che mi fu detta. E poi la traduzione la fate voi, ufficio monoaudi io e stia fare.",
+            "words": [
+                {
+                    "text": "E",
+                    "offsetMilliseconds": 413920,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "io",
+                    "offsetMilliseconds": 414000,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "qua",
+                    "offsetMilliseconds": 414160,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "posso",
+                    "offsetMilliseconds": 414360,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "pure",
+                    "offsetMilliseconds": 414680,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "riferire",
+                    "offsetMilliseconds": 414920,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "la",
+                    "offsetMilliseconds": 415440,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "parola",
+                    "offsetMilliseconds": 415600,
+                    "durationMilliseconds": 640
+                },
+                {
+                    "text": "che",
+                    "offsetMilliseconds": 416440,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "mi",
+                    "offsetMilliseconds": 416760,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "fu",
+                    "offsetMilliseconds": 416880,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "detta.",
+                    "offsetMilliseconds": 417160,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "E",
+                    "offsetMilliseconds": 417800,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "poi",
+                    "offsetMilliseconds": 417920,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "la",
+                    "offsetMilliseconds": 418000,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "traduzione",
+                    "offsetMilliseconds": 418120,
+                    "durationMilliseconds": 560
+                },
+                {
+                    "text": "la",
+                    "offsetMilliseconds": 418680,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "fate",
+                    "offsetMilliseconds": 418840,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "voi,",
+                    "offsetMilliseconds": 419240,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "ufficio",
+                    "offsetMilliseconds": 420280,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "monoaudi",
+                    "offsetMilliseconds": 420640,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "io",
+                    "offsetMilliseconds": 421640,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "e",
+                    "offsetMilliseconds": 421920,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "stia",
+                    "offsetMilliseconds": 422080,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "fare.",
+                    "offsetMilliseconds": 422360,
+                    "durationMilliseconds": 200
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.91701144
+        },
+        {
+            "speaker": 1,
+            "offsetMilliseconds": 423440,
+            "durationMilliseconds": 6480,
+            "text": "Quindi lei disse che l'omicidio era stato fatto materialmente da badalamenti e bontate.",
+            "words": [
+                {
+                    "text": "Quindi",
+                    "offsetMilliseconds": 423440,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "lei",
+                    "offsetMilliseconds": 423840,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "disse",
+                    "offsetMilliseconds": 423960,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "che",
+                    "offsetMilliseconds": 424360,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "l'omicidio",
+                    "offsetMilliseconds": 424440,
+                    "durationMilliseconds": 720
+                },
+                {
+                    "text": "era",
+                    "offsetMilliseconds": 425160,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "stato",
+                    "offsetMilliseconds": 425360,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "fatto",
+                    "offsetMilliseconds": 425840,
+                    "durationMilliseconds": 720
+                },
+                {
+                    "text": "materialmente",
+                    "offsetMilliseconds": 426840,
+                    "durationMilliseconds": 1320
+                },
+                {
+                    "text": "da",
+                    "offsetMilliseconds": 428160,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "badalamenti",
+                    "offsetMilliseconds": 428320,
+                    "durationMilliseconds": 760
+                },
+                {
+                    "text": "e",
+                    "offsetMilliseconds": 429080,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "bontate.",
+                    "offsetMilliseconds": 429160,
+                    "durationMilliseconds": 760
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.91701144
+        },
+        {
+            "speaker": 2,
+            "offsetMilliseconds": 430840,
+            "durationMilliseconds": 8840,
+            "text": "Stefano Bontate non è la persona che viene a Roma e viene a sparare a pecorelli, lo può, lo può dire ad altre 5000 persone, ma farlo lui no.",
+            "words": [
+                {
+                    "text": "Stefano",
+                    "offsetMilliseconds": 430840,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "Bontate",
+                    "offsetMilliseconds": 431320,
+                    "durationMilliseconds": 560
+                },
+                {
+                    "text": "non",
+                    "offsetMilliseconds": 431880,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "è",
+                    "offsetMilliseconds": 432000,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "la",
+                    "offsetMilliseconds": 432520,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "persona",
+                    "offsetMilliseconds": 432720,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "che",
+                    "offsetMilliseconds": 433240,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "viene",
+                    "offsetMilliseconds": 433360,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "a",
+                    "offsetMilliseconds": 433600,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "Roma",
+                    "offsetMilliseconds": 433680,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "e",
+                    "offsetMilliseconds": 434040,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "viene",
+                    "offsetMilliseconds": 434160,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "a",
+                    "offsetMilliseconds": 434360,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "sparare",
+                    "offsetMilliseconds": 434440,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "a",
+                    "offsetMilliseconds": 434760,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "pecorelli,",
+                    "offsetMilliseconds": 434840,
+                    "durationMilliseconds": 560
+                },
+                {
+                    "text": "lo",
+                    "offsetMilliseconds": 435400,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "può,",
+                    "offsetMilliseconds": 435720,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "lo",
+                    "offsetMilliseconds": 436080,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "può",
+                    "offsetMilliseconds": 436320,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "dire",
+                    "offsetMilliseconds": 436440,
+                    "durationMilliseconds": 400
+                },
+                {
+                    "text": "ad",
+                    "offsetMilliseconds": 437000,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "altre",
+                    "offsetMilliseconds": 437160,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "5000",
+                    "offsetMilliseconds": 437520,
+                    "durationMilliseconds": 600
+                },
+                {
+                    "text": "persone,",
+                    "offsetMilliseconds": 438120,
+                    "durationMilliseconds": 520
+                },
+                {
+                    "text": "ma",
+                    "offsetMilliseconds": 438640,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "farlo",
+                    "offsetMilliseconds": 438760,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "lui",
+                    "offsetMilliseconds": 439120,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "no.",
+                    "offsetMilliseconds": 439360,
+                    "durationMilliseconds": 320
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.91701144
+        },
+        {
+            "speaker": 1,
+            "offsetMilliseconds": 440840,
+            "durationMilliseconds": 1840,
+            "text": "Quindi glielo dice?",
+            "words": [
+                {
+                    "text": "Quindi",
+                    "offsetMilliseconds": 440840,
+                    "durationMilliseconds": 840
+                },
+                {
+                    "text": "glielo",
+                    "offsetMilliseconds": 441680,
+                    "durationMilliseconds": 320
+                },
+                {
+                    "text": "dice?",
+                    "offsetMilliseconds": 442000,
+                    "durationMilliseconds": 680
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.91701144
+        },
+        {
+            "speaker": 1,
+            "offsetMilliseconds": 443440,
+            "durationMilliseconds": 3000,
+            "text": "Come un'assunzione di responsabilità.",
+            "words": [
+                {
+                    "text": "Come",
+                    "offsetMilliseconds": 443440,
+                    "durationMilliseconds": 640
+                },
+                {
+                    "text": "un'assunzione",
+                    "offsetMilliseconds": 444200,
+                    "durationMilliseconds": 920
+                },
+                {
+                    "text": "di",
+                    "offsetMilliseconds": 445120,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "responsabilità.",
+                    "offsetMilliseconds": 445240,
+                    "durationMilliseconds": 1200
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.90296155
+        },
+        {
+            "speaker": 2,
+            "offsetMilliseconds": 446800,
+            "durationMilliseconds": 7720,
+            "text": "Precisamente quando vado alla mente mi dice Ufficio e Stefano lui lo intende dire come un'assunzione di responsabilità.",
+            "words": [
+                {
+                    "text": "Precisamente",
+                    "offsetMilliseconds": 446800,
+                    "durationMilliseconds": 760
+                },
+                {
+                    "text": "quando",
+                    "offsetMilliseconds": 447800,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "vado",
+                    "offsetMilliseconds": 448160,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "alla",
+                    "offsetMilliseconds": 448360,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "mente",
+                    "offsetMilliseconds": 448520,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "mi",
+                    "offsetMilliseconds": 448800,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "dice",
+                    "offsetMilliseconds": 448920,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "Ufficio",
+                    "offsetMilliseconds": 449160,
+                    "durationMilliseconds": 920
+                },
+                {
+                    "text": "e",
+                    "offsetMilliseconds": 450200,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "Stefano",
+                    "offsetMilliseconds": 450360,
+                    "durationMilliseconds": 480
+                },
+                {
+                    "text": "lui",
+                    "offsetMilliseconds": 451360,
+                    "durationMilliseconds": 280
+                },
+                {
+                    "text": "lo",
+                    "offsetMilliseconds": 451640,
+                    "durationMilliseconds": 120
+                },
+                {
+                    "text": "intende",
+                    "offsetMilliseconds": 451760,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "dire",
+                    "offsetMilliseconds": 452120,
+                    "durationMilliseconds": 240
+                },
+                {
+                    "text": "come",
+                    "offsetMilliseconds": 452360,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "un'assunzione",
+                    "offsetMilliseconds": 452560,
+                    "durationMilliseconds": 920
+                },
+                {
+                    "text": "di",
+                    "offsetMilliseconds": 453480,
+                    "durationMilliseconds": 80
+                },
+                {
+                    "text": "responsabilità.",
+                    "offsetMilliseconds": 453560,
+                    "durationMilliseconds": 960
+                }
+            ],
+            "locale": "it-IT",
+            "confidence": 0.90296155
+        }
+    ],
+    "transcriptionText": "Speaker 1 [00.00.01 - 00.00.12]: \"Tommaso Buscetta, lei è il più importante pentito di cosa nostra, perché ha deciso di tornare in Italia per testimoniare contro Andreotti?\"\nSpeaker 2 [00.00.14 - 00.00.28]: \"Perché sono stati uccisi Falcone e Borsellino? Quando Falcone saltò in aria a capaci, io ho perso il mio faro. Mi interrogò per tre mesi ogni giorno.\"\nSpeaker 2 [00.00.29 - 00.00.43]: \"Noi ci capivamo con uno sguardo e io godevo a sentirlo parlare. Per me era come un orgasmo sentire le sue analisi, ma è una cretinata. Falcone era il solo che mi capiva.\"\nSpeaker 1 [00.00.44 - 00.00.46]: \"Vi siete capiti fin dal primo incontro.\"\nSpeaker 2 [00.00.48 - 00.00.58]: \"Io l E'ho incontrato per la prima volta a Brasilia, Lui aveva preparato una lista di domande, ma la regola era che me la poteva rivolgere il giudice brasiliano.\"\nSpeaker 2 [00.00.59 - 00.01.10]: \"Ma ad una certa domanda io mi rivolsi al giudice Falcone e gli dissi, dottor Falcone, per rispondere a questa domanda occorrerebbe tutta la notte.\"\nSpeaker 1 [00.01.10 - 00.01.11]: \"Falcone.\"\nSpeaker 2 [00.01.12 - 00.01.24]: \"Lui fino a quel momento era rimasto serio, e a quel punto si mise quasi a ridere, si voltò verso il suo assistente e disse, credo proprio che quest'uomo collaborerà con noi.\"\nSpeaker 1 [00.01.26 - 00.01.29]: \"Senta, ma la storia delle sigarette la.\"\nSpeaker 2 [00.01.31 - 00.01.51]: \"Storia delle sigarette io una volta era rimasto senza sigarette e il dottor Falcone mi offrì il suo pacchetto consumato a metà. Io lo ringraziai e gli dissi, l'ho accettato perché era un pacchetto aperto, ma una stecca o qualche pacchetto intero?\"\nSpeaker 2 [00.01.51 - 00.01.56]: \"Io non l'avrei accettati perché avrebbe voluto dire che lei intendeva umiliarmi.\"\nSpeaker 1 [00.01.57 - 00.02.00]: \"Quando ha conosciuto Gaetano Badalamenti?\"\nSpeaker 2 [00.02.01 - 00.02.15]: \"Siamo cresciuti insieme, l'ho visto giovane, l'ho visto sposato io l la conosciuto padre, L'ho conosciuto soldato come me, l'ho conosciuto capo della Commissione e l'ho conosciuto espulso dalla cosa nostra.\"\nSpeaker 1 [00.02.16 - 00.02.20]: \"È Stefano Bontate, che è stato l'ultimo capo della mafia.\"\nSpeaker 1 [00.02.20 - 00.02.26]: \"Prima dell'avvento dei corleonesi, quando l'ha conosciuto, lo chiamavano il principe di Villa grazia.\"\nSpeaker 2 [00.02.27 - 00.02.41]: \"Io ho conosciuto Stefano Bontate, ero amico del padre quando lui aveva poco meno di 10 anni e gli sono rimasto amico fino alla morte. Fu Totò Riina a farlo ammazzare.\"\nSpeaker 1 [00.02.42 - 00.02.44]: \"E Ignazio Antonino salvo?\"\nSpeaker 2 [00.02.44 - 00.02.50]: \"Negli anni 80 io fui ospite nella Villa del genero di Nino salvo.\"\nSpeaker 2 [00.02.51 - 00.03.06]: \"I cugini salvo erano quelli che controllavano le esattorie riscuotevano le tasse di tutti i siciliani. Erano uomini d'onore della provincia di Trapani e grandi elettori di salvo Lima e di Giulio Andreotti.\"\nSpeaker 1 [00.03.06 - 00.03.09]: \"E loro le parlarono mai di esponenti politici?\"\nSpeaker 2 [00.03.10 - 00.03.17]: \"Sì, mi parlarono di Giulio Andreotti, il senatore Giulio Andreotti e mi dissero che Andreotti.\"\nSpeaker 2 [00.03.18 - 00.03.23]: \"Era il referente nazionale a Roma per sistemare gli affari di cosa nostra.\"\nSpeaker 1 [00.03.23 - 00.03.26]: \"Ma le dissero qualcosa di concreto, di specifico?\"\nSpeaker 2 [00.03.28 - 00.03.42]: \"Nella cosa nostra non esiste molta curiosità. Questo è il comportamento di un uomo d'onore. Non chiedere se una cosa gli viene detta, la prende, se non gli viene detta è una cosa che non si chiede.\"\nSpeaker 1 [00.03.43 - 00.03.48]: \"E cosa le dissero invece badalamenti e bontate del giornalista Pecorelli?\"\nSpeaker 2 [00.03.50 - 00.04.02]: \"Prima bontate, poi badalamente, mi dissero che l'omicidio di pecorelli era stato fatto per richiesta dei cugini, salvo nell'interesse del senatore Andreotti.\"\nSpeaker 1 [00.04.02 - 00.04.07]: \"Ma cosa intende dire quando dice nell'interesse del senatore Andreotti?\"\nSpeaker 2 [00.04.08 - 00.04.12]: \"E le molte volte si può dire ad una persona.\"\nSpeaker 2 [00.04.13 - 00.04.31]: \"Anche indirettamente avrei bisogno di questo favore, dicendo semplicemente questo mi sta dando fastidio e può avvenire di essere interpretati in una maniera come è stato interpretato nei riguardi di Pecorelli.\"\nSpeaker 1 [00.04.31 - 00.04.32]: \"Facendolo fuori.\"\nSpeaker 2 [00.04.33 - 00.04.33]: \"Precisamente.\"\nSpeaker 1 [00.04.34 - 00.04.42]: \"Ma il senatore Andreotti ha detto a Bontate OA Badalamenti, questa persona mi dà un po' fastidio, le risulta questo?\"\nSpeaker 2 [00.04.42 - 00.04.43]: \"No.\"\nSpeaker 1 [00.04.44 - 00.04.49]: \"Andreotti aveva dato l'ordine o comunque aveva chiesto di uccidere pecorelli.\"\nSpeaker 2 [00.04.49 - 00.04.50]: \"No.\"\nSpeaker 1 [00.04.51 - 00.04.53]: \"Quindi è una sua congettura.\"\nSpeaker 2 [00.04.54 - 00.04.59]: \"Congettura? No, diciamo, praticità della vita, uno non può.\"\nSpeaker 2 [00.05.00 - 00.05.10]: \"O andare a Roma a fare un omicidio senza avvisare la parte, cioè la persona che si era lamentata nei riguardi dei salvo per l'operazione che avrebbe voluto fare pecorelli?\"\nSpeaker 1 [00.05.11 - 00.05.18]: \"Ma badalamenti come mai le disse questa cosa? Dove vi trovavate, che cosa stavate facendo?\"\nSpeaker 2 [00.05.20 - 00.05.22]: \"Con lui nacque un certo equivoco.\"\nSpeaker 1 [00.05.22 - 00.05.23]: \"Equivoco.\"\nSpeaker 2 [00.05.24 - 00.05.27]: \"Lei deve sapere che badalamenti si spiega malissimo.\"\nSpeaker 2 [00.05.29 - 00.05.45]: \"Il Badalamenti lascia la gente in sospeso su quello che dirà dopo fissa strettamente negli occhi e rimane con le labbra serrate. E uno aspetta, capire questo linguaggio del badalamenti è cosa interessantissima.\"\nSpeaker 1 [00.05.46 - 00.05.48]: \"OK, ma dove sta questo equivoco?\"\nSpeaker 2 [00.05.49 - 00.05.59]: \"Poco tempo prima fu ucciso un ragazzino che amoreggiava con la figlia del mafioso, Salvatore Inzerillo, e il ragazzino si chiama.\"\nSpeaker 2 [00.05.59 - 00.06.23]: \"Pecorella, per cui quando badalamenti mi dice mi parla di di Pecorelli, io faccio mente locale al ragazzino strangolato da cosa nostra e gli dico, ma che c'entri tu con la faccenda del ragazzino? A che lui si mette a ridere e mi fa, ma che dici pecorelli, il giornalista, quello che stava facendo articoli contro Andreotti.\"\nSpeaker 2 [00.06.23 - 00.06.34]: \"E che voleva portare fuori dei documenti pericolosi che nessuno sapeva e che pertanto era stato necessario ucciderlo nell'interesse di Andreotti.\"\nSpeaker 1 [00.06.34 - 00.06.35]: \"E quindi?\"\nSpeaker 2 [00.06.35 - 00.06.43]: \"Quindi mi disse, lo abbiamo fatto per fare un favore al senatore Andreotti tramite la richiesta dei cugini salvo.\"\nSpeaker 1 [00.06.44 - 00.06.45]: \"Ma abbiamo chi?\"\nSpeaker 2 [00.06.45 - 00.06.53]: \"Io e Stefano Bontade non la cosa nostra totale o la Commissione, io e Stefano Bontade.\"\nSpeaker 2 [00.06.53 - 00.07.02]: \"E io qua posso pure riferire la parola che mi fu detta. E poi la traduzione la fate voi, ufficio monoaudi io e stia fare.\"\nSpeaker 1 [00.07.03 - 00.07.09]: \"Quindi lei disse che l'omicidio era stato fatto materialmente da badalamenti e bontate.\"\nSpeaker 2 [00.07.10 - 00.07.19]: \"Stefano Bontate non è la persona che viene a Roma e viene a sparare a pecorelli, lo può, lo può dire ad altre 5000 persone, ma farlo lui no.\"\nSpeaker 1 [00.07.20 - 00.07.22]: \"Quindi glielo dice?\"\nSpeaker 1 [00.07.23 - 00.07.26]: \"Come un'assunzione di responsabilità.\"\nSpeaker 2 [00.07.26 - 00.07.34]: \"Precisamente quando vado alla mente mi dice Ufficio e Stefano lui lo intende dire come un'assunzione di responsabilità.\""
+}

@@ -4,12 +4,13 @@ import { AzureStorageService } from '../services/azureStorage';
 import { SpeechService } from '../services/speechService';
 import { TranscriptionEditor } from './TranscriptionEditor';
 import type { Recording } from '../types';
+import type { TranscriptionData } from '../services/storageService';
 
 const azureStorage = new AzureStorageService();
 const speechService = new SpeechService();
 
-export interface AudioRecorderProps {
-  onNewRecording: (name: string, fileSize: number) => Recording;
+interface AudioRecorderProps {
+  onNewRecording: (name: string, fileSize: number) => TranscriptionData;
   onUpdateStatus: (id: string, status: Recording['status'], confidence?: number) => void;
 }
 
@@ -82,40 +83,31 @@ export function AudioRecorder({ onNewRecording, onUpdateStatus }: AudioRecorderP
       setUploadProgress(0);
       setTranscriptionProgress(null);
 
-      // Create new recording entry
-      currentRecordingRef.current = onNewRecording(file.name, file.size);
-
-      // Upload file to Azure Storage
-      const blobUrl = await azureStorage.uploadFile(file, (progress) => {
-        setUploadProgress(progress);
-      });
+      // Create new recording entry with processing status
+      const newRecording = onNewRecording(file.name, file.size);
+      currentRecordingRef.current = newRecording;
 
       // Start transcription
       setTranscriptionProgress('Starting transcription...');
-      const transcription = await speechService.transcribeFromFile(file, (progress) => {
-        setTranscriptionProgress(progress);
-      });
+      const transcription = await speechService.transcribeFromFile(
+        file,
+        newRecording.id,
+        (progress) => {
+          setTranscriptionProgress(progress);
+        }
+      );
 
-      // Immediately save the transcription to Azure Storage
-      const transcriptionBlob = new Blob([transcription], { type: 'text/plain' });
-      const transcriptionFile = new File([transcriptionBlob], 'transcription.txt', { type: 'text/plain' });
-      await azureStorage.uploadFile(transcriptionFile, (progress) => {
-        setUploadProgress(progress);
-      });
-
-      // Update recording status
-      if (currentRecordingRef.current) {
-        onUpdateStatus(currentRecordingRef.current.id, 'completed', 0.95);
-      }
-
-      setUploadProgress(null);
+      // Update status to completed only after successful transcription
+      onUpdateStatus(newRecording.id, 'completed');
       setTranscriptionProgress(transcription);
+      setUploadProgress(null);
     } catch (err) {
-      console.error('Processing error:', err);
+      const errorMessage = err instanceof Error ? err.message : 'An error occurred during processing.';
+      console.error('Processing error:', errorMessage);
       if (currentRecordingRef.current) {
         onUpdateStatus(currentRecordingRef.current.id, 'failed');
       }
-      setError(err instanceof Error ? err.message : 'An error occurred during processing.');
+      setError(errorMessage);
       setUploadProgress(null);
       setTranscriptionProgress(null);
     }
@@ -127,7 +119,6 @@ export function AudioRecorder({ onNewRecording, onUpdateStatus }: AudioRecorderP
       setTestResult("Loading audio file from storage...");
       setTranscriptionProgress(null);
       
-      // Stop any currently playing audio
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current.currentTime = 0;
@@ -176,21 +167,19 @@ export function AudioRecorder({ onNewRecording, onUpdateStatus }: AudioRecorderP
       setIsTranscribing(true);
       setTranscriptionProgress('Generating transcription...');
 
-      // Create a File object from the Blob
       const file = new File([testBlobRef.current], 'buscetta.wav', {
         type: testBlobRef.current.type
       });
 
       const transcription = await speechService.transcribeFromFile(
         file,
+        crypto.randomUUID(),
         (progress) => setTranscriptionProgress(progress)
       );
 
-      // Save transcription to a text file
       const transcriptionBlob = new Blob([transcription], { type: 'text/plain' });
       const transcriptionFile = new File([transcriptionBlob], 'transcription.txt', { type: 'text/plain' });
 
-      // Upload the transcription file to Azure Storage
       await azureStorage.uploadFile(transcriptionFile, (progress) => {
         setUploadProgress(progress);
       });

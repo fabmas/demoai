@@ -23,7 +23,11 @@ export class AzureStorageService {
     return `https://${this.accountName}.blob.core.windows.net/?${this.sasToken}`;
   }
 
-  async uploadFile(file: File, onProgress?: (progress: number) => void): Promise<string> {
+  private getBlobUrl(blobName: string): string {
+    return `https://${this.accountName}.blob.core.windows.net/${this.containerName}/${blobName}`;
+  }
+
+  async uploadFile(file: File, onProgress?: (progress: number) => void): Promise<{ url: string, blobName: string }> {
     try {
       const containerClient = this.blobServiceClient.getContainerClient(this.containerName);
       const blobName = `${Date.now()}-${file.name}`;
@@ -42,7 +46,10 @@ export class AzureStorageService {
       };
 
       await blockBlobClient.uploadData(file, options);
-      return blockBlobClient.url;
+      return {
+        url: this.getBlobUrl(blobName),
+        blobName
+      };
     } catch (error) {
       console.error('Error uploading file:', error instanceof Error ? error.message : 'Unknown error');
       throw error;
@@ -51,17 +58,12 @@ export class AzureStorageService {
 
   async downloadBlob(blobName: string): Promise<Blob> {
     try {
-      // Construct the direct blob URL with SAS token
-      const blobUrl = `https://${this.accountName}.blob.core.windows.net/${this.containerName}/${blobName}?${this.sasToken}`;
-      
-      // Fetch the blob directly using the URL
+      const blobUrl = `${this.getBlobUrl(blobName)}?${this.sasToken}`;
       const response = await fetch(blobUrl);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      
-      const blob = await response.blob();
-      return blob;
+      return await response.blob();
     } catch (error) {
       console.error('Error downloading blob:', error instanceof Error ? error.message : 'Unknown error');
       throw error;
