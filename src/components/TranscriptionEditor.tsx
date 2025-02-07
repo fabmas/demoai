@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Edit2, X, Search, Save } from 'lucide-react';
 import type { Speaker } from '../types';
 import { AzureStorageService } from '../services/azureStorage';
@@ -17,7 +17,7 @@ const speakerColors = [
 
 interface TranscriptionJson {
   phrases: Array<{
-    speaker: number;
+    speaker: number | string;
     text: string;
     offsetMilliseconds: number;
     durationMilliseconds: number;
@@ -59,11 +59,11 @@ export function TranscriptionEditor({
   const [searchQuery, setSearchQuery] = useState('');
   const [transcriptionJson, setTranscriptionJson] = useState<TranscriptionJson | null>(null);
   const [isSaving, setIsSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const storageService = new StorageService();
   const azureStorage = new AzureStorageService();
 
-  // Aggiorna il titolo quando cambia il fileName
   useEffect(() => {
     setTitle(fileName.replace(/\.[^/.]+$/, ""));
   }, [fileName]);
@@ -76,30 +76,43 @@ export function TranscriptionEditor({
     setIsReviewed(initialReviewStatus);
   }, [initialReviewStatus]);
 
+  const formatSpeakerName = (speaker: number | string): { name: string; initial: string } => {
+    if (typeof speaker === 'number') {
+      return {
+        name: `Speaker ${speaker}`,
+        initial: `S${speaker}`
+      };
+    } else {
+      return {
+        name: speaker,
+        initial: speaker.split(' ').map(word => word[0]).join('')
+      };
+    }
+  };
+
   const loadTranscriptionJson = async () => {
     try {
+      setError(null);
       const blobName = jsonUrl.split('/').pop();
       if (blobName) {
         const jsonBlob = await azureStorage.downloadBlob(blobName);
         const jsonData: TranscriptionJson = JSON.parse(await jsonBlob.text());
         setTranscriptionJson(jsonData);
 
-        // Extract unique speakers
         const uniqueSpeakers = Array.from(new Set(jsonData.phrases.map(p => p.speaker)))
           .map(speakerNum => ({
             id: speakerNum.toString(),
-            name: `Speaker ${speakerNum}`,
-            initial: `S${speakerNum}`
+            ...formatSpeakerName(speakerNum)
           }));
         setSpeakers(uniqueSpeakers);
       }
     } catch (error) {
       console.error('Error loading transcription JSON:', error);
+      setError('Errore nel caricamento della trascrizione. Riprova più tardi.');
     }
   };
 
-  // Filter phrases based on search query
-  const filteredPhrases = useMemo(() => {
+  const filteredPhrases = React.useMemo(() => {
     if (!transcriptionJson || !searchQuery.trim()) {
       return transcriptionJson?.phrases || [];
     }
@@ -139,25 +152,21 @@ export function TranscriptionEditor({
     try {
       setIsSaving(true);
 
-      // Update transcription JSON with new speaker names
       if (transcriptionJson) {
         const updatedJson = {
           ...transcriptionJson,
           speakers: speakers.map(s => ({ id: s.id, name: s.name }))
         };
 
-        // Get the original blob name from the URL
         const blobName = jsonUrl.split('/').pop();
         if (!blobName) {
           throw new Error('Could not extract blob name from URL');
         }
 
-        // Upload updated JSON
         const jsonBlob = new Blob([JSON.stringify(updatedJson, null, 2)], { type: 'application/json' });
         const jsonFile = new File([jsonBlob], blobName, { type: 'application/json' });
         await azureStorage.uploadFile(jsonFile);
 
-        // Update Cosmos DB record
         await storageService.updateTranscription(transcriptionId, {
           id: transcriptionId,
           name: title,
@@ -168,18 +177,18 @@ export function TranscriptionEditor({
           confidence: confidence,
           duration: duration,
           fileSize: fileSize,
-          URL_TranscriptionAudio: '', // Preserved from existing record
-          URL_TranscriptionTXT: '', // Preserved from existing record
+          URL_TranscriptionAudio: '',
+          URL_TranscriptionTXT: '',
           URL_TranscriptionJSON: jsonUrl,
           Speakers: speakers.map(s => s.name),
-          custom_prompts: [] // Preserved from existing record
+          custom_prompts: []
         });
 
         onClose();
       }
     } catch (error) {
       console.error('Error saving changes:', error);
-      alert('Failed to save changes. Please try again.');
+      setError('Errore nel salvataggio delle modifiche. Riprova più tardi.');
     } finally {
       setIsSaving(false);
     }
@@ -187,7 +196,6 @@ export function TranscriptionEditor({
 
   return (
     <div className="mt-6 bg-white rounded-lg shadow-lg">
-      {/* Header */}
       <div className="p-4 border-b flex items-center justify-between">
         {isEditing ? (
           <input
@@ -210,14 +218,11 @@ export function TranscriptionEditor({
         </button>
       </div>
 
-      {/* Audio Player */}
       <div className="p-4 border-b bg-gray-50">
         <div className="h-8 bg-gray-200 rounded-full"></div>
       </div>
 
-      {/* Main Content */}
       <div className="grid grid-cols-3 gap-6 p-6">
-        {/* Left Column - File Info */}
         <div className="col-span-2 space-y-6">
           <div className="bg-gray-50 p-4 rounded-lg">
             <h3 className="font-semibold mb-3">Informazioni file</h3>
@@ -230,7 +235,6 @@ export function TranscriptionEditor({
             </div>
           </div>
 
-          {/* Search */}
           <div className="flex items-center gap-4">
             <div className="flex-1 relative">
               <input
@@ -249,32 +253,33 @@ export function TranscriptionEditor({
             )}
           </div>
 
-          {/* Transcription */}
           <div className="h-[400px] overflow-y-auto border rounded-lg bg-white">
             <div className="space-y-4 p-4">
-              {filteredPhrases.map((phrase, index) => (
-                <div key={index} className="flex gap-4 items-start p-2 hover:bg-gray-50 rounded">
-                  <div className={`w-10 h-10 rounded-full ${speakerColors[(phrase.speaker - 1) % speakerColors.length]} flex items-center justify-center text-white font-semibold`}>
-                    {speakers.find(s => s.id === phrase.speaker.toString())?.initial || `S${phrase.speaker}`}
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="font-medium">
-                        {speakers.find(s => s.id === phrase.speaker.toString())?.name || `Speaker ${phrase.speaker}`}
-                      </span>
-                      <span className="text-sm text-gray-500">
-                        ({formatDuration(Math.floor(phrase.offsetMilliseconds / 1000))})
-                      </span>
+              {filteredPhrases.map((phrase, index) => {
+                const speaker = speakers.find(s => s.id === phrase.speaker.toString());
+                return (
+                  <div key={index} className="flex gap-4 items-start p-2 hover:bg-gray-50 rounded">
+                    <div className={`w-10 h-10 rounded-full ${speakerColors[index % speakerColors.length]} flex items-center justify-center text-white font-semibold`}>
+                      {speaker?.initial || (typeof phrase.speaker === 'number' ? `S${phrase.speaker}` : phrase.speaker[0])}
                     </div>
-                    <p className="text-gray-700">{phrase.text}</p>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="font-medium">
+                          {speaker?.name || (typeof phrase.speaker === 'number' ? `Speaker ${phrase.speaker}` : phrase.speaker)}
+                        </span>
+                        <span className="text-sm text-gray-500">
+                          ({formatDuration(Math.floor(phrase.offsetMilliseconds / 1000))})
+                        </span>
+                      </div>
+                      <p className="text-gray-700">{phrase.text}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
 
-        {/* Right Column - Speakers */}
         <div className="space-y-6">
           <div className="bg-gray-50 p-4 rounded-lg">
             <div className="flex items-center justify-between mb-3">
@@ -309,6 +314,12 @@ export function TranscriptionEditor({
               <span>Revisionata</span>
             </label>
           </div>
+
+          {error && (
+            <div className="bg-red-50 text-red-600 p-4 rounded-lg">
+              {error}
+            </div>
+          )}
 
           <button
             onClick={handleSave}
