@@ -203,7 +203,7 @@ export function AudioRecorder({ onNewRecording, onUpdateStatus }: AudioRecorderP
     <>
       <div className="p-4 bg-white rounded-lg shadow-md">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-semibold">Audio Recorder</h2>
+          <h2 className="text-xl font-semibold">Audio Acquisition</h2>
           {isRecording && (
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>

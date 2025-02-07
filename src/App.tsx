@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { AudioRecorder } from './components/AudioRecorder';
 import { TranscriptionsList } from './components/TranscriptionsList';
 import { TranscriptionEditor } from './components/TranscriptionEditor';
+import { InsightGenerator } from './components/InsightGenerator';
 import { StorageService, TranscriptionData } from './services/storageService';
 import { AzureStorageService } from './services/azureStorage';
 import type { Recording } from './types';
@@ -13,6 +14,8 @@ export default function App() {
   const [recordings, setRecordings] = useState<Recording[]>([]);
   const [selectedTranscription, setSelectedTranscription] = useState<TranscriptionData | null>(null);
   const [transcriptionJson, setTranscriptionJson] = useState<any>(null);
+  const [showInsightGenerator, setShowInsightGenerator] = useState(false);
+  const [selectedTranscriptionText, setSelectedTranscriptionText] = useState<string>('');
 
   useEffect(() => {
     loadTranscriptions();
@@ -75,7 +78,6 @@ export default function App() {
         : r
     ));
 
-    // Only reload transcriptions when status is completed to show the final record
     if (status === 'completed') {
       await loadTranscriptions();
     }
@@ -102,7 +104,6 @@ export default function App() {
       if (recording && recording.URL_TranscriptionJSON) {
         setSelectedTranscription(recording);
         
-        // Extract the blob name from the URL
         const blobName = recording.URL_TranscriptionJSON.split('/').pop();
         if (blobName) {
           const jsonBlob = await azureStorage.downloadBlob(blobName);
@@ -116,10 +117,37 @@ export default function App() {
     }
   };
 
+  const handleGenerateInsight = async (id: string) => {
+    try {
+      const data = await storageService.loadTranscriptions();
+      const recording = Object.values(data).find(r => r.id === id);
+      
+      if (recording && recording.URL_TranscriptionJSON) {
+        setSelectedTranscription(recording);
+        
+        const blobName = recording.URL_TranscriptionJSON.split('/').pop();
+        if (blobName) {
+          const jsonBlob = await azureStorage.downloadBlob(blobName);
+          const jsonData = JSON.parse(await jsonBlob.text());
+          setSelectedTranscriptionText(jsonData.transcriptionText);
+          setShowInsightGenerator(true);
+        }
+      }
+    } catch (error) {
+      console.error('Error loading transcription for insight:', error);
+      alert('Failed to load transcription. Please try again.');
+    }
+  };
+
   const handleEditorClose = () => {
     setSelectedTranscription(null);
     setTranscriptionJson(null);
-    loadTranscriptions(); // Refresh the list to show any updates
+    loadTranscriptions();
+  };
+
+  const handleInsightGeneratorClose = () => {
+    setShowInsightGenerator(false);
+    setSelectedTranscriptionText('');
   };
 
   return (
@@ -140,6 +168,7 @@ export default function App() {
             recordings={recordings}
             onDelete={handleDelete}
             onEdit={handleEdit}
+            onGenerateInsight={handleGenerateInsight}
           />
           {selectedTranscription && transcriptionJson && (
             <TranscriptionEditor
@@ -152,6 +181,15 @@ export default function App() {
               confidence={selectedTranscription.confidence || 0}
               lastUpdate={selectedTranscription.date}
               jsonUrl={selectedTranscription.URL_TranscriptionJSON}
+              transcriptionId={selectedTranscription.id}
+              initialReviewStatus={selectedTranscription.reviewStatus === 'reviewed'}
+            />
+          )}
+          {showInsightGenerator && selectedTranscriptionText && selectedTranscription && (
+            <InsightGenerator
+              transcriptionId={selectedTranscription.id}
+              transcriptionText={selectedTranscriptionText}
+              onClose={handleInsightGeneratorClose}
             />
           )}
         </div>

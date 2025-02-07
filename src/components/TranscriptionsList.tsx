@@ -1,14 +1,15 @@
 import React from 'react';
-import { FileText, Trash2, Edit2 } from 'lucide-react';
+import { FileText, Trash2, Edit2, Search } from 'lucide-react';
 import type { Recording } from '../types';
 
 interface TranscriptionsListProps {
   recordings: Recording[];
   onDelete: (id: string) => void;
   onEdit: (id: string) => void;
+  onGenerateInsight: (id: string) => void;
 }
 
-export function TranscriptionsList({ recordings, onDelete, onEdit }: TranscriptionsListProps) {
+export function TranscriptionsList({ recordings, onDelete, onEdit, onGenerateInsight }: TranscriptionsListProps) {
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full bg-white rounded-lg shadow-md">
@@ -57,6 +58,14 @@ export function TranscriptionsList({ recordings, onDelete, onEdit }: Transcripti
                     title={recording.status !== 'completed' ? 'Transcription must be completed to edit' : 'Edit transcription'}
                   >
                     <Edit2 size={18} className={recording.status !== 'completed' ? 'opacity-50' : ''} />
+                  </button>
+                  <button
+                    onClick={() => onGenerateInsight(recording.id)}
+                    className="text-purple-600 hover:text-purple-900"
+                    disabled={recording.status !== 'completed'}
+                    title={recording.status !== 'completed' ? 'Transcription must be completed to generate insights' : 'Generate insights'}
+                  >
+                    <Search size={18} className={recording.status !== 'completed' ? 'opacity-50' : ''} />
                   </button>
                   <button
                     onClick={() => onDelete(recording.id)}

@@ -35,6 +35,8 @@ interface TranscriptionEditorProps {
   confidence: number;
   lastUpdate: string;
   jsonUrl: string;
+  transcriptionId: string;
+  initialReviewStatus: boolean;
 }
 
 export function TranscriptionEditor({
@@ -46,23 +48,33 @@ export function TranscriptionEditor({
   language,
   confidence,
   lastUpdate,
-  jsonUrl
+  jsonUrl,
+  transcriptionId,
+  initialReviewStatus
 }: TranscriptionEditorProps) {
   const [title, setTitle] = useState(fileName.replace(/\.[^/.]+$/, ""));
   const [isEditing, setIsEditing] = useState(false);
   const [speakers, setSpeakers] = useState<Speaker[]>([]);
-  const [isReviewed, setIsReviewed] = useState(false);
+  const [isReviewed, setIsReviewed] = useState(initialReviewStatus);
   const [searchQuery, setSearchQuery] = useState('');
   const [transcriptionJson, setTranscriptionJson] = useState<TranscriptionJson | null>(null);
   const [isSaving, setIsSaving] = useState(false);
-  const [transcriptionId, setTranscriptionId] = useState<string>('');
 
   const storageService = new StorageService();
   const azureStorage = new AzureStorageService();
 
+  // Aggiorna il titolo quando cambia il fileName
+  useEffect(() => {
+    setTitle(fileName.replace(/\.[^/.]+$/, ""));
+  }, [fileName]);
+
   useEffect(() => {
     loadTranscriptionJson();
   }, [jsonUrl]);
+
+  useEffect(() => {
+    setIsReviewed(initialReviewStatus);
+  }, [initialReviewStatus]);
 
   const loadTranscriptionJson = async () => {
     try {
@@ -80,12 +92,6 @@ export function TranscriptionEditor({
             initial: `S${speakerNum}`
           }));
         setSpeakers(uniqueSpeakers);
-
-        // Extract transcription ID from the blob name
-        const idMatch = blobName.match(/^([^-]+)/);
-        if (idMatch) {
-          setTranscriptionId(idMatch[1]);
-        }
       }
     } catch (error) {
       console.error('Error loading transcription JSON:', error);
@@ -153,9 +159,20 @@ export function TranscriptionEditor({
 
         // Update Cosmos DB record
         await storageService.updateTranscription(transcriptionId, {
+          id: transcriptionId,
           name: title,
+          date: lastUpdate,
+          status: 'completed',
           reviewStatus: isReviewed ? 'reviewed' : 'draft',
-          Speakers: speakers.map(s => s.name)
+          language: language,
+          confidence: confidence,
+          duration: duration,
+          fileSize: fileSize,
+          URL_TranscriptionAudio: '', // Preserved from existing record
+          URL_TranscriptionTXT: '', // Preserved from existing record
+          URL_TranscriptionJSON: jsonUrl,
+          Speakers: speakers.map(s => s.name),
+          custom_prompts: [] // Preserved from existing record
         });
 
         onClose();
