@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Edit2, X, Search, Save } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Edit2, X, Search, Save, AlertCircle, Play, Pause, RefreshCw } from 'lucide-react';
 import type { Speaker } from '../types';
 import { AzureStorageService } from '../services/azureStorage';
 import { StorageService } from '../services/storageService';
@@ -60,6 +60,17 @@ export function TranscriptionEditor({
   const [transcriptionJson, setTranscriptionJson] = useState<TranscriptionJson | null>(null);
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [currentlyPlaying, setCurrentlyPlaying] = useState<string | null>(null);
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+  const [audioDuration, setAudioDuration] = useState(0);
+  const [audioFileSize, setAudioFileSize] = useState(0);
+  const [lastUpdateTime, setLastUpdateTime] = useState('');
+  const [showUnsavedChangesModal, setShowUnsavedChangesModal] = useState(false);
+  const initialTitle = useRef(title);
+  const initialSpeakers = useRef<Speaker[]>([]);
+  const initialReviewedStatus = useRef(isReviewed);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const storageService = new StorageService();
   const azureStorage = new AzureStorageService();
@@ -69,12 +80,37 @@ export function TranscriptionEditor({
   }, [fileName]);
 
   useEffect(() => {
-    loadTranscriptionJson();
-  }, [jsonUrl]);
+    loadTranscriptionData();
+  }, [jsonUrl, transcriptionId]);
 
   useEffect(() => {
     setIsReviewed(initialReviewStatus);
   }, [initialReviewStatus]);
+
+  useEffect(() => {
+    // Cleanup audio on unmount
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    // Store initial values after data is loaded
+    initialTitle.current = title;
+    initialSpeakers.current = [...speakers];
+    initialReviewedStatus.current = isReviewed;
+  }, [transcriptionJson]); // Only update initial values after data is loaded
+
+  useEffect(() => {
+    const titleChanged = title !== initialTitle.current;
+    const speakersChanged = JSON.stringify(speakers) !== JSON.stringify(initialSpeakers.current);
+    const reviewStatusChanged = isReviewed !== initialReviewedStatus.current;
+    
+    setHasUnsavedChanges(titleChanged || speakersChanged || reviewStatusChanged);
+  }, [title, speakers, isReviewed]);
 
   const formatSpeakerName = (speaker: number | string): { name: string; initial: string } => {
     if (typeof speaker === 'number') {
@@ -90,25 +126,172 @@ export function TranscriptionEditor({
     }
   };
 
-  const loadTranscriptionJson = async () => {
+  const loadTranscriptionData = async (retryCount = 0) => {
+    if (!transcriptionId || !jsonUrl) {
+      setError('ID trascrizione o URL JSON mancante');
+      setIsLoading(false);
+      return;
+    }
+
     try {
       setError(null);
-      const blobName = jsonUrl.split('/').pop();
-      if (blobName) {
-        const jsonBlob = await azureStorage.downloadBlob(blobName);
-        const jsonData: TranscriptionJson = JSON.parse(await jsonBlob.text());
-        setTranscriptionJson(jsonData);
+      setIsLoading(true);
 
-        const uniqueSpeakers = Array.from(new Set(jsonData.phrases.map(p => p.speaker)))
-          .map(speakerNum => ({
-            id: speakerNum.toString(),
-            ...formatSpeakerName(speakerNum)
-          }));
-        setSpeakers(uniqueSpeakers);
+      // Extract blob name from URL with better error handling
+      const blobName = jsonUrl.split('/').pop();
+      if (!blobName) {
+        throw new Error('URL JSON non valido');
       }
+
+      // Load transcription data with retry mechanism
+      let currentTranscription;
+      try {
+        const transcriptions = await storageService.loadTranscriptions();
+        currentTranscription = transcriptions[transcriptionId];
+        
+        if (!currentTranscription) {
+          throw new Error('Trascrizione non trovata nel database');
+        }
+
+        // Get audio file metadata
+        if (currentTranscription.URL_TranscriptionAudio) {
+          try {
+            const audioBlob = await azureStorage.downloadBlob(
+              currentTranscription.URL_TranscriptionAudio.split('/').pop()!
+            );
+            
+            // Create audio element to get duration
+            const audioUrl = URL.createObjectURL(audioBlob);
+            const audio = new Audio(audioUrl);
+            
+            // Get file size from blob
+            setAudioFileSize(audioBlob.size);
+            
+            // Wait for metadata to load to get duration
+            await new Promise((resolve, reject) => {
+              audio.addEventListener('loadedmetadata', () => {
+                setAudioDuration(Math.round(audio.duration));
+                resolve(null);
+              });
+              audio.addEventListener('error', (e) => reject(e));
+            });
+
+            // Set up audio player
+            if (audioRef.current) {
+              audioRef.current.src = audioUrl;
+            } else {
+              audioRef.current = audio;
+              audioRef.current.addEventListener('ended', () => {
+                setCurrentlyPlaying(null);
+              });
+            }
+          } catch (audioError) {
+            console.error('Error loading audio metadata:', audioError);
+            // Fallback to stored values if metadata loading fails
+            setAudioDuration(currentTranscription.duration || 0);
+            setAudioFileSize(currentTranscription.fileSize || 0);
+          }
+        }
+
+        // Set last update time
+        setLastUpdateTime(currentTranscription.date);
+
+      } catch (error) {
+        console.error('Database error:', error);
+        if (retryCount < 3) {
+          await new Promise(resolve => setTimeout(resolve, 1000 * (retryCount + 1)));
+          return loadTranscriptionData(retryCount + 1);
+        }
+        throw new Error('Errore nel caricamento dei dati dal database');
+      }
+
+      // Load JSON data with retry mechanism
+      let jsonData: TranscriptionJson;
+      try {
+        const jsonBlob = await azureStorage.downloadBlob(blobName);
+        const jsonText = await jsonBlob.text();
+        jsonData = JSON.parse(jsonText);
+        
+        if (!jsonData.phrases || !Array.isArray(jsonData.phrases)) {
+          throw new Error('Formato JSON non valido');
+        }
+      } catch (error) {
+        console.error('Download error:', error);
+        if (retryCount < 3) {
+          await new Promise(resolve => setTimeout(resolve, 1000 * (retryCount + 1)));
+          return loadTranscriptionData(retryCount + 1);
+        }
+        throw new Error(`Errore nel download del file: ${error instanceof Error ? error.message : 'Errore sconosciuto'}`);
+      }
+
+      setTranscriptionJson(jsonData);
+
+      // Initialize speakers list
+      let speakersList: Speaker[] = [];
+
+      // First try to use speakers from CosmosDB
+      if (currentTranscription.Speakers?.length > 0) {
+        const jsonSpeakerIds = new Set(jsonData.phrases.map(p => p.speaker.toString()));
+        const existingSpeakers = currentTranscription.Speakers;
+        
+        speakersList = Array.from(jsonSpeakerIds).map((speakerId, index) => {
+          const existingName = existingSpeakers[index];
+          return {
+            id: speakerId,
+            name: existingName || `Speaker ${speakerId}`,
+            initial: existingName ? existingName.split(' ').map(word => word[0]).join('') : `S${speakerId}`
+          };
+        });
+      } else {
+        // Fall back to JSON file analysis if no speakers in CosmosDB
+        const seenSpeakers = new Set<string>();
+        speakersList = jsonData.phrases
+          .map(p => p.speaker)
+          .filter(speaker => {
+            const speakerId = speaker.toString();
+            if (!seenSpeakers.has(speakerId)) {
+              seenSpeakers.add(speakerId);
+              return true;
+            }
+            return false;
+          })
+          .map(speaker => ({
+            id: speaker.toString(),
+            ...formatSpeakerName(speaker)
+          }));
+      }
+
+      setSpeakers(speakersList);
+      initialSpeakers.current = [...speakersList]; // Set initial speakers after loading
+
+      // Initialize audio player with retry mechanism
+      if (currentTranscription.URL_TranscriptionAudio) {
+        try {
+          const audioBlob = await azureStorage.downloadBlob(
+            currentTranscription.URL_TranscriptionAudio.split('/').pop()!
+          );
+          const audioUrl = URL.createObjectURL(audioBlob);
+          
+          if (audioRef.current) {
+            audioRef.current.src = audioUrl;
+          } else {
+            audioRef.current = new Audio(audioUrl);
+            audioRef.current.addEventListener('ended', () => {
+              setCurrentlyPlaying(null);
+            });
+          }
+        } catch (audioError) {
+          console.error('Audio loading error:', audioError);
+          // Don't throw here, just log the error as audio is not critical
+          console.warn('Audio playback will not be available');
+        }
+      }
+
     } catch (error) {
-      console.error('Error loading transcription JSON:', error);
-      setError('Errore nel caricamento della trascrizione. Riprova più tardi.');
+      console.error('Error loading transcription data:', error);
+      setError(error instanceof Error ? error.message : 'Errore sconosciuto');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -134,6 +317,13 @@ export function TranscriptionEditor({
     return `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
   };
 
+  const formatTimestamp = (milliseconds: number) => {
+    const totalSeconds = Math.floor(milliseconds / 1000);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+  };
+
   const handleSpeakerNameChange = (id: string, newName: string) => {
     setSpeakers(speakers.map(speaker => 
       speaker.id === id 
@@ -142,15 +332,47 @@ export function TranscriptionEditor({
     ));
   };
 
+  const getSpeakerColorIndex = (speakerId: string): number => {
+    return speakers.findIndex(s => s.id === speakerId);
+  };
+
+  const handlePlayPhrase = async (phraseId: string, offset: number, duration: number) => {
+    if (!audioRef.current) return;
+
+    if (currentlyPlaying === phraseId) {
+      audioRef.current.pause();
+      setCurrentlyPlaying(null);
+    } else {
+      if (currentlyPlaying) {
+        audioRef.current.pause();
+      }
+      audioRef.current.currentTime = offset / 1000;
+      try {
+        await audioRef.current.play();
+        setCurrentlyPlaying(phraseId);
+        // Stop after the phrase duration
+        setTimeout(() => {
+          if (audioRef.current) {
+            audioRef.current.pause();
+            setCurrentlyPlaying(null);
+          }
+        }, duration);
+      } catch (error) {
+        console.error('Error playing audio:', error);
+        setError('Errore nella riproduzione dell\'audio');
+      }
+    }
+  };
+
   const handleSave = async () => {
     if (!transcriptionId) {
-      console.error('No transcription ID available');
-      alert('Unable to save changes: Missing transcription ID');
+      setError('ID trascrizione mancante');
       return;
     }
 
     try {
       setIsSaving(true);
+      setError(null);
 
       if (transcriptionJson) {
         const updatedJson = {
@@ -160,7 +382,7 @@ export function TranscriptionEditor({
 
         const blobName = jsonUrl.split('/').pop();
         if (!blobName) {
-          throw new Error('Could not extract blob name from URL');
+          throw new Error('URL JSON non valido');
         }
 
         const jsonBlob = new Blob([JSON.stringify(updatedJson, null, 2)], { type: 'application/json' });
@@ -170,13 +392,13 @@ export function TranscriptionEditor({
         await storageService.updateTranscription(transcriptionId, {
           id: transcriptionId,
           name: title,
-          date: lastUpdate,
+          date: lastUpdateTime,
           status: 'completed',
           reviewStatus: isReviewed ? 'reviewed' : 'draft',
           language: language,
           confidence: confidence,
-          duration: duration,
-          fileSize: fileSize,
+          duration: audioDuration,
+          fileSize: audioFileSize,
           URL_TranscriptionAudio: '',
           URL_TranscriptionTXT: '',
           URL_TranscriptionJSON: jsonUrl,
@@ -184,42 +406,100 @@ export function TranscriptionEditor({
           custom_prompts: []
         });
 
+        // Update initial values after successful save
+        initialTitle.current = title;
+        initialSpeakers.current = [...speakers];
+        initialReviewedStatus.current = isReviewed;
+        setHasUnsavedChanges(false);
+
         onClose();
       }
     } catch (error) {
       console.error('Error saving changes:', error);
-      setError('Errore nel salvataggio delle modifiche. Riprova più tardi.');
+      setError(error instanceof Error ? error.message : 'Errore nel salvataggio delle modifiche');
     } finally {
       setIsSaving(false);
     }
   };
 
+  const handleClose = () => {
+    if (hasUnsavedChanges) {
+      setShowUnsavedChangesModal(true);
+    } else {
+      onClose();
+    }
+  };
+
+  const handleConfirmClose = () => {
+    setShowUnsavedChangesModal(false);
+    onClose();
+  };
+
+  const handleCancelClose = () => {
+    setShowUnsavedChangesModal(false);
+  };
+
+  if (isLoading) {
+    return (
+      <div className="mt-6 bg-white rounded-lg shadow-lg p-8">
+        <div className="flex items-center justify-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+          <span className="ml-3">Caricamento trascrizione...</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="mt-6 bg-white rounded-lg shadow-lg p-8">
+        <div className="flex flex-col items-center justify-center gap-4">
+          <div className="flex items-center gap-2 text-red-600">
+            <AlertCircle size={24} />
+            <span className="text-lg">{error}</span>
+          </div>
+          <button
+            onClick={() => loadTranscriptionData()}
+            className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+          >
+            <RefreshCw size={20} />
+            Riprova
+          </button>
+          <button
+            onClick={onClose}
+            className="text-gray-600 hover:text-gray-800"
+          >
+            Chiudi
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="mt-6 bg-white rounded-lg shadow-lg">
-      <div className="p-4 border-b flex items-center justify-between">
-        {isEditing ? (
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            className="text-xl font-semibold px-2 py-1 border rounded"
-            autoFocus
-          />
-        ) : (
-          <h2 className="text-xl font-semibold flex items-center gap-2">
-            {title}
-            <button onClick={() => setIsEditing(true)} className="text-gray-500 hover:text-gray-700">
-              <Edit2 size={16} />
-            </button>
-          </h2>
-        )}
-        <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
-          <X size={24} />
-        </button>
-      </div>
-
-      <div className="p-4 border-b bg-gray-50">
-        <div className="h-8 bg-gray-200 rounded-full"></div>
+      <div className="p-4 border-b">
+        <div className="flex items-center gap-4">
+          {isEditing ? (
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="text-xl font-semibold px-2 py-1 border rounded w-[500px]"
+              autoFocus
+            />
+          ) : (
+            <div className="flex items-center gap-2 flex-grow">
+              <h2 className="text-xl font-semibold">{title}</h2>
+              <button 
+                onClick={() => setIsEditing(true)} 
+                className="text-gray-500 hover:text-gray-700"
+              >
+                <Edit2 size={16} />
+              </button>
+            </div>
+          )}
+        </div>
       </div>
 
       <div className="grid grid-cols-3 gap-6 p-6">
@@ -228,9 +508,9 @@ export function TranscriptionEditor({
             <h3 className="font-semibold mb-3">Informazioni file</h3>
             <div className="space-y-2 text-sm">
               <p>File: {fileName}</p>
-              <p>Dimensione: {formatFileSize(fileSize)}</p>
-              <p>Durata audio: {formatDuration(duration)}</p>
-              <p>Ultimo aggiornamento: {new Date(lastUpdate).toLocaleString()}</p>
+              <p>Dimensione: {formatFileSize(audioFileSize || fileSize)}</p>
+              <p>Durata audio: {formatDuration(audioDuration || duration)}</p>
+              <p>Ultimo aggiornamento: {new Date(lastUpdateTime || lastUpdate).toLocaleString()}</p>
               <p>Lingua: {language} (Confidence: {(confidence * 100).toFixed(0)}%)</p>
             </div>
           </div>
@@ -257,9 +537,13 @@ export function TranscriptionEditor({
             <div className="space-y-4 p-4">
               {filteredPhrases.map((phrase, index) => {
                 const speaker = speakers.find(s => s.id === phrase.speaker.toString());
+                const colorIndex = speaker ? getSpeakerColorIndex(speaker.id) : index;
+                const phraseId = `phrase-${index}`;
+                const isPlaying = currentlyPlaying === phraseId;
+
                 return (
                   <div key={index} className="flex gap-4 items-start p-2 hover:bg-gray-50 rounded">
-                    <div className={`w-10 h-10 rounded-full ${speakerColors[index % speakerColors.length]} flex items-center justify-center text-white font-semibold`}>
+                    <div className={`w-10 h-10 rounded-full ${speakerColors[colorIndex % speakerColors.length]} flex items-center justify-center text-white font-semibold`}>
                       {speaker?.initial || (typeof phrase.speaker === 'number' ? `S${phrase.speaker}` : phrase.speaker[0])}
                     </div>
                     <div className="flex-1">
@@ -268,8 +552,15 @@ export function TranscriptionEditor({
                           {speaker?.name || (typeof phrase.speaker === 'number' ? `Speaker ${phrase.speaker}` : phrase.speaker)}
                         </span>
                         <span className="text-sm text-gray-500">
-                          ({formatDuration(Math.floor(phrase.offsetMilliseconds / 1000))})
+                          ({formatTimestamp(phrase.offsetMilliseconds)})
                         </span>
+                        <button
+                          onClick={() => handlePlayPhrase(phraseId, phrase.offsetMilliseconds, phrase.durationMilliseconds)}
+                          className={`p-1 rounded-full hover:bg-gray-200 ${isPlaying ? 'bg-gray-200' : ''}`}
+                          title={isPlaying ? 'Pause' : 'Play'}
+                        >
+                          {isPlaying ? <Pause size={16} /> : <Play size={16} />}
+                        </button>
                       </div>
                       <p className="text-gray-700">{phrase.text}</p>
                     </div>
@@ -314,22 +605,61 @@ export function TranscriptionEditor({
               <span>Revisionata</span>
             </label>
           </div>
+        </div>
+      </div>
 
-          {error && (
-            <div className="bg-red-50 text-red-600 p-4 rounded-lg">
-              {error}
+      {showUnsavedChangesModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-lg shadow-xl max-w-md w-full">
+            <h3 className="text-lg font-semibold mb-4">Modifiche non salvate</h3>
+            <p className="text-gray-600 mb-6">
+              Ci sono modifiche non salvate. Sei sicuro di voler chiudere senza salvare?
+            </p>
+            <div className="flex justify-end gap-4">
+              <button
+                onClick={handleCancelClose}
+                className="px-4 py-2 text-gray-600 hover:text-gray-800"
+              >
+                Annulla
+              </button>
+              <button
+                onClick={handleConfirmClose}
+                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+              >
+                Chiudi senza salvare
+              </button>
             </div>
-          )}
+          </div>
+        </div>
+      )}
 
+      <div className="p-4 border-t bg-gray-50 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          {hasUnsavedChanges && (
+            <span className="text-sm text-orange-600">
+              * Modifiche non salvate
+            </span>
+          )}
+        </div>
+        <div className="flex items-center gap-4">
           <button
             onClick={handleSave}
-            disabled={isSaving}
-            className={`w-full flex items-center justify-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg ${
-              isSaving ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-600'
+            disabled={isSaving || !hasUnsavedChanges}
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg ${
+              hasUnsavedChanges 
+                ? 'bg-blue-500 text-white hover:bg-blue-600' 
+                : 'bg-gray-200 text-gray-500 cursor-not-allowed'
             }`}
           >
             <Save size={20} />
             {isSaving ? 'Salvataggio...' : 'Salva modifiche'}
+          </button>
+          <button
+            onClick={handleClose}
+            className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-gray-800"
+          >
+            <X size={20} />
+            Chiudi
           </button>
         </div>
       </div>

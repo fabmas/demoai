@@ -16,10 +16,24 @@ export default function App() {
   const [transcriptionJson, setTranscriptionJson] = useState<any>(null);
   const [showInsightGenerator, setShowInsightGenerator] = useState(false);
   const [selectedTranscriptionText, setSelectedTranscriptionText] = useState<string>('');
+  const [selectedTranscriptionName, setSelectedTranscriptionName] = useState<string>('');
+  const [showEditor, setShowEditor] = useState(false);
+  const [hideAudioRecorderTranscription, setHideAudioRecorderTranscription] = useState(false);
+  const [lastCreatedTranscriptionId, setLastCreatedTranscriptionId] = useState<string | null>(null);
 
   useEffect(() => {
     loadTranscriptions();
   }, []);
+
+  useEffect(() => {
+    if (lastCreatedTranscriptionId) {
+      const recording = recordings.find(r => r.id === lastCreatedTranscriptionId);
+      if (recording && recording.status === 'completed') {
+        handleEdit(lastCreatedTranscriptionId);
+        setLastCreatedTranscriptionId(null);
+      }
+    }
+  }, [recordings, lastCreatedTranscriptionId]);
 
   const loadTranscriptions = async () => {
     try {
@@ -33,7 +47,8 @@ export default function App() {
         duration: item.duration,
         fileSize: item.fileSize,
         language: item.language,
-        confidence: item.confidence
+        confidence: item.confidence,
+        Speakers: item.Speakers
       }));
       setRecordings(recordingsList);
     } catch (error) {
@@ -42,6 +57,7 @@ export default function App() {
   };
 
   const handleNewRecording = (name: string, fileSize: number) => {
+    setHideAudioRecorderTranscription(true);
     const newRecording: TranscriptionData = {
       id: crypto.randomUUID(),
       name,
@@ -63,11 +79,13 @@ export default function App() {
         status: newRecording.status,
         reviewStatus: newRecording.reviewStatus,
         date: newRecording.date,
-        fileSize: newRecording.fileSize
+        fileSize: newRecording.fileSize,
+        Speakers: []
       },
       ...prev
     ]);
 
+    setLastCreatedTranscriptionId(newRecording.id);
     return newRecording;
   };
 
@@ -85,6 +103,9 @@ export default function App() {
 
   const handleDelete = async (id: string) => {
     try {
+      setShowEditor(false);
+      setShowInsightGenerator(false);
+      setHideAudioRecorderTranscription(true);
       await storageService.deleteTranscription(id);
       setRecordings(prev => prev.filter(r => r.id !== id));
       if (selectedTranscription?.id === id) {
@@ -98,6 +119,9 @@ export default function App() {
 
   const handleEdit = async (id: string) => {
     try {
+      setShowInsightGenerator(false);
+      setShowEditor(true);
+      setHideAudioRecorderTranscription(true);
       const data = await storageService.loadTranscriptions();
       const recording = Object.values(data).find(r => r.id === id);
       
@@ -117,20 +141,23 @@ export default function App() {
     }
   };
 
-  const handleGenerateInsight = async (id: string) => {
+  const handleGenerateInsight = async (id: string, name: string) => {
     try {
+      setShowEditor(false);
+      setShowInsightGenerator(true);
+      setHideAudioRecorderTranscription(true);
       const data = await storageService.loadTranscriptions();
       const recording = Object.values(data).find(r => r.id === id);
       
       if (recording && recording.URL_TranscriptionJSON) {
         setSelectedTranscription(recording);
+        setSelectedTranscriptionName(name);
         
         const blobName = recording.URL_TranscriptionJSON.split('/').pop();
         if (blobName) {
           const jsonBlob = await azureStorage.downloadBlob(blobName);
           const jsonData = JSON.parse(await jsonBlob.text());
           setSelectedTranscriptionText(jsonData.transcriptionText);
-          setShowInsightGenerator(true);
         }
       }
     } catch (error) {
@@ -142,12 +169,15 @@ export default function App() {
   const handleEditorClose = () => {
     setSelectedTranscription(null);
     setTranscriptionJson(null);
+    setShowEditor(false);
+    setHideAudioRecorderTranscription(true); // Keep transcription hidden
     loadTranscriptions();
   };
 
   const handleInsightGeneratorClose = () => {
     setShowInsightGenerator(false);
     setSelectedTranscriptionText('');
+    setHideAudioRecorderTranscription(true); // Keep transcription hidden
   };
 
   return (
@@ -163,14 +193,16 @@ export default function App() {
           <AudioRecorder 
             onNewRecording={handleNewRecording}
             onUpdateStatus={updateRecordingStatus}
+            hideTranscription={hideAudioRecorderTranscription}
           />
           <TranscriptionsList 
             recordings={recordings}
             onDelete={handleDelete}
             onEdit={handleEdit}
             onGenerateInsight={handleGenerateInsight}
+            selectedTranscriptionId={selectedTranscription?.id}
           />
-          {selectedTranscription && transcriptionJson && (
+          {showEditor && selectedTranscription && transcriptionJson && (
             <TranscriptionEditor
               transcription={transcriptionJson.transcriptionText}
               onClose={handleEditorClose}
@@ -189,6 +221,7 @@ export default function App() {
             <InsightGenerator
               transcriptionId={selectedTranscription.id}
               transcriptionText={selectedTranscriptionText}
+              recordingName={selectedTranscriptionName}
               onClose={handleInsightGeneratorClose}
             />
           )}

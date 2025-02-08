@@ -64,8 +64,12 @@ export class SpeechService {
         locales: ['it-IT'],
         diarization: {
           enabled: true,
-          maxSpeakers: 2
-        }
+          maxSpeakers: 8, // Updated to support up to 8 speakers
+          minSpeakers: 1  // Added to allow flexible speaker detection
+        },
+        profanityFilterMode: "none",
+        punctuationMode: "DictatedAndAutomatic",
+        timeToLive: "PT1H"
       };
 
       formData.append('definition', JSON.stringify(definition));

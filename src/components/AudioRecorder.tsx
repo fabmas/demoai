@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Mic, Square, Upload, AlertCircle, TestTube, Play, Pause, FileText, Edit } from 'lucide-react';
+import { Mic, Square, Upload, AlertCircle } from 'lucide-react';
 import { AzureStorageService } from '../services/azureStorage';
 import { SpeechService } from '../services/speechService';
 import { TranscriptionEditor } from './TranscriptionEditor';
@@ -12,24 +12,22 @@ const speechService = new SpeechService();
 interface AudioRecorderProps {
   onNewRecording: (name: string, fileSize: number) => TranscriptionData;
   onUpdateStatus: (id: string, status: Recording['status'], confidence?: number) => void;
+  hideTranscription: boolean;
 }
 
-export function AudioRecorder({ onNewRecording, onUpdateStatus }: AudioRecorderProps) {
+export function AudioRecorder({ onNewRecording, onUpdateStatus, hideTranscription }: AudioRecorderProps) {
   const [isRecording, setIsRecording] = useState(false);
   const [duration, setDuration] = useState(0);
-  const [uploadProgress, setUploadProgress] = useState<number | null>(null);
   const [transcriptionProgress, setTranscriptionProgress] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [testResult, setTestResult] = useState<string | null>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isTranscribing, setIsTranscribing] = useState(false);
   const [showEditor, setShowEditor] = useState(false);
-  const [transcriptionData, setTranscriptionData] = useState<any>(null);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [processingStep, setProcessingStep] = useState<string>('');
   const mediaRecorder = useRef<MediaRecorder | null>(null);
   const timerRef = useRef<number>();
   const currentRecordingRef = useRef<Recording | null>(null);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const testBlobRef = useRef<Blob | null>(null);
+  const [currentFileName, setCurrentFileName] = useState<string>('');
+  const [currentFileSize, setCurrentFileSize] = useState<number>(0);
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
@@ -49,7 +47,10 @@ export function AudioRecorder({ onNewRecording, onUpdateStatus }: AudioRecorderP
 
       mediaRecorder.current.onstop = async () => {
         const audioBlob = new Blob(chunks, { type: 'audio/wav' });
-        const file = new File([audioBlob], `recording-${Date.now()}.wav`, { type: 'audio/wav' });
+        const fileName = `recording-${Date.now()}.wav`;
+        const file = new File([audioBlob], fileName, { type: 'audio/wav' });
+        setCurrentFileName(fileName);
+        setCurrentFileSize(file.size);
         await handleFileUpload(file);
       };
 
@@ -80,27 +81,43 @@ export function AudioRecorder({ onNewRecording, onUpdateStatus }: AudioRecorderP
   const handleFileUpload = async (file: File) => {
     try {
       setError(null);
-      setUploadProgress(0);
       setTranscriptionProgress(null);
+      setCurrentFileName(file.name);
+      setCurrentFileSize(file.size);
+      setIsProcessing(true);
 
       // Create new recording entry with processing status
+      setProcessingStep('Initializing...');
       const newRecording = onNewRecording(file.name, file.size);
       currentRecordingRef.current = newRecording;
 
       // Start transcription
-      setTranscriptionProgress('Starting transcription...');
+      setProcessingStep('Transcribing audio...');
       const transcription = await speechService.transcribeFromFile(
         file,
         newRecording.id,
         (progress) => {
+          if (typeof progress === 'string' && progress.includes('%')) {
+            // Extract percentage from progress message if available
+            const percentage = progress.match(/(\d+)%/);
+            if (percentage) {
+              setProcessingStep(`Transcribing audio... ${percentage[1]}%`);
+            } else {
+              setProcessingStep('Transcribing audio...');
+            }
+          } else {
+            setProcessingStep('Processing transcription...');
+          }
           setTranscriptionProgress(progress);
         }
       );
 
       // Update status to completed only after successful transcription
+      setProcessingStep('Finalizing...');
       onUpdateStatus(newRecording.id, 'completed');
       setTranscriptionProgress(transcription);
-      setUploadProgress(null);
+      setIsProcessing(false);
+      setProcessingStep('');
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'An error occurred during processing.';
       console.error('Processing error:', errorMessage);
@@ -108,102 +125,21 @@ export function AudioRecorder({ onNewRecording, onUpdateStatus }: AudioRecorderP
         onUpdateStatus(currentRecordingRef.current.id, 'failed');
       }
       setError(errorMessage);
-      setUploadProgress(null);
       setTranscriptionProgress(null);
+      setIsProcessing(false);
+      setProcessingStep('');
     }
   };
 
-  const testSpeechService = async () => {
-    try {
-      setError(null);
-      setTestResult("Loading audio file from storage...");
-      setTranscriptionProgress(null);
-      
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.currentTime = 0;
-      }
-
-      const blob = await azureStorage.downloadBlob('buscetta.wav');
-      testBlobRef.current = blob;
-      const audioUrl = URL.createObjectURL(blob);
-      
-      if (!audioRef.current) {
-        audioRef.current = new Audio(audioUrl);
-        audioRef.current.addEventListener('ended', () => {
-          setIsPlaying(false);
-        });
-      } else {
-        audioRef.current.src = audioUrl;
-      }
-
-      setTestResult("Audio file loaded. Click play/pause to control playback.");
-    } catch (err) {
-      console.error('Speech service test error:', err);
-      setError(err instanceof Error ? err.message : 'Speech service test failed');
-      setTestResult(null);
-    }
-  };
-
-  const togglePlayback = () => {
-    if (!audioRef.current) return;
-
-    if (isPlaying) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play();
-    }
-    setIsPlaying(!isPlaying);
-  };
-
-  const startTranscription = async () => {
-    if (!testBlobRef.current) {
-      setError('Please load the test audio file first');
-      return;
-    }
-
-    try {
-      setError(null);
-      setIsTranscribing(true);
-      setTranscriptionProgress('Generating transcription...');
-
-      const file = new File([testBlobRef.current], 'buscetta.wav', {
-        type: testBlobRef.current.type
-      });
-
-      const transcription = await speechService.transcribeFromFile(
-        file,
-        crypto.randomUUID(),
-        (progress) => setTranscriptionProgress(progress)
-      );
-
-      const transcriptionBlob = new Blob([transcription], { type: 'text/plain' });
-      const transcriptionFile = new File([transcriptionBlob], 'transcription.txt', { type: 'text/plain' });
-
-      await azureStorage.uploadFile(transcriptionFile, (progress) => {
-        setUploadProgress(progress);
-      });
-
-      setTranscriptionProgress(transcription);
-    } catch (err) {
-      console.error('Transcription error:', err);
-      setError(err instanceof Error ? err.message : 'Transcription failed');
-    } finally {
-      setIsTranscribing(false);
-    }
-  };
-
-  const handleShowEditor = () => {
-    if (transcriptionProgress) {
-      setShowEditor(true);
-    }
+  const handleEditorClose = () => {
+    setShowEditor(false);
   };
 
   return (
     <>
       <div className="p-4 bg-white rounded-lg shadow-md">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-semibold">Audio Acquisition</h2>
+          <h2 className="text-xl font-semibold">Acquisizione Audio</h2>
           {isRecording && (
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
@@ -217,10 +153,15 @@ export function AudioRecorder({ onNewRecording, onUpdateStatus }: AudioRecorderP
             {!isRecording ? (
               <button
                 onClick={startRecording}
-                className="flex items-center gap-2 px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600"
+                disabled={isProcessing}
+                className={`flex items-center gap-2 px-4 py-2 text-white rounded-lg ${
+                  isProcessing 
+                    ? 'bg-gray-400 cursor-not-allowed' 
+                    : 'bg-blue-500 hover:bg-blue-600'
+                }`}
               >
                 <Mic size={20} />
-                Start Recording
+                Avvia registrazione
               </button>
             ) : (
               <button
@@ -228,17 +169,22 @@ export function AudioRecorder({ onNewRecording, onUpdateStatus }: AudioRecorderP
                 className="flex items-center gap-2 px-4 py-2 text-white bg-red-500 rounded-lg hover:bg-red-600"
               >
                 <Square size={20} />
-                Stop Recording
+                Interrompi registrazione
               </button>
             )}
             
-            <label className="flex items-center gap-2 px-4 py-2 text-white bg-green-500 rounded-lg hover:bg-green-600 cursor-pointer">
+            <label className={`flex items-center gap-2 px-4 py-2 text-white rounded-lg ${
+              isProcessing 
+                ? 'bg-gray-400 cursor-not-allowed' 
+                : 'bg-green-500 hover:bg-green-600 cursor-pointer'
+            }`}>
               <Upload size={20} />
-              Upload Audio
+              Carica Audio
               <input
                 type="file"
                 accept="audio/*"
                 className="hidden"
+                disabled={isProcessing}
                 onChange={(e) => {
                   const file = e.target.files?.[0];
                   if (file) {
@@ -247,74 +193,19 @@ export function AudioRecorder({ onNewRecording, onUpdateStatus }: AudioRecorderP
                 }}
               />
             </label>
-
-            <button
-              onClick={testSpeechService}
-              className="flex items-center gap-2 px-4 py-2 text-white bg-purple-500 rounded-lg hover:bg-purple-600"
-            >
-              <TestTube size={20} />
-              Load Test Audio
-            </button>
-
-            {testResult && (
-              <>
-                <button
-                  onClick={togglePlayback}
-                  className="flex items-center gap-2 px-4 py-2 text-white bg-indigo-500 rounded-lg hover:bg-indigo-600"
-                >
-                  {isPlaying ? <Pause size={20} /> : <Play size={20} />}
-                  {isPlaying ? 'Pause' : 'Play'}
-                </button>
-
-                <button
-                  onClick={startTranscription}
-                  disabled={isTranscribing}
-                  className={`flex items-center gap-2 px-4 py-2 text-white rounded-lg ${
-                    isTranscribing 
-                      ? 'bg-gray-400 cursor-not-allowed' 
-                      : 'bg-teal-500 hover:bg-teal-600'
-                  }`}
-                >
-                  <FileText size={20} />
-                  {isTranscribing ? 'Transcribing...' : 'Transcribe'}
-                </button>
-
-                {transcriptionProgress && (
-                  <button
-                    onClick={handleShowEditor}
-                    className="flex items-center gap-2 px-4 py-2 text-white bg-orange-500 rounded-lg hover:bg-orange-600"
-                  >
-                    <Edit size={20} />
-                    Edit Transcription
-                  </button>
-                )}
-              </>
-            )}
           </div>
 
-          {uploadProgress !== null && (
+          {isProcessing && (
             <div className="space-y-2">
-              <div className="text-sm text-gray-600">Uploading: {uploadProgress}%</div>
-              <div className="w-full bg-gray-200 rounded-full h-2.5">
-                <div
-                  className="bg-blue-600 h-2.5 rounded-full transition-all duration-300"
-                  style={{ width: `${uploadProgress}%` }}
-                ></div>
+              <div className="flex items-center justify-between text-sm text-gray-600">
+                <span>{processingStep}</span>
+                <div className="animate-pulse">
+                  <span>Please wait...</span>
+                </div>
               </div>
-            </div>
-          )}
-
-          {testResult && (
-            <div className="mt-4 p-4 bg-green-50 rounded-lg">
-              <h3 className="text-lg font-semibold mb-2">Test Result</h3>
-              <p className="text-green-700">{testResult}</p>
-            </div>
-          )}
-
-          {transcriptionProgress && !showEditor && (
-            <div className="mt-4 p-4 bg-gray-50 rounded-lg overflow-y-auto" style={{ maxHeight: '200px' }}>            
-              <h3 className="text-lg font-semibold mb-2">Transcription</h3>
-              <p className="text-gray-700 whitespace-pre-wrap">{transcriptionProgress}</p>
+              <div className="w-full bg-gray-200 rounded-full h-2">
+                <div className="bg-blue-600 h-2 rounded-full animate-pulse" style={{ width: '100%' }}></div>
+              </div>
             </div>
           )}
 
@@ -330,10 +221,10 @@ export function AudioRecorder({ onNewRecording, onUpdateStatus }: AudioRecorderP
       {showEditor && transcriptionProgress && (
         <TranscriptionEditor
           transcription={transcriptionProgress}
-          onClose={() => setShowEditor(false)}
-          fileName="buscetta.wav"
-          fileSize={3500000}
-          duration={455}
+          onClose={handleEditorClose}
+          fileName={currentFileName}
+          fileSize={currentFileSize}
+          duration={duration || 0}
           language="Italian"
           confidence={0.99}
           lastUpdate={new Date().toISOString()}

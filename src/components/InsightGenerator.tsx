@@ -3,25 +3,31 @@ import { Edit2, Trash2, RotateCcw, Plus, X, AlertCircle } from 'lucide-react';
 import { CosmosService, Template } from '../services/cosmosService';
 import { OpenAIService } from '../services/openaiService';
 import ReactMarkdown from 'react-markdown';
+import { StorageService } from '../services/storageService';
 
 interface InsightGeneratorProps {
   transcriptionId: string;
   transcriptionText: string;
+  recordingName: string;
   onClose: () => void;
 }
 
-export function InsightGenerator({ transcriptionId, transcriptionText, onClose }: InsightGeneratorProps) {
+interface Insight {
+  id: string;
+  name: string;
+  prompt: string;
+  result: string;
+  error?: string;
+}
+
+export function InsightGenerator({ transcriptionId, transcriptionText, recordingName, onClose }: InsightGeneratorProps) {
   const [templates, setTemplates] = useState<Template[]>([]);
-  const [selectedInsights, setSelectedInsights] = useState<{
-    id: string;
-    name: string;
-    prompt: string;
-    result: string;
-    error?: string;
-  }[]>([]);
+  const [insights, setInsights] = useState<Insight[]>([]);
+  const [activeInsightId, setActiveInsightId] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
   const [showTemplateSelect, setShowTemplateSelect] = useState(false);
   const [editingPromptId, setEditingPromptId] = useState<string | null>(null);
+  const [editingNameId, setEditingNameId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const cosmosService = new CosmosService();
@@ -34,7 +40,16 @@ export function InsightGenerator({ transcriptionId, transcriptionText, onClose }
   const loadTemplates = async () => {
     try {
       const loadedTemplates = await cosmosService.getTemplates();
-      setTemplates(loadedTemplates);
+      // Add empty template as first option
+      const templatesWithEmpty = [
+        {
+          id: 'empty',
+          name: '(vuoto)',
+          prompt: ''
+        },
+        ...loadedTemplates
+      ];
+      setTemplates(templatesWithEmpty);
     } catch (error) {
       console.error('Error loading templates:', error);
       setError('Errore nel caricamento dei template');
@@ -45,24 +60,33 @@ export function InsightGenerator({ transcriptionId, transcriptionText, onClose }
     setShowTemplateSelect(false);
     setError(null);
     
-    const newInsight = {
+    const newInsight: Insight = {
       id: crypto.randomUUID(),
       name: template.name,
       prompt: template.prompt,
       result: ''
     };
 
-    setSelectedInsights(prev => [...prev, newInsight]);
-    await generateInsight(newInsight.id, template.prompt);
+    setInsights(prev => [...prev, newInsight]);
+    setActiveInsightId(newInsight.id);
+    
+    // Only generate insight if prompt is not empty
+    if (template.prompt) {
+      await generateInsight(newInsight.id, template.prompt);
+    }
   };
 
   const generateInsight = async (insightId: string, prompt: string) => {
+    if (!prompt.trim()) {
+      return; // Don't generate if prompt is empty
+    }
+
     setIsGenerating(true);
     setError(null);
     
     try {
       const result = await openAIService.generateInsight(transcriptionText, prompt);
-      setSelectedInsights(prev => 
+      setInsights(prev => 
         prev.map(insight => 
           insight.id === insightId 
             ? { ...insight, result, error: undefined }
@@ -72,7 +96,7 @@ export function InsightGenerator({ transcriptionId, transcriptionText, onClose }
     } catch (error) {
       console.error('Error generating insight:', error);
       const errorMessage = error instanceof Error ? error.message : 'Errore sconosciuto';
-      setSelectedInsights(prev => 
+      setInsights(prev => 
         prev.map(insight => 
           insight.id === insightId 
             ? { ...insight, error: errorMessage }
@@ -87,11 +111,18 @@ export function InsightGenerator({ transcriptionId, transcriptionText, onClose }
   const handlePromptEdit = (insightId: string, event: React.MouseEvent) => {
     event.stopPropagation();
     setEditingPromptId(insightId);
+    setEditingNameId(null);
+  };
+
+  const handleNameEdit = (insightId: string, event: React.MouseEvent) => {
+    event.stopPropagation();
+    setEditingNameId(insightId);
+    setEditingPromptId(null);
   };
 
   const handlePromptSave = async (insightId: string, newPrompt: string) => {
     setEditingPromptId(null);
-    setSelectedInsights(prev => 
+    setInsights(prev => 
       prev.map(insight => 
         insight.id === insightId 
           ? { ...insight, prompt: newPrompt }
@@ -101,24 +132,46 @@ export function InsightGenerator({ transcriptionId, transcriptionText, onClose }
     await generateInsight(insightId, newPrompt);
   };
 
+  const handleNameSave = (insightId: string, newName: string) => {
+    setEditingNameId(null);
+    setInsights(prev => 
+      prev.map(insight => 
+        insight.id === insightId 
+          ? { ...insight, name: newName }
+          : insight
+      )
+    );
+  };
+
   const handleInsightDelete = (insightId: string, event: React.MouseEvent) => {
     event.stopPropagation();
-    setSelectedInsights(prev => prev.filter(insight => insight.id !== insightId));
+    setInsights(prev => prev.filter(insight => insight.id !== insightId));
+    if (activeInsightId === insightId) {
+      setActiveInsightId(null);
+    }
   };
 
   const handleRegenerate = async (insightId: string, event: React.MouseEvent) => {
     event.stopPropagation();
-    const insight = selectedInsights.find(i => i.id === insightId);
+    const insight = insights.find(i => i.id === insightId);
     if (insight) {
       await generateInsight(insightId, insight.prompt);
     }
   };
 
+  const handleInsightSelect = (insightId: string) => {
+    if (editingNameId === null && editingPromptId === null) {
+      setActiveInsightId(insightId);
+    }
+  };
+
+  const activeInsight = insights.find(i => i.id === activeInsightId);
+
   return (
     <div className="mt-6 bg-white rounded-lg shadow-lg">
       {/* Header */}
       <div className="p-4 border-b flex items-center justify-between">
-        <h2 className="text-xl font-semibold">Insight personalizzati</h2>
+        <h2 className="text-xl font-semibold">{recordingName}</h2>
         <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
           <X size={24} />
         </button>
@@ -150,7 +203,7 @@ export function InsightGenerator({ transcriptionId, transcriptionText, onClose }
                 <p className="text-sm text-gray-600 mb-4">
                   Aggiungi un insight personalizzato a partire da uno dei template disponibili.
                 </p>
-                <div className="space-y-2">
+                <div className="max-h-[200px] overflow-y-auto space-y-2">
                   {templates.map(template => (
                     <div
                       key={template.id}
@@ -171,18 +224,42 @@ export function InsightGenerator({ transcriptionId, transcriptionText, onClose }
             </div>
           )}
 
-          <div className="space-y-2">
-            {selectedInsights.map(insight => (
+          <div className="max-h-[200px] overflow-y-auto pr-2 space-y-2">
+            {insights.map(insight => (
               <div
                 key={insight.id}
-                className={`w-full text-left px-4 py-2 hover:bg-gray-50 rounded-lg flex items-center justify-between ${
-                  insight.error ? 'bg-red-50' : ''
-                }`}
+                onClick={() => handleInsightSelect(insight.id)}
+                className={`w-full text-left px-4 py-2 rounded-lg flex items-center justify-between cursor-pointer
+                  ${activeInsightId === insight.id ? 'bg-blue-50' : 'hover:bg-gray-50'}
+                  ${insight.error ? 'bg-red-50' : ''}`}
               >
-                <span>{insight.name}</span>
+                {editingNameId === insight.id ? (
+                  <input
+                    type="text"
+                    value={insight.name}
+                    onChange={(e) => setInsights(prev => 
+                      prev.map(i => 
+                        i.id === insight.id 
+                          ? { ...i, name: e.target.value }
+                          : i
+                      )
+                    )}
+                    onBlur={() => handleNameSave(insight.id, insight.name)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        handleNameSave(insight.id, insight.name);
+                      }
+                    }}
+                    className="flex-1 px-2 py-1 border rounded text-sm mr-2"
+                    autoFocus
+                    onClick={(e) => e.stopPropagation()}
+                  />
+                ) : (
+                  <span>{insight.name}</span>
+                )}
                 <div className="flex items-center gap-2">
                   <div
-                    onClick={(e) => handlePromptEdit(insight.id, e)}
+                    onClick={(e) => handleNameEdit(insight.id, e)}
                     className="text-gray-400 hover:text-gray-600 cursor-pointer"
                   >
                     <Edit2 size={16} />
@@ -201,51 +278,68 @@ export function InsightGenerator({ transcriptionId, transcriptionText, onClose }
 
         {/* Main Content Area */}
         <div className="col-span-3 space-y-6">
-          {selectedInsights.map(insight => (
-            <div key={insight.id} className="space-y-4">
+          {activeInsight && (
+            <div className="space-y-4">
               <div className="bg-gray-50 p-4 rounded-lg">
-                <h3 className="font-semibold mb-2">Prompt</h3>
-                {editingPromptId === insight.id ? (
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="font-semibold">Prompt</h3>
+                  <div
+                    onClick={(e) => handlePromptEdit(activeInsight.id, e)}
+                    className="text-gray-400 hover:text-gray-600 cursor-pointer"
+                  >
+                    <Edit2 size={16} />
+                  </div>
+                </div>
+                {editingPromptId === activeInsight.id ? (
                   <textarea
-                    value={insight.prompt}
-                    onChange={(e) => setSelectedInsights(prev => 
+                    value={activeInsight.prompt}
+                    onChange={(e) => setInsights(prev => 
                       prev.map(i => 
-                        i.id === insight.id 
+                        i.id === activeInsight.id 
                           ? { ...i, prompt: e.target.value }
                           : i
                       )
                     )}
-                    onBlur={() => handlePromptSave(insight.id, insight.prompt)}
+                    onBlur={() => handlePromptSave(activeInsight.id, activeInsight.prompt)}
                     className="w-full p-2 border rounded-lg"
                     rows={4}
+                    placeholder="Inserisci il tuo prompt personalizzato..."
                   />
                 ) : (
-                  <p className="text-gray-700 whitespace-pre-wrap">{insight.prompt}</p>
+                  <p className="text-gray-700 whitespace-pre-wrap">
+                    {activeInsight.prompt || "Nessun prompt inserito. Clicca sull'icona della matita per aggiungere un prompt."}
+                  </p>
                 )}
               </div>
 
               <div className="bg-white border rounded-lg p-4">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="font-semibold">Insight elaborato</h3>
-                  <div
-                    onClick={(e) => handleRegenerate(insight.id, e)}
-                    className={`flex items-center gap-2 px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-lg cursor-pointer ${
-                      isGenerating ? 'opacity-50 cursor-not-allowed' : ''
-                    }`}
-                  >
-                    <RotateCcw size={16} />
-                    <span>Rigenera</span>
-                  </div>
+                  {activeInsight.prompt && (
+                    <div
+                      onClick={(e) => handleRegenerate(activeInsight.id, e)}
+                      className={`flex items-center gap-2 px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-lg cursor-pointer ${
+                        isGenerating ? 'opacity-50 cursor-not-allowed' : ''
+                      }`}
+                    >
+                      <RotateCcw size={16} />
+                      <span>Rigenera</span>
+                    </div>
+                  )}
                 </div>
                 
-                {insight.error ? (
+                {activeInsight.error ? (
                   <div className="flex items-center gap-2 text-red-600 bg-red-50 p-4 rounded-lg">
                     <AlertCircle size={20} />
-                    <span>{insight.error}</span>
+                    <span>{activeInsight.error}</span>
                   </div>
                 ) : isGenerating ? (
                   <div className="flex items-center justify-center py-8">
                     <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+                  </div>
+                ) : !activeInsight.prompt ? (
+                  <div className="text-gray-500 text-center py-8">
+                    Inserisci un prompt per generare l'insight
                   </div>
                 ) : (
                   <div className="prose prose-sm md:prose-base lg:prose-lg max-w-none">
@@ -271,13 +365,13 @@ export function InsightGenerator({ transcriptionId, transcriptionText, onClose }
                         em: ({node, ...props}) => <em className="italic" {...props} />,
                       }}
                     >
-                      {insight.result}
+                      {activeInsight.result}
                     </ReactMarkdown>
                   </div>
                 )}
               </div>
             </div>
-          ))}
+          )}
         </div>
       </div>
     </div>
