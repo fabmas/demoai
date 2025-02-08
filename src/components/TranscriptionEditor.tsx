@@ -67,10 +67,12 @@ export function TranscriptionEditor({
   const [audioFileSize, setAudioFileSize] = useState(0);
   const [lastUpdateTime, setLastUpdateTime] = useState('');
   const [showUnsavedChangesModal, setShowUnsavedChangesModal] = useState(false);
+  const [editingPhraseIndex, setEditingPhraseIndex] = useState<number | null>(null);
   const initialTitle = useRef(title);
   const initialSpeakers = useRef<Speaker[]>([]);
   const initialReviewedStatus = useRef(isReviewed);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const editTextareaRef = useRef<HTMLTextAreaElement | null>(null);
 
   const storageService = new StorageService();
   const azureStorage = new AzureStorageService();
@@ -364,6 +366,42 @@ export function TranscriptionEditor({
     }
   };
 
+  const handlePhraseEdit = (index: number) => {
+    setEditingPhraseIndex(index);
+    // Focus the textarea after it's rendered
+    setTimeout(() => {
+      if (editTextareaRef.current) {
+        editTextareaRef.current.focus();
+      }
+    }, 0);
+  };
+
+  const handlePhraseSave = (index: number, newText: string) => {
+    if (!transcriptionJson) return;
+
+    const updatedPhrases = [...transcriptionJson.phrases];
+    updatedPhrases[index] = {
+      ...updatedPhrases[index],
+      text: newText.trim()
+    };
+
+    // Update transcriptionJson with new phrases
+    setTranscriptionJson({
+      ...transcriptionJson,
+      phrases: updatedPhrases,
+      transcriptionText: updatedPhrases
+        .map(phrase => `Speaker ${phrase.speaker} [${formatTimestamp(phrase.offsetMilliseconds)} - ${formatTimestamp(phrase.offsetMilliseconds + phrase.durationMilliseconds)}]: "${phrase.text}"`)
+        .join('\n')
+    });
+
+    setEditingPhraseIndex(null);
+    setHasUnsavedChanges(true);
+  };
+
+  const handlePhraseEditCancel = () => {
+    setEditingPhraseIndex(null);
+  };
+
   const handleSave = async () => {
     if (!transcriptionId) {
       setError('ID trascrizione mancante');
@@ -540,6 +578,7 @@ export function TranscriptionEditor({
                 const colorIndex = speaker ? getSpeakerColorIndex(speaker.id) : index;
                 const phraseId = `phrase-${index}`;
                 const isPlaying = currentlyPlaying === phraseId;
+                const isEditingThisPhrase = editingPhraseIndex === index;
 
                 return (
                   <div key={index} className="flex gap-4 items-start p-2 hover:bg-gray-50 rounded">
@@ -561,8 +600,49 @@ export function TranscriptionEditor({
                         >
                           {isPlaying ? <Pause size={16} /> : <Play size={16} />}
                         </button>
+                        <button
+                          onClick={() => handlePhraseEdit(index)}
+                          className="p-1 rounded-full hover:bg-gray-200"
+                          title="Modifica frase"
+                        >
+                          <Edit2 size={16} />
+                        </button>
                       </div>
-                      <p className="text-gray-700">{phrase.text}</p>
+                      {isEditingThisPhrase ? (
+                        <div className="space-y-2">
+                          <textarea
+                            ref={editTextareaRef}
+                            defaultValue={phrase.text}
+                            className="w-full p-2 border rounded-lg min-h-[60px]"
+                            onKeyDown={(e) => {
+                              if (e.key === 'Enter' && e.ctrlKey) {
+                                handlePhraseSave(index, e.currentTarget.value);
+                              } else if (e.key === 'Escape') {
+                                handlePhraseEditCancel();
+                              }
+                            }}
+                          />
+                          <div className="flex justify-end gap-2">
+                            <button
+                              onClick={() => handlePhraseEditCancel()}
+                              className="px-3 py-1 text-sm text-gray-600 hover:text-gray-800"
+                            >
+                              Annulla
+                            </button>
+                            <button
+                              onClick={() => handlePhraseSave(index, editTextareaRef.current?.value || '')}
+                              className="px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
+                            >
+                              Salva
+                            </button>
+                          </div>
+                          <p className="text-xs text-gray-500">
+                            Premi Ctrl + Enter per salvare o Esc per annullare
+                          </p>
+                        </div>
+                      ) : (
+                        <p className="text-gray-700">{phrase.text}</p>
+                      )}
                     </div>
                   </div>
                 );
