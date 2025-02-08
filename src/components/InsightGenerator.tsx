@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Edit2, Trash2, RotateCcw, Plus, X, AlertCircle } from 'lucide-react';
+import { Edit2, Trash2, RotateCcw, Plus, X, AlertCircle, Download } from 'lucide-react';
 import { CosmosService, Template } from '../services/cosmosService';
 import { OpenAIService } from '../services/openaiService';
 import ReactMarkdown from 'react-markdown';
 import { StorageService } from '../services/storageService';
+import { jsPDF } from 'jspdf';
+import removeMd from 'remove-markdown';
 
 interface InsightGeneratorProps {
   transcriptionId: string;
@@ -18,6 +20,14 @@ interface Insight {
   prompt: string;
   result: string;
   error?: string;
+}
+
+interface ProcessedMarkdownSection {
+  text: string;
+  level: 'title' | 'subtitle' | 'normal';
+  isList?: boolean;
+  isBold?: boolean;
+  isItalic?: boolean;
 }
 
 export function InsightGenerator({ transcriptionId, transcriptionText, recordingName, onClose }: InsightGeneratorProps) {
@@ -163,6 +173,175 @@ export function InsightGenerator({ transcriptionId, transcriptionText, recording
     if (editingNameId === null && editingPromptId === null) {
       setActiveInsightId(insightId);
     }
+  };
+
+  const processMarkdownForPDF = (markdown: string): ProcessedMarkdownSection[] => {
+    const lines = markdown.split('\n');
+    const sections: ProcessedMarkdownSection[] = [];
+    
+    let inList = false;
+    let listItems: string[] = [];
+    
+    lines.forEach((line, index) => {
+      const trimmedLine = line.trim();
+      
+      // Skip empty lines
+      if (!trimmedLine) {
+        if (inList && listItems.length > 0) {
+          sections.push({
+            text: listItems.join('\n'),
+            level: 'normal',
+            isList: true
+          });
+          listItems = [];
+          inList = false;
+        }
+        return;
+      }
+
+      // Handle headers
+      if (trimmedLine.startsWith('# ')) {
+        sections.push({
+          text: trimmedLine.replace(/^# /, ''),
+          level: 'title'
+        });
+      }
+      else if (trimmedLine.startsWith('## ')) {
+        sections.push({
+          text: trimmedLine.replace(/^## /, ''),
+          level: 'subtitle'
+        });
+      }
+      // Handle lists
+      else if (trimmedLine.match(/^[*-] /) || trimmedLine.match(/^\d+\. /)) {
+        inList = true;
+        listItems.push(trimmedLine.replace(/^[*-] /, '').replace(/^\d+\. /, ''));
+      }
+      // Handle normal text
+      else {
+        if (inList && listItems.length > 0) {
+          sections.push({
+            text: listItems.join('\n'),
+            level: 'normal',
+            isList: true
+          });
+          listItems = [];
+          inList = false;
+        }
+        
+        sections.push({
+          text: trimmedLine,
+          level: 'normal',
+          isBold: trimmedLine.includes('**'),
+          isItalic: trimmedLine.includes('*')
+        });
+      }
+    });
+
+    // Handle any remaining list items
+    if (listItems.length > 0) {
+      sections.push({
+        text: listItems.join('\n'),
+        level: 'normal',
+        isList: true
+      });
+    }
+
+    return sections;
+  };
+
+  const handleExportPDF = async () => {
+    if (!activeInsight) return;
+
+    const doc = new jsPDF();
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 20;
+    const contentWidth = pageWidth - (margin * 2);
+    
+    let currentY = margin;
+
+    // Add header
+    doc.setFontSize(16);
+    doc.setFont('helvetica', 'bold');
+    doc.text(recordingName, margin, currentY);
+    currentY += 10;
+
+    // Add insight name
+    doc.setFontSize(14);
+    doc.text(activeInsight.name, margin, currentY);
+    currentY += 8;
+
+    // Add date
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    doc.text(new Date().toLocaleDateString('it-IT'), margin, currentY);
+    currentY += 15;
+
+    // Process and add content
+    const sections = processMarkdownForPDF(activeInsight.result);
+    
+    for (const section of sections) {
+      // Check if we need a new page
+      if (currentY > pageHeight - margin) {
+        doc.addPage();
+        currentY = margin;
+      }
+
+      switch (section.level) {
+        case 'title':
+          doc.setFontSize(14);
+          doc.setFont('helvetica', 'bold');
+          doc.text(section.text, margin, currentY);
+          currentY += 10;
+          break;
+
+        case 'subtitle':
+          doc.setFontSize(12);
+          doc.setFont('helvetica', 'bold');
+          doc.text(section.text, margin, currentY);
+          currentY += 8;
+          break;
+
+        case 'normal':
+          doc.setFontSize(11);
+          
+          if (section.isList) {
+            // Handle lists
+            const items = section.text.split('\n');
+            items.forEach((item, index) => {
+              if (currentY > pageHeight - margin) {
+                doc.addPage();
+                currentY = margin;
+              }
+              doc.setFont('helvetica', 'normal');
+              const bullet = '• ';
+              doc.text(bullet + item, margin + 5, currentY);
+              currentY += 6;
+            });
+            currentY += 2; // Add extra space after list
+          } else {
+            // Handle normal text
+            doc.setFont('helvetica', section.isBold ? 'bold' : 'normal');
+            const text = removeMd(section.text); // Remove any remaining markdown
+            const lines = doc.splitTextToSize(text, contentWidth);
+            
+            lines.forEach(line => {
+              if (currentY > pageHeight - margin) {
+                doc.addPage();
+                currentY = margin;
+              }
+              doc.text(line, margin, currentY);
+              currentY += 6;
+            });
+            currentY += 2; // Add extra space between paragraphs
+          }
+          break;
+      }
+    }
+
+    // Save the PDF
+    doc.save(`${recordingName} - ${activeInsight.name}.pdf`);
   };
 
   const activeInsight = insights.find(i => i.id === activeInsightId);
@@ -315,17 +494,30 @@ export function InsightGenerator({ transcriptionId, transcriptionText, recording
               <div className="bg-white border rounded-lg p-4">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="font-semibold">Insight elaborato</h3>
-                  {activeInsight.prompt && (
-                    <div
-                      onClick={(e) => handleRegenerate(activeInsight.id, e)}
-                      className={`flex items-center gap-2 px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-lg cursor-pointer ${
-                        isGenerating ? 'opacity-50 cursor-not-allowed' : ''
-                      }`}
-                    >
-                      <RotateCcw size={16} />
-                      <span>Rigenera</span>
-                    </div>
-                  )}
+                  <div className="flex items-center gap-2">
+                    {activeInsight.prompt && (
+                      <button
+                        onClick={(e) => handleRegenerate(activeInsight.id, e)}
+                        className={`flex items-center gap-2 px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-lg ${
+                          isGenerating ? 'opacity-50 cursor-not-allowed' : ''
+                        }`}
+                        title="Rigenera insight"
+                      >
+                        <RotateCcw size={16} />
+                        <span>Rigenera</span>
+                      </button>
+                    )}
+                    {activeInsight.result && (
+                      <button
+                        onClick={handleExportPDF}
+                        className="flex items-center gap-2 px-4 py-2 text-green-600 hover:bg-green-50 rounded-lg"
+                        title="Esporta in PDF"
+                      >
+                        <Download size={16} />
+                        <span>Esporta PDF</span>
+                      </button>
+                    )}
+                  </div>
                 </div>
                 
                 {activeInsight.error ? (
