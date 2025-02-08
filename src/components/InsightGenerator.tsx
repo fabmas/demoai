@@ -5,7 +5,6 @@ import { OpenAIService } from '../services/openaiService';
 import ReactMarkdown from 'react-markdown';
 import { StorageService } from '../services/storageService';
 import { jsPDF } from 'jspdf';
-import removeMd from 'remove-markdown';
 
 interface InsightGeneratorProps {
   transcriptionId: string;
@@ -22,12 +21,22 @@ interface Insight {
   error?: string;
 }
 
+interface TextSegment {
+  text: string;
+  isBold: boolean;
+}
+
+interface ListItem {
+  prefix: string;
+  segments: TextSegment[];
+}
+
 interface ProcessedMarkdownSection {
   text: string;
-  level: 'title' | 'subtitle' | 'normal';
+  level: 'h1' | 'h2' | 'h3' | 'normal';
   isList?: boolean;
-  isBold?: boolean;
-  isItalic?: boolean;
+  listItems?: ListItem[];
+  segments?: TextSegment[];
 }
 
 export function InsightGenerator({ transcriptionId, transcriptionText, recordingName, onClose }: InsightGeneratorProps) {
@@ -50,7 +59,6 @@ export function InsightGenerator({ transcriptionId, transcriptionText, recording
   const loadTemplates = async () => {
     try {
       const loadedTemplates = await cosmosService.getTemplates();
-      // Add empty template as first option
       const templatesWithEmpty = [
         {
           id: 'empty',
@@ -80,7 +88,6 @@ export function InsightGenerator({ transcriptionId, transcriptionText, recording
     setInsights(prev => [...prev, newInsight]);
     setActiveInsightId(newInsight.id);
     
-    // Only generate insight if prompt is not empty
     if (template.prompt) {
       await generateInsight(newInsight.id, template.prompt);
     }
@@ -88,7 +95,7 @@ export function InsightGenerator({ transcriptionId, transcriptionText, recording
 
   const generateInsight = async (insightId: string, prompt: string) => {
     if (!prompt.trim()) {
-      return; // Don't generate if prompt is empty
+      return;
     }
 
     setIsGenerating(true);
@@ -175,75 +182,161 @@ export function InsightGenerator({ transcriptionId, transcriptionText, recording
     }
   };
 
+  const extractBoldSegments = (text: string): TextSegment[] => {
+    const segments: TextSegment[] = [];
+    let currentIndex = 0;
+    
+    while (currentIndex < text.length) {
+      const boldStart = text.indexOf('**', currentIndex);
+      
+      if (boldStart === -1) {
+        if (currentIndex < text.length) {
+          segments.push({
+            text: text.slice(currentIndex),
+            isBold: false
+          });
+        }
+        break;
+      }
+      
+      if (boldStart > currentIndex) {
+        segments.push({
+          text: text.slice(currentIndex, boldStart),
+          isBold: false
+        });
+      }
+      
+      const boldEnd = text.indexOf('**', boldStart + 2);
+      if (boldEnd === -1) {
+        segments.push({
+          text: text.slice(currentIndex),
+          isBold: false
+        });
+        break;
+      }
+      
+      segments.push({
+        text: text.slice(boldStart + 2, boldEnd),
+        isBold: true
+      });
+      
+      currentIndex = boldEnd + 2;
+    }
+    
+    return segments;
+  };
+
   const processMarkdownForPDF = (markdown: string): ProcessedMarkdownSection[] => {
     const lines = markdown.split('\n');
     const sections: ProcessedMarkdownSection[] = [];
+    let currentListItems: ListItem[] = [];
     
-    let inList = false;
-    let listItems: string[] = [];
-    
-    lines.forEach((line, index) => {
+    lines.forEach((line) => {
       const trimmedLine = line.trim();
       
-      // Skip empty lines
       if (!trimmedLine) {
-        if (inList && listItems.length > 0) {
+        if (currentListItems.length > 0) {
           sections.push({
-            text: listItems.join('\n'),
+            text: '',
             level: 'normal',
-            isList: true
+            isList: true,
+            listItems: currentListItems
           });
-          listItems = [];
-          inList = false;
+          currentListItems = [];
         }
         return;
       }
 
-      // Handle headers
-      if (trimmedLine.startsWith('# ')) {
+      // Handle headers with numbers
+      if (trimmedLine.startsWith('### ')) {
+        if (currentListItems.length > 0) {
+          sections.push({
+            text: '',
+            level: 'normal',
+            isList: true,
+            listItems: currentListItems
+          });
+          currentListItems = [];
+        }
         sections.push({
-          text: trimmedLine.replace(/^# /, ''),
-          level: 'title'
+          text: trimmedLine.replace(/^### /, ''),
+          level: 'h3'
         });
       }
       else if (trimmedLine.startsWith('## ')) {
+        if (currentListItems.length > 0) {
+          sections.push({
+            text: '',
+            level: 'normal',
+            isList: true,
+            listItems: currentListItems
+          });
+          currentListItems = [];
+        }
         sections.push({
           text: trimmedLine.replace(/^## /, ''),
-          level: 'subtitle'
+          level: 'h2'
         });
       }
-      // Handle lists
-      else if (trimmedLine.match(/^[*-] /) || trimmedLine.match(/^\d+\. /)) {
-        inList = true;
-        listItems.push(trimmedLine.replace(/^[*-] /, '').replace(/^\d+\. /, ''));
+      else if (trimmedLine.startsWith('# ')) {
+        if (currentListItems.length > 0) {
+          sections.push({
+            text: '',
+            level: 'normal',
+            isList: true,
+            listItems: currentListItems
+          });
+          currentListItems = [];
+        }
+        sections.push({
+          text: trimmedLine.replace(/^# /, ''),
+          level: 'h1'
+        });
+      }
+      // Handle bullet lists
+      else if (trimmedLine.match(/^[*-] /)) {
+        const itemText = trimmedLine.replace(/^[*-] /, '');
+        currentListItems.push({
+          prefix: '• ',
+          segments: extractBoldSegments(itemText)
+        });
+      }
+      // Handle numbered lists
+      else if (trimmedLine.match(/^\d+\. /)) {
+        const [prefix] = trimmedLine.match(/^\d+\. /) || [''];
+        const itemText = trimmedLine.replace(/^\d+\. /, '');
+        currentListItems.push({
+          prefix,
+          segments: extractBoldSegments(itemText)
+        });
       }
       // Handle normal text
       else {
-        if (inList && listItems.length > 0) {
+        if (currentListItems.length > 0) {
           sections.push({
-            text: listItems.join('\n'),
+            text: '',
             level: 'normal',
-            isList: true
+            isList: true,
+            listItems: currentListItems
           });
-          listItems = [];
-          inList = false;
+          currentListItems = [];
         }
         
         sections.push({
           text: trimmedLine,
           level: 'normal',
-          isBold: trimmedLine.includes('**'),
-          isItalic: trimmedLine.includes('*')
+          segments: extractBoldSegments(trimmedLine)
         });
       }
     });
 
     // Handle any remaining list items
-    if (listItems.length > 0) {
+    if (currentListItems.length > 0) {
       sections.push({
-        text: listItems.join('\n'),
+        text: '',
         level: 'normal',
-        isList: true
+        isList: true,
+        listItems: currentListItems
       });
     }
 
@@ -289,14 +382,21 @@ export function InsightGenerator({ transcriptionId, transcriptionText, recording
       }
 
       switch (section.level) {
-        case 'title':
+        case 'h1':
           doc.setFontSize(14);
           doc.setFont('helvetica', 'bold');
           doc.text(section.text, margin, currentY);
           currentY += 10;
           break;
 
-        case 'subtitle':
+        case 'h2':
+          doc.setFontSize(13);
+          doc.setFont('helvetica', 'bold');
+          doc.text(section.text, margin, currentY);
+          currentY += 8;
+          break;
+
+        case 'h3':
           doc.setFontSize(12);
           doc.setFont('helvetica', 'bold');
           doc.text(section.text, margin, currentY);
@@ -306,35 +406,53 @@ export function InsightGenerator({ transcriptionId, transcriptionText, recording
         case 'normal':
           doc.setFontSize(11);
           
-          if (section.isList) {
-            // Handle lists
-            const items = section.text.split('\n');
-            items.forEach((item, index) => {
+          if (section.isList && section.listItems) {
+            section.listItems.forEach(item => {
               if (currentY > pageHeight - margin) {
                 doc.addPage();
                 currentY = margin;
               }
+              
+              let xPos = margin;
+              const baseY = currentY;
+              
+              // Draw the list item prefix (bullet or number)
               doc.setFont('helvetica', 'normal');
-              const bullet = '• ';
-              doc.text(bullet + item, margin + 5, currentY);
+              doc.text(item.prefix, xPos, baseY);
+              xPos += doc.getTextWidth(item.prefix) + 2;
+              
+              // Process each segment with its formatting
+              item.segments.forEach(segment => {
+                const segmentWidth = doc.getTextWidth(segment.text);
+                if (xPos + segmentWidth > pageWidth - margin) {
+                  currentY += 6;
+                  xPos = margin + 10; // Indent continuation lines
+                }
+                doc.setFont('helvetica', segment.isBold ? 'bold' : 'normal');
+                doc.text(segment.text, xPos, currentY);
+                xPos += segmentWidth + 1;
+              });
+              
               currentY += 6;
             });
             currentY += 2; // Add extra space after list
-          } else {
-            // Handle normal text
-            doc.setFont('helvetica', section.isBold ? 'bold' : 'normal');
-            const text = removeMd(section.text); // Remove any remaining markdown
-            const lines = doc.splitTextToSize(text, contentWidth);
-            
-            lines.forEach(line => {
-              if (currentY > pageHeight - margin) {
-                doc.addPage();
-                currentY = margin;
+          } else if (section.segments) {
+            let xPos = margin;
+            section.segments.forEach(segment => {
+              const segmentWidth = doc.getTextWidth(segment.text);
+              if (xPos + segmentWidth > pageWidth - margin) {
+                currentY += 6;
+                xPos = margin;
               }
-              doc.text(line, margin, currentY);
-              currentY += 6;
+              doc.setFont('helvetica', segment.isBold ? 'bold' : 'normal');
+              doc.text(segment.text, xPos, currentY);
+              xPos += segmentWidth + 1;
             });
-            currentY += 2; // Add extra space between paragraphs
+            currentY += 6;
+          } else if (section.text) {
+            doc.setFont('helvetica', 'normal');
+            doc.text(section.text, margin, currentY);
+            currentY += 6;
           }
           break;
       }
@@ -348,7 +466,6 @@ export function InsightGenerator({ transcriptionId, transcriptionText, recording
 
   return (
     <div className="mt-6 bg-white rounded-lg shadow-lg">
-      {/* Header */}
       <div className="p-4 border-b flex items-center justify-between">
         <h2 className="text-xl font-semibold">{recordingName}</h2>
         <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
@@ -356,9 +473,7 @@ export function InsightGenerator({ transcriptionId, transcriptionText, recording
         </button>
       </div>
 
-      {/* Main Content */}
       <div className="grid grid-cols-4 gap-6 p-6">
-        {/* Left Sidebar - Insights List */}
         <div className="space-y-4">
           <div
             onClick={() => setShowTemplateSelect(true)}
@@ -455,7 +570,6 @@ export function InsightGenerator({ transcriptionId, transcriptionText, recording
           </div>
         </div>
 
-        {/* Main Content Area */}
         <div className="col-span-3 space-y-6">
           {activeInsight && (
             <div className="space-y-4">
