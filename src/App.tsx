@@ -5,10 +5,12 @@ import { TranscriptionEditor } from './components/TranscriptionEditor';
 import { InsightGenerator } from './components/InsightGenerator';
 import { StorageService, TranscriptionData } from './services/storageService';
 import { AzureStorageService } from './services/azureStorage';
+import { RAGService } from './services/RAGService';
 import type { Recording } from './types';
 
 const storageService = new StorageService();
 const azureStorage = new AzureStorageService();
+const ragService = new RAGService();
 
 export default function App() {
   const [recordings, setRecordings] = useState<Recording[]>([]);
@@ -21,9 +23,39 @@ export default function App() {
   const [hideAudioRecorderTranscription, setHideAudioRecorderTranscription] = useState(false);
   const [lastCreatedTranscriptionId, setLastCreatedTranscriptionId] = useState<string | null>(null);
 
+  // useEffect(() => {
+  //   const initializeServices = async () => {
+  //     try {
+  //       // Initialize RAG service with retries
+  //       let retries = 3;
+  //       while (retries > 0) {
+  //         try {
+  //           await ragService.initialize();
+  //           break;
+  //         } catch (error) {
+  //           retries--;
+  //           if (retries === 0) {
+  //             throw error;
+  //           }
+  //           console.warn('Retrying RAG service initialization...');
+  //           await new Promise(resolve => setTimeout(resolve, 2000));
+  //         }
+  //       }
+
+  //       await loadTranscriptions();
+  //     } catch (error) {
+  //       console.error('Error initializing services:', error);
+  //       // Consider showing a user-friendly error message here
+  //     }
+  //   };
+
+  //   initializeServices();
+  // }, []);
+  
   useEffect(() => {
     loadTranscriptions();
   }, []);
+  
 
   useEffect(() => {
     if (lastCreatedTranscriptionId) {
@@ -203,27 +235,41 @@ export default function App() {
             selectedTranscriptionId={selectedTranscription?.id}
           />
           {showEditor && selectedTranscription && transcriptionJson && (
-            <TranscriptionEditor
-              transcription={transcriptionJson.transcriptionText}
-              onClose={handleEditorClose}
-              fileName={selectedTranscription.name}
-              fileSize={selectedTranscription.fileSize || 0}
-              duration={selectedTranscription.duration || 0}
-              language={selectedTranscription.language || 'Italian'}
-              confidence={selectedTranscription.confidence || 0}
-              lastUpdate={selectedTranscription.date}
-              jsonUrl={selectedTranscription.URL_TranscriptionJSON}
-              transcriptionId={selectedTranscription.id}
-              initialReviewStatus={selectedTranscription.reviewStatus === 'reviewed'}
-            />
+            <>
+              <div className="fixed inset-0 bg-black bg-opacity-50 z-40"></div>
+              <div className="fixed inset-0 z-50 flex items-start justify-center overflow-auto p-4">
+                <div className="bg-white max-w-7xl w-full rounded-lg shadow-lg relative">
+                  <TranscriptionEditor
+                    transcription={transcriptionJson.transcriptionText}
+                    onClose={handleEditorClose}
+                    fileName={selectedTranscription.name}
+                    fileSize={selectedTranscription.fileSize || 0}
+                    duration={selectedTranscription.duration || 0}
+                    language={selectedTranscription.language || 'Italian'}
+                    confidence={selectedTranscription.confidence || 0}
+                    lastUpdate={selectedTranscription.date}
+                    jsonUrl={selectedTranscription.URL_TranscriptionJSON}
+                    transcriptionId={selectedTranscription.id}
+                    initialReviewStatus={selectedTranscription.reviewStatus === 'reviewed'}
+                  />
+                </div>
+              </div>
+            </>
           )}
           {showInsightGenerator && selectedTranscriptionText && selectedTranscription && (
-            <InsightGenerator
-              transcriptionId={selectedTranscription.id}
-              transcriptionText={selectedTranscriptionText}
-              recordingName={selectedTranscriptionName}
-              onClose={handleInsightGeneratorClose}
-            />
+            <>
+              <div className="fixed inset-0 bg-black bg-opacity-50 z-40"></div>
+              <div className="fixed inset-0 z-50 flex items-start justify-center overflow-auto p-4">
+                <div className="bg-white max-w-7xl w-full rounded-lg shadow-lg relative">
+                  <InsightGenerator
+                    transcriptionId={selectedTranscription.id}
+                    transcriptionText={selectedTranscriptionText}
+                    recordingName={selectedTranscriptionName}
+                    onClose={handleInsightGeneratorClose}
+                  />
+                </div>
+              </div>
+            </>
           )}
         </div>
       </main>

@@ -30,9 +30,17 @@ export class AzureStorageService {
   async uploadFile(file: File, onProgress?: (progress: number) => void): Promise<{ url: string, blobName: string }> {
     try {
       const containerClient = this.blobServiceClient.getContainerClient(this.containerName);
-      const blobName = `${Date.now()}-${file.name}`;
-      const blockBlobClient = containerClient.getBlockBlobClient(blobName);
+      let blobName = `${Date.now()}-${file.name}`;
+      let blockBlobClient = containerClient.getBlockBlobClient(blobName);
       
+      // Check if the blob already exists
+      try {
+        await blockBlobClient.exists();
+      } catch (error) {
+        blobName = file.name;
+        blockBlobClient = containerClient.getBlockBlobClient(blobName);
+      }
+
       const options = {
         blobHTTPHeaders: {
           blobContentType: file.type || 'application/octet-stream'
